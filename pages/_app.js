@@ -1,5 +1,6 @@
 import GlobalStyle from "../styles";
-import { SWRConfig, useSWR } from "swr";
+import { SWRConfig } from "swr";
+import useSWR from "swr";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
