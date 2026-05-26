@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
@@ -21,7 +22,16 @@ export default function PlantDetailPage() {
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <h1>{plant.name}</h1>
+      <section>
+        <Image
+          src={plant.imageUrl}
+          alt="placeholder Image"
+          width={150}
+          height={150}
+        />
+        <h1>{plant.name}</h1>
+        <h2>{plant.botanicalName}</h2>
+      </section>
     </>
   );
 }
