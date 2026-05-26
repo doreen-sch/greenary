@@ -6,22 +6,22 @@ export default function PlantDetailPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: plants, isLoading, error } = useSWR(`/api/plants/${id}`);
+  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
   if (isLoading) {
     return <h1>is Loading…</h1>;
   }
 
-  if (!plants || error) {
+  if (!plant || error) {
     return <h1>Error!</h1>;
   }
 
-  console.log(plants);
+  console.log(plant);
   return (
     <>
       <Head>
-        <title>{plants.name}</title>
+        <title>{plant.name}</title>
       </Head>
-      <h1>{plants.name}</h1>
+      <h1>{plant.name}</h1>
     </>
   );
 }
