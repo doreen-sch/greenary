@@ -1,9 +1,8 @@
 import dbConnect from "@/db/connect";
-import Plant from "@/db/models/Plants";
+import Plant from "@/db/models/Plant";
 
-export default async function handler(response, request) {
+export default async function handler(request, response) {
   await dbConnect();
-
   try {
     if (request.method === "GET") {
       const plants = await Plant.find();
