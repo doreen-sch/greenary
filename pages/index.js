@@ -11,7 +11,6 @@ export default function HomePage() {
   }
   return (
     <div>
-      {console.log(data)}
       <h1>Welcome to greenary🌱</h1>
     </div>
   );
