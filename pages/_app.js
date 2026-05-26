@@ -2,28 +2,28 @@ import GlobalStyle from "../styles";
 import useSWR, { SWRConfig } from "swr";
 
 const fetcher = async (url) => {
-  const res = await fetch(url);
+  const result = await fetch(url);
   // If the status code is not in the range 200-299,
   // we still try to parse and throw it.
-  if (!res.ok) {
+  if (!result.ok) {
     const error = new Error("An error occurred while fetching the data.");
     // Attach extra info to the error object.
-    error.info = await res.json();
-    error.status = res.status;
+    error.info = await result.json();
+    error.status = result.status;
     throw error;
   }
-  return res.json();
+  return result.json();
 };
 
 export default function App({ Component, pageProps }) {
-  const { data: plants, isLoading, error } = useSWR(`/api/plants`);
+  const { data: plants, isLoading, error } = useSWR(`/api/plants`, fetcher);
 
   if (isLoading) {
-    <h1>is Loading…</h1>;
+    return <h1>is Loading…</h1>;
   }
 
-  if (!data || error) {
-    <h1>Error!</h1>;
+  if (!plants || error) {
+    return <h1>Error!</h1>;
   }
 
   return (
