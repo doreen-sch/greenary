@@ -16,7 +16,6 @@ export default function PlantDetailPage() {
     return <h1>OPS… something went wrong.</h1>;
   }
 
-  console.log(plant);
   return (
     <>
       <Head>
