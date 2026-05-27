@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import styled from "styled-components";
 
 export default function PlantForm() {
   const { mutate } = useSWR(`/api/plants`);
@@ -47,44 +46,50 @@ export default function PlantForm() {
 
         <fieldset>
           <legend>Light needs</legend>
-          <label htmlFor="lightNeed">Full Shade</label>
+
+          <input
+            type="radio"
+            id="lightNeed"
+            name="lightNeed"
+            value="fullSun"
+            required
+          />
+          <label htmlFor="lightNeed">Full Sun</label>
+
+          <input
+            type="radio"
+            id="lightNeed"
+            name="lightNeed"
+            value="partialShade"
+          />
+          <label htmlFor="lightNeed">Partial Shade</label>
+
           <input
             type="radio"
             id="lightNeed"
             name="lightNeed"
             value="Full Shade"
-            required
           />
-          <label htmlFor="lightNeed">Partial Shade</label>
-          <input
-            type="radio"
-            id="lightNeed"
-            name="lightNeed"
-            value="Partial Shade"
-          />
-          <label htmlFor="lightNeed">Full Sun</label>
-          <input
-            type="radio"
-            id="lightNeed"
-            name="lightNeed"
-            value="Full Sun"
-          />
+          <label htmlFor="lightNeed">Full Shade</label>
         </fieldset>
 
         <fieldset>
           <legend>Water needs</legend>
-          <label htmlFor="waterNeed">Low</label>
+
           <input
             type="radio"
             id="waterNeed"
             name="waterNeed"
-            value="Low"
+            value="low"
             required
           />
+          <label htmlFor="waterNeed">Low</label>
+
+          <input type="radio" id="waterNeed" name="waterNeed" value="medium" />
           <label htmlFor="waterNeed">Medium</label>
-          <input type="radio" id="waterNeed" name="waterNeed" value="Medium" />
+
+          <input type="radio" id="waterNeed" name="waterNeed" value="high" />
           <label htmlFor="waterNeed">High</label>
-          <input type="radio" id="waterNeed" name="waterNeed" value="High" />
         </fieldset>
 
         <label htmlFor="description">Description</label>
@@ -97,34 +102,34 @@ export default function PlantForm() {
 
         <fieldset>
           <legend>Fertiliser Season</legend>
-          <label htmlFor="fertiliserSeason">Spring</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
             value={"Spring"}
-          ></input>
-          <label htmlFor="fertiliserSeason">Summer</label>
+          ></input>{" "}
+          <label htmlFor="fertiliserSeason">Spring</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
             value={"Summer"}
-          ></input>
-          <label htmlFor="fertiliserSeason">Fall</label>
+          ></input>{" "}
+          <label htmlFor="fertiliserSeason">Summer</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
             value={"Fall"}
-          ></input>
-          <label htmlFor="fertiliserSeason">Winter</label>
+          ></input>{" "}
+          <label htmlFor="fertiliserSeason">Fall</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
             value={"Winter"}
-          ></input>
+          ></input>{" "}
+          <label htmlFor="fertiliserSeason">Winter</label>
         </fieldset>
         <br />
         <button type="submit">plant your plant</button>
