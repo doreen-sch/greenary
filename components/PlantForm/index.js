@@ -9,7 +9,7 @@ export default function PlantForm() {
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
 
-    const imageUrl = "@/public/images/greenary_guy.png";
+    const imageUrl = "/images/greenary_guy.png";
 
     plantData.imageUrl = imageUrl;
 
@@ -106,29 +106,29 @@ export default function PlantForm() {
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
-            value={"Spring"}
-          ></input>{" "}
+            value="spring"
+          ></input>
           <label htmlFor="fertiliserSeason">Spring</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
-            value={"Summer"}
-          ></input>{" "}
+            value="summer"
+          ></input>
           <label htmlFor="fertiliserSeason">Summer</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
-            value={"Fall"}
-          ></input>{" "}
-          <label htmlFor="fertiliserSeason">Fall</label>
+            value="autumn"
+          ></input>
+          <label htmlFor="fertiliserSeason">Autumn</label>
           <input
             type="checkbox"
             id="fertiliserSeason"
             name="fertiliserSeason"
-            value={"Winter"}
-          ></input>{" "}
+            value="winter"
+          ></input>
           <label htmlFor="fertiliserSeason">Winter</label>
         </fieldset>
         <br />
