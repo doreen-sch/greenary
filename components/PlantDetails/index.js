@@ -13,20 +13,29 @@ import {
 
 export default function PlantDetails({ plant }) {
   let waterNeed = 0;
-  if (plant.waterNeed === "Low") {
-    waterNeed = 1;
-  } else if (plant.waterNeed === "Medium") {
-    waterNeed = 2;
-  } else if (plant.waterNeed === "High") {
-    waterNeed = 3;
+  switch (plant.waterNeed) {
+    case "Low":
+      waterNeed = 1;
+      break;
+    case "Medium":
+      waterNeed = 2;
+      break;
+    case "High":
+      waterNeed = 3;
+      break;
   }
+
   let lightNeed = 0;
-  if (plant.lightNeed === "Full Shade") {
-    lightNeed = 1;
-  } else if (plant.lightNeed === "Partial Shade") {
-    lightNeed = 2;
-  } else if (plant.lightNeed === "Full Sun") {
-    lightNeed = 3;
+  switch (plant.lightNeed) {
+    case "Full Shade":
+      lightNeed = 1;
+      break;
+    case "Partial Shade":
+      lightNeed = 2;
+      break;
+    case "Full Sun":
+      lightNeed = 3;
+      break;
   }
 
   return (
