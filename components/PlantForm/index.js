@@ -4,7 +4,15 @@ import styled from "styled-components";
 export default function PlantForm() {
   const { mutate } = useSWR(`/api/plants`);
 
-  function handleSubmit() {}
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const newPlant = Object.fromEntries(formData);
+
+    event.target.reset();
+    event.target.elements.name.focus();
+  }
 
   return (
     <form
@@ -102,7 +110,7 @@ export default function PlantForm() {
             value={"Winter"}
           ></input>
         </fieldset>
-
+        <br />
         <button type="submit">plant your plant</button>
       </fieldset>
     </form>
