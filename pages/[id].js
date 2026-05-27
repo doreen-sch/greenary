@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+import PlantDetails from "@/components/PlantDetails";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
@@ -13,7 +13,7 @@ export default function PlantDetailPage() {
   }
 
   if (!plant || error) {
-    return <h1>Error!</h1>;
+    return <h1>OPS… something went wrong.</h1>;
   }
 
   console.log(plant);
@@ -22,16 +22,7 @@ export default function PlantDetailPage() {
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <section>
-        <Image
-          src={plant.imageUrl}
-          alt="placeholder Image"
-          width={150}
-          height={150}
-        />
-        <h1>{plant.name}</h1>
-        <h2>{plant.botanicalName}</h2>
-      </section>
+      <PlantDetails plant={plant} />
     </>
   );
 }
