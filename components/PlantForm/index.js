@@ -4,11 +4,27 @@ import styled from "styled-components";
 export default function PlantForm() {
   const { mutate } = useSWR(`/api/plants`);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const newPlant = Object.fromEntries(formData);
+    const plantData = Object.fromEntries(formData);
+
+    const imageUrl = "@/public/images/greenary_guy.png";
+
+    plantData.imageUrl = imageUrl;
+
+    const response = await fetch("/api/plants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantData),
+    });
+
+    if (response.ok) {
+      mutate();
+    }
 
     event.target.reset();
     event.target.elements.name.focus();
