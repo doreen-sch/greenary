@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Droplet,
   DropletOff,
@@ -30,6 +31,7 @@ export default function PlantDetails({ plant }) {
 
   return (
     <>
+      <Link href="/">← OVERVIEW</Link>
       <section>
         <Image
           src={plant.imageUrl}
