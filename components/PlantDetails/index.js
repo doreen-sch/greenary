@@ -31,7 +31,7 @@ export default function PlantDetails({ plant }) {
 
   return (
     <>
-      <Link href="/">← OVERVIEW</Link>
+      <Link href="/">← BACK TO GARDEN</Link>
       <section>
         <Image
           src={plant.imageUrl}
