@@ -9,7 +9,6 @@ export default function PlantForm() {
     const formData = new FormData(event.target);
 const plantData = Object.fromEntries(formData);
 
-
     const imageUrl = "/images/greenary_guy.png";
 
     plantData.imageUrl = imageUrl;
