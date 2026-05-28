@@ -1,6 +1,7 @@
-import PlantList from "@/components/PlantList";
 import useSWR from "swr";
-
+import PlantForm from "@/components/PlantForm";
+import PlantList from "@/components/PlantList";
+    
 export default function HomePage() {
   const { data: plants, isLoading } = useSWR("/api/plants");
 
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <h1>Greenary 🌱</h1>
+      <PlantForm />
       <PlantList plants={plants} />
     </div>
   );
