@@ -39,7 +39,7 @@ export default function PlantDetailPage() {
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <PlantDetails plant={plant} handleEditPlant={handleEditPlant} />
+      <PlantDetails plant={plant} onSubmit={handleEditPlant} />
     </>
   );
 }

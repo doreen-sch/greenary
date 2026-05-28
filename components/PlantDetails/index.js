@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import PlantForm from "../PlantForm";
 
-export default function PlantDetails({ plant, handleEditPlant }) {
+export default function PlantDetails({ plant, onSubmit }) {
   const [showEditForm, setShowEditForm] = useState(false);
 
   let waterNeed = 0;
@@ -55,11 +55,7 @@ export default function PlantDetails({ plant, handleEditPlant }) {
         />
         <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
         {showEditForm && (
-          <PlantForm
-            onSubmit={handleEditPlant}
-            plant={plant}
-            isEditMode={true}
-          />
+          <PlantForm onSubmit={onSubmit} plant={plant} isEditMode={true} />
         )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>

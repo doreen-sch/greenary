@@ -1,4 +1,4 @@
-export default function PlantForm({ plant, handleAddPlant }) {
+export default function PlantForm({ plant, handleAddPlant, isEditMode }) {
   return (
     <form
       onSubmit={handleAddPlant}
@@ -34,7 +34,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="lightNeed-fullSun"
             name="lightNeed"
             value="Full Sun"
-            checked={plant.lightNeed === "Full Sun"}
+            defaultChecked={plant.lightNeed === "Full Sun"}
             required
           />
           <label htmlFor="lightNeed-fullSun">Full Sun</label>
@@ -44,7 +44,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="lightNeed-partialShade"
             name="lightNeed"
             value="Partial Shade"
-            checked={plant.lightNeed === "Partial Shade"}
+            defaultChecked={plant.lightNeed === "Partial Shade"}
           />
           <label htmlFor="lightNeed-partialShade">Partial Shade</label>
 
@@ -53,7 +53,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="lightNeed-fullShade"
             name="lightNeed"
             value="Full Shade"
-            checked={plant.lightNeed === "Full Shade"}
+            defaultChecked={plant.lightNeed === "Full Shade"}
           />
           <label htmlFor="lightNeed-fullShade">Full Shade</label>
         </fieldset>
@@ -66,7 +66,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="waterNeed-low"
             name="waterNeed"
             value="Low"
-            checked={plant.waterNeed === "Low"}
+            defaultChecked={plant.waterNeed === "Low"}
             required
           />
           <label htmlFor="waterNeed-low">Low</label>
@@ -76,7 +76,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="waterNeed-medium"
             name="waterNeed"
             value="Medium"
-            checked={plant.waterNeed === "Medium"}
+            defaultChecked={plant.waterNeed === "Medium"}
           />
           <label htmlFor="waterNeed-medium">Medium</label>
 
@@ -85,7 +85,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="waterNeed-high"
             name="waterNeed"
             value="High"
-            checked={plant.waterNeed === "High"}
+            defaultChecked={plant.waterNeed === "High"}
           />
           <label htmlFor="waterNeed-high">High</label>
         </fieldset>
@@ -105,7 +105,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="fertiliserSeason-spring"
             name="fertiliserSeason"
             value="Spring"
-            checked={plant.fertiliserSeason === "Spring"}
+            defaultChecked={plant.fertiliserSeason === "Spring"}
           ></input>
           <label htmlFor="fertiliserSeason-spring">Spring</label>
           <input
@@ -113,7 +113,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="fertiliserSeason-summer"
             name="fertiliserSeason"
             value="Summer"
-            checked={plant.fertiliserSeason === "Summer"}
+            defaultChecked={plant.fertiliserSeason === "Summer"}
           ></input>
           <label htmlFor="fertiliserSeason-summer">Summer</label>
           <input
@@ -121,7 +121,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="fertiliserSeason-autumn"
             name="fertiliserSeason"
             value="Autumn"
-            checked={plant.fertiliserSeason === "Autumn"}
+            defaultChecked={plant.fertiliserSeason === "Autumn"}
           ></input>
           <label htmlFor="fertiliserSeason-autumn">Autumn</label>
           <input
@@ -129,7 +129,7 @@ export default function PlantForm({ plant, handleAddPlant }) {
             id="fertiliserSeason-winter"
             name="fertiliserSeason"
             value="Winter"
-            checked={plant.fertiliserSeason === "Winter"}
+            defaultChecked={plant.fertiliserSeason === "Winter"}
           ></input>
           <label htmlFor="fertiliserSeason-winter">Winter</label>
         </fieldset>
