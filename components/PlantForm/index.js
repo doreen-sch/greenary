@@ -69,7 +69,7 @@ export default function PlantForm() {
             type="radio"
             id="lightNeed"
             name="lightNeed"
-            value="Full Shade"
+            value="fullShade"
           />
           <label htmlFor="lightNeed">Full Shade</label>
         </fieldset>
