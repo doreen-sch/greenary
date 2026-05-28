@@ -39,10 +39,6 @@ export default function PlantDetails({ plant, onDeletePlant }) {
       break;
   }
 
-  // function onDeletePlant() {
-
-  // }
-
   return (
     <>
       <Link href="/">← BACK TO GARDEN</Link>
@@ -83,9 +79,10 @@ export default function PlantDetails({ plant, onDeletePlant }) {
       </section>
       <button command="show-modal" commandfor="deleteConfirmation">
         <Trash2 />
+        Delete Plant
       </button>
       <dialog id="deleteConfirmation">
-        <p>Do you really want to discard this plant from your garden?</p>
+        <p>Do you really want to discard the {plant.name} from your garden?</p>
         <button commandfor="deleteConfirmation" command="close">
           cancel
         </button>
