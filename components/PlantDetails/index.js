@@ -49,6 +49,7 @@ export default function PlantDetails({ plant }) {
           height={600}
           style={{ objectFit: "cover" }}
         />
+        <button onClick={handleEditPlant}>Edit</button>
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>
         <p>{plant.description}</p>
