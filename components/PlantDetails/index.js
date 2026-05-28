@@ -10,12 +10,14 @@ import {
   Leaf,
   Snowflake,
 } from "lucide-react";
-import { useState } from "react";
 import PlantForm from "../PlantForm";
 
-export default function PlantDetails({ plant, onSubmit }) {
-  const [showEditForm, setShowEditForm] = useState(false);
-
+export default function PlantDetails({
+  plant,
+  onEditPlant,
+  showEditForm,
+  setShowEditForm,
+}) {
   let waterNeed = 0;
   switch (plant.waterNeed) {
     case "Low":
@@ -53,15 +55,17 @@ export default function PlantDetails({ plant, onSubmit }) {
           height={600}
           style={{ objectFit: "cover" }}
         />
-        <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
-        {showEditForm && (
+
+        {showEditForm ? (
           <PlantForm
-            onSubmit={onSubmit}
+            onSubmit={onEditPlant}
             plant={plant}
-            isEditMode={true}
+            isEditMode
             setShowEditForm={setShowEditForm}
             showEditForm={showEditForm}
           />
+        ) : (
+          <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
         )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>

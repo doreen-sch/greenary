@@ -2,8 +2,10 @@ import Head from "next/head";
 import PlantDetails from "@/components/PlantDetails";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function PlantDetailPage() {
+  const [showEditForm, setShowEditForm] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -13,6 +15,7 @@ export default function PlantDetailPage() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
+    plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
 
     const response = await fetch(`/api/plants/${id}`, {
       method: "PUT",
@@ -21,8 +24,10 @@ export default function PlantDetailPage() {
       },
       body: JSON.stringify(plantData),
     });
+
     if (response.ok) {
       mutate();
+      setShowEditForm(!showEditForm);
     }
   }
 
@@ -39,7 +44,12 @@ export default function PlantDetailPage() {
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <PlantDetails plant={plant} onSubmit={handleEditPlant} />
+      <PlantDetails
+        plant={plant}
+        onEditPlant={handleEditPlant}
+        showEditForm={showEditForm}
+        setShowEditForm={setShowEditForm}
+      />
     </>
   );
 }

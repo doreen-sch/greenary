@@ -1,13 +1,13 @@
 export default function PlantForm({
   plant,
-  handleAddPlant,
   isEditMode,
   setShowEditForm,
   showEditForm,
+  onSubmit,
 }) {
   return (
     <form
-      onSubmit={handleAddPlant}
+      onSubmit={onSubmit}
       aria-labelledby="Expand your Garden"
       aria-describedby="add a new plant"
     >
@@ -141,9 +141,12 @@ export default function PlantForm({
         </fieldset>
         {isEditMode ? (
           <>
-            <button type="submit">edit your plant</button>
-            <button onClick={() => setShowEditForm(!showEditForm)}>
-              discard changes
+            <button type="submit">save</button>
+            <button
+              type="button"
+              onClick={() => setShowEditForm(!showEditForm)}
+            >
+              cancel
             </button>
           </>
         ) : (

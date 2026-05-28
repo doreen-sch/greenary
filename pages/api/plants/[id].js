@@ -13,8 +13,8 @@ export default async function handler(request, response) {
       return response.status(200).json(plant);
     }
     if (request.method === "PUT") {
-      const updatedPlant = request.query;
-      await Plant.findById(id, updatedPlant);
+      const updatedPlant = request.body;
+      await Plant.findByIdAndUpdate(id, updatedPlant);
 
       return response
         .status(200)
