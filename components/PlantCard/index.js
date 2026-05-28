@@ -1,14 +1,18 @@
 import Image from "next/image";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function PlantCard({ plant }) {
+  const { _id, imageUrl, name, botanicalName } = plant;
   return (
     <StyledPlantCard>
-      <StyledPlantCardDiv>
-        <StyledImage src={plant.imageUrl} alt={plant.name} fill />
-      </StyledPlantCardDiv>
-      <h2>{plant.name}</h2>
-      <p>{plant.botanicalName}</p>
+      <Link href={`/${_id}`}>
+        <StyledPlantCardDiv>
+          <StyledImage src={imageUrl} alt={name} fill />
+        </StyledPlantCardDiv>
+        <h2>{name}</h2>
+        <p>{botanicalName}</p>
+      </Link>
     </StyledPlantCard>
   );
 }
