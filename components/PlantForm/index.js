@@ -79,18 +79,18 @@ export default function PlantForm() {
 
           <input
             type="radio"
-            id="waterNeed"
+            id="waterNeed-low"
             name="waterNeed"
             value="low"
             required
           />
-          <label htmlFor="waterNeed">Low</label>
+          <label htmlFor="waterNeed-low"">Low</label>
 
-          <input type="radio" id="waterNeed" name="waterNeed" value="medium" />
-          <label htmlFor="waterNeed">Medium</label>
+          <input type="radio" id="waterNeed-medium" name="waterNeed" value="medium" />
+          <label htmlFor="waterNeed-medium">Medium</label>
 
-          <input type="radio" id="waterNeed" name="waterNeed" value="high" />
-          <label htmlFor="waterNeed">High</label>
+          <input type="radio" id="waterNeed-high" name="waterNeed" value="high" />
+          <label htmlFor="waterNeed-high" >High</label>
         </fieldset>
 
         <label htmlFor="description">Description</label>
