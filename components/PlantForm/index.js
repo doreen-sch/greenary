@@ -64,8 +64,8 @@ export default function PlantForm({ plant }) {
             type="radio"
             id="lightNeed-fullSun"
             name="lightNeed"
-            value="fullSun"
-            defaultValue={plant.lightNeed}
+            value="Full Sun"
+            checked={plant.lightNeed === "Full Sun"}
             required
           />
           <label htmlFor="lightNeed-fullSun">Full Sun</label>
@@ -74,8 +74,8 @@ export default function PlantForm({ plant }) {
             type="radio"
             id="lightNeed-partialShade"
             name="lightNeed"
-            value="partialShade"
-            defaultValue={plant.lightNeed}
+            value="Partial Shade"
+            checked={plant.lightNeed === "Partial Shade"}
           />
           <label htmlFor="lightNeed-partialShade">Partial Shade</label>
 
@@ -83,8 +83,8 @@ export default function PlantForm({ plant }) {
             type="radio"
             id="lightNeed-fullShade"
             name="lightNeed"
-            value="fullShade"
-            defaultValue={plant.lightNeed}
+            value="Full Shade"
+            checked={plant.lightNeed === "Full Shade"}
           />
           <label htmlFor="lightNeed-fullShade">Full Shade</label>
         </fieldset>
@@ -96,8 +96,8 @@ export default function PlantForm({ plant }) {
             type="radio"
             id="waterNeed-low"
             name="waterNeed"
-            value="low"
-            defaultValue={plant.waterNeed}
+            value="Low"
+            checked={plant.waterNeed === "Low"}
             required
           />
           <label htmlFor="waterNeed-low">Low</label>
@@ -106,8 +106,8 @@ export default function PlantForm({ plant }) {
             type="radio"
             id="waterNeed-medium"
             name="waterNeed"
-            value="medium"
-            defaultValue={plant.waterNeed}
+            value="Medium"
+            checked={plant.waterNeed === "Medium"}
           />
           <label htmlFor="waterNeed-medium">Medium</label>
 
@@ -115,8 +115,8 @@ export default function PlantForm({ plant }) {
             type="radio"
             id="waterNeed-high"
             name="waterNeed"
-            value="high"
-            defaultValue={plant.waterNeed}
+            value="High"
+            checked={plant.waterNeed === "High"}
           />
           <label htmlFor="waterNeed-high">High</label>
         </fieldset>
@@ -127,7 +127,6 @@ export default function PlantForm({ plant }) {
           id="description"
           name="description"
           size={300}
-          defaultValue={plant.description}
         ></input>
 
         <fieldset>
@@ -136,32 +135,32 @@ export default function PlantForm({ plant }) {
             type="checkbox"
             id="fertiliserSeason-spring"
             name="fertiliserSeason"
-            value="spring"
-            defaultValue={plant.fertiliserSeason}
+            value="Spring"
+            checked={plant.fertiliserSeason === "Spring"}
           ></input>
           <label htmlFor="fertiliserSeason-spring">Spring</label>
           <input
             type="checkbox"
             id="fertiliserSeason-summer"
             name="fertiliserSeason"
-            value="summer"
-            defaultValue={plant.fertiliserSeason}
+            value="Summer"
+            checked={plant.fertiliserSeason === "Summer"}
           ></input>
           <label htmlFor="fertiliserSeason-summer">Summer</label>
           <input
             type="checkbox"
             id="fertiliserSeason-autumn"
             name="fertiliserSeason"
-            value="autumn"
-            defaultValue={plant.fertiliserSeason}
+            value="Autumn"
+            checked={plant.fertiliserSeason === "Autumn"}
           ></input>
           <label htmlFor="fertiliserSeason-autumn">Autumn</label>
           <input
             type="checkbox"
             id="fertiliserSeason-winter"
             name="fertiliserSeason"
-            value="winter"
-            defaultValue={plant.fertiliserSeason}
+            value="Winter"
+            checked={plant.fertiliserSeason === "Winter"}
           ></input>
           <label htmlFor="fertiliserSeason-winter">Winter</label>
         </fieldset>

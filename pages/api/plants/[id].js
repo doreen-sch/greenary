@@ -17,7 +17,7 @@ export default async function handler(request, response) {
       await Plant.findById(id, updatedPlant);
 
       return response
-        .status(201)
+        .status(200)
         .json({ status: "Successfully updated Plant." });
     }
   } catch (error) {

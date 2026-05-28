@@ -11,8 +11,9 @@ import {
   Snowflake,
 } from "lucide-react";
 import { useState } from "react";
+import PlantForm from "../PlantForm";
 
-export default function PlantDetails({ plant }) {
+export default function PlantDetails({ plant, handleEditPlant }) {
   const [showEditForm, setShowEditForm] = useState(false);
 
   let waterNeed = 0;
@@ -53,6 +54,13 @@ export default function PlantDetails({ plant }) {
           style={{ objectFit: "cover" }}
         />
         <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
+        {showEditForm && (
+          <PlantForm
+            onSubmit={handleEditPlant}
+            plant={plant}
+            isEditMode={true}
+          />
+        )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>
         <p>{plant.description}</p>
