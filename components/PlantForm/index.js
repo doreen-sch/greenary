@@ -132,7 +132,7 @@ export default function PlantForm() {
           ></input>
           <label htmlFor="fertiliserSeason-winter">Winter</label>
         </fieldset>
-        <br />
+              
         <button type="submit">plant your plant</button>
       </fieldset>
     </form>
