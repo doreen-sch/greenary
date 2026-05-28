@@ -7,7 +7,8 @@ export default function PlantDetailPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
+  const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
+
   if (isLoading) {
     return <h1>is Loading…</h1>;
   }
