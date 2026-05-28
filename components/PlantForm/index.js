@@ -50,28 +50,28 @@ export default function PlantForm() {
 
           <input
             type="radio"
-            id="lightNeed"
+            id="lightNeed-fullSun"
             name="lightNeed"
             value="fullSun"
             required
           />
-          <label htmlFor="lightNeed">Full Sun</label>
+          <label htmlFor="lightNeed-fullSun">Full Sun</label>
 
           <input
             type="radio"
-            id="lightNeed"
+            id="lightNeed-partialShade"
             name="lightNeed"
             value="partialShade"
           />
-          <label htmlFor="lightNeed">Partial Shade</label>
+          <label htmlFor="lightNeed-partialShade">Partial Shade</label>
 
           <input
             type="radio"
-            id="lightNeed"
+            id="lightNeed-fullShade"
             name="lightNeed"
-            value="fullShade"
+            value="Full Shade"
           />
-          <label htmlFor="lightNeed">Full Shade</label>
+          <label htmlFor="lightNeed-fullShade">Full Shade</label>
         </fieldset>
 
         <fieldset>
