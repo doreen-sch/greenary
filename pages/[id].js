@@ -27,7 +27,7 @@ export default function PlantDetailPage() {
 
     if (response.ok) {
       mutate();
-      setShowEditForm(!showEditForm);
+      setShowEditForm(false);
     }
   }
 
