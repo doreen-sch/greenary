@@ -8,6 +8,12 @@ export default async function handler(request, response) {
       const plants = await Plant.find();
       return response.status(200).json(plants);
     }
+
+    if (request.method === "POST") {
+      const plantData = request.body;
+      await Plant.create(plantData);
+      return response.status(201).json({ status: "Plant created" });
+    }
   } catch (error) {
     console.error(error);
     return response.status(500).json({ status: "Internal Server Error." });
