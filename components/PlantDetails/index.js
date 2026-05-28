@@ -9,6 +9,7 @@ import {
   Sun,
   Leaf,
   Snowflake,
+  Trash2,
 } from "lucide-react";
 
 export default function PlantDetails({ plant }) {
@@ -37,6 +38,8 @@ export default function PlantDetails({ plant }) {
       lightNeed = 3;
       break;
   }
+
+  function handleDeletePlant() {}
 
   return (
     <>
@@ -76,6 +79,9 @@ export default function PlantDetails({ plant }) {
           </span>
         ))}
       </section>
+      <button type="button" onClick={handleDeletePlant}>
+        <Trash2 />
+      </button>
     </>
   );
 }
