@@ -13,6 +13,17 @@ export default function PlantDetailPage() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
+
+    const response = await fetch(`/api/plants/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantData),
+    });
+    if (response.ok) {
+      mutate();
+    }
   }
 
   if (isLoading) {
