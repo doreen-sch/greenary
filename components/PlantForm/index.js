@@ -24,10 +24,10 @@ export default function PlantForm() {
 
     if (response.ok) {
       mutate();
-    }
 
-    event.target.reset();
-    event.target.elements.name.focus();
+      event.target.reset();
+      event.target.elements.name.focus();
+    }
   }
 
   return (
