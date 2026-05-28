@@ -9,6 +9,12 @@ export default function PlantDetailPage() {
 
   const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
 
+  async function handleEditPlant(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const plantData = Object.fromEntries(formData);
+  }
+
   if (isLoading) {
     return <h1>is Loading…</h1>;
   }
