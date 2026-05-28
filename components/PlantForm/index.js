@@ -105,32 +105,32 @@ export default function PlantForm() {
           <legend>Fertiliser Season</legend>
           <input
             type="checkbox"
-            id="fertiliserSeason"
+            id="fertiliserSeason-spring"
             name="fertiliserSeason"
             value="spring"
           ></input>
-          <label htmlFor="fertiliserSeason">Spring</label>
+          <label htmlFor="fertiliserSeason-spring">Spring</label>
           <input
             type="checkbox"
-            id="fertiliserSeason"
+            id="fertiliserSeason-summer" 
             name="fertiliserSeason"
             value="summer"
           ></input>
-          <label htmlFor="fertiliserSeason">Summer</label>
+          <label htmlFor="fertiliserSeason-summer">Summer</label>
           <input
             type="checkbox"
-            id="fertiliserSeason"
+            id="fertiliserSeason-autumn" 
             name="fertiliserSeason"
             value="autumn"
           ></input>
-          <label htmlFor="fertiliserSeason">Autumn</label>
+          <label htmlFor="fertiliserSeason-autumn">Autumn</label>
           <input
             type="checkbox"
-            id="fertiliserSeason"
+            id="fertiliserSeason-winter" 
             name="fertiliserSeason"
             value="winter"
           ></input>
-          <label htmlFor="fertiliserSeason">Winter</label>
+          <label htmlFor="fertiliserSeason-winter">Winter</label>
         </fieldset>
         <br />
         <button type="submit">plant your plant</button>
