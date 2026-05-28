@@ -55,7 +55,13 @@ export default function PlantDetails({ plant, onSubmit }) {
         />
         <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
         {showEditForm && (
-          <PlantForm onSubmit={onSubmit} plant={plant} isEditMode={true} />
+          <PlantForm
+            onSubmit={onSubmit}
+            plant={plant}
+            isEditMode={true}
+            setShowEditForm={setShowEditForm}
+            showEditForm={showEditForm}
+          />
         )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>

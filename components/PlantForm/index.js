@@ -1,4 +1,10 @@
-export default function PlantForm({ plant, handleAddPlant, isEditMode }) {
+export default function PlantForm({
+  plant,
+  handleAddPlant,
+  isEditMode,
+  setShowEditForm,
+  showEditForm,
+}) {
   return (
     <form
       onSubmit={handleAddPlant}
@@ -105,7 +111,7 @@ export default function PlantForm({ plant, handleAddPlant, isEditMode }) {
             id="fertiliserSeason-spring"
             name="fertiliserSeason"
             value="Spring"
-            defaultChecked={plant.fertiliserSeason === "Spring"}
+            defaultChecked={plant.fertiliserSeason?.includes("Spring")}
           ></input>
           <label htmlFor="fertiliserSeason-spring">Spring</label>
           <input
@@ -113,7 +119,7 @@ export default function PlantForm({ plant, handleAddPlant, isEditMode }) {
             id="fertiliserSeason-summer"
             name="fertiliserSeason"
             value="Summer"
-            defaultChecked={plant.fertiliserSeason === "Summer"}
+            defaultChecked={plant.fertiliserSeason?.includes("Summer")}
           ></input>
           <label htmlFor="fertiliserSeason-summer">Summer</label>
           <input
@@ -121,7 +127,7 @@ export default function PlantForm({ plant, handleAddPlant, isEditMode }) {
             id="fertiliserSeason-autumn"
             name="fertiliserSeason"
             value="Autumn"
-            defaultChecked={plant.fertiliserSeason === "Autumn"}
+            defaultChecked={plant.fertiliserSeason?.includes("Autumn")}
           ></input>
           <label htmlFor="fertiliserSeason-autumn">Autumn</label>
           <input
@@ -129,12 +135,20 @@ export default function PlantForm({ plant, handleAddPlant, isEditMode }) {
             id="fertiliserSeason-winter"
             name="fertiliserSeason"
             value="Winter"
-            defaultChecked={plant.fertiliserSeason === "Winter"}
+            defaultChecked={plant.fertiliserSeason?.includes("Winter")}
           ></input>
           <label htmlFor="fertiliserSeason-winter">Winter</label>
         </fieldset>
-
-        <button type="submit">plant your plant</button>
+        {isEditMode ? (
+          <>
+            <button type="submit">edit your plant</button>
+            <button onClick={() => setShowEditForm(!showEditForm)}>
+              discard changes
+            </button>
+          </>
+        ) : (
+          <button type="submit">plant your plant</button>
+        )}
       </fieldset>
     </form>
   );
