@@ -1,23 +1,15 @@
 import PlantList from "@/components/PlantList";
+import useSWR from "swr";
 
-export default function HomePage({ plants }) {
+export default function HomePage() {
+  const { data, isLoading } = useSWR("/api/plants");
+
+  if (isLoading) return <p>Loading your garden...</p>;
+
   return (
     <div>
       <h1>Greenary 🌱</h1>
-      {/* <p>{JSON.stringify(plants)}</p> */}
-      <PlantList plants={plants} />
+      <PlantList plants={data} />
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/plants");
-  const data = await response.json();
-  const serializedData = JSON.parse(JSON.stringify(data));
-
-  return {
-    props: {
-      plants: serializedData,
-    },
-  };
 }
