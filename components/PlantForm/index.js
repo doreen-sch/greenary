@@ -141,7 +141,7 @@ export default function PlantForm({
         </fieldset>
         {isEditMode ? (
           <>
-            <button type="submit">save</button>
+            <button type="submit">save edits</button>
             <button
               type="button"
               onClick={() => setShowEditForm(!showEditForm)}
