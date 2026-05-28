@@ -37,7 +37,7 @@ export default function HomePage() {
   return (
     <div>
       <h1>Greenary 🌱</h1>
-      <PlantForm plant="" />
+      <PlantForm onSubmit={handleAddPlant} plant="" />
       <PlantList plants={plants} />
     </div>
   );

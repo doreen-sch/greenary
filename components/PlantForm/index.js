@@ -1,38 +1,7 @@
-import useSWR from "swr";
-
-export default function PlantForm({ plant }) {
-  const { mutate } = useSWR(`/api/plants`);
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const plantData = Object.fromEntries(formData);
-    plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
-
-    const imageUrl = "/images/greenary_guy.png";
-
-    plantData.imageUrl = imageUrl;
-
-    const response = await fetch("/api/plants", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plantData),
-    });
-
-    if (response.ok) {
-      mutate();
-
-      event.target.reset();
-      event.target.elements.name.focus();
-    }
-  }
-
+export default function PlantForm({ plant, handleAddPlant }) {
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleAddPlant}
       aria-labelledby="Expand your Garden"
       aria-describedby="add a new plant"
     >
