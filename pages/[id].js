@@ -16,12 +16,22 @@ export default function PlantDetailPage() {
     return <h1>oops… something went wrong.</h1>;
   }
 
+  async function handleDeletePlant() {
+    const response = await fetch(`/api/plants/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      router.push("/");
+    }
+  }
+
   return (
     <>
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <PlantDetails plant={plant} />
+      <PlantDetails plant={plant} onDeletePlant={handleDeletePlant} />
     </>
   );
 }

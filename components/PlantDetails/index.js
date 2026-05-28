@@ -12,7 +12,7 @@ import {
   Trash2,
 } from "lucide-react";
 
-export default function PlantDetails({ plant }) {
+export default function PlantDetails({ plant, onDeletePlant }) {
   let waterNeed = 0;
   switch (plant.waterNeed) {
     case "Low":
@@ -39,7 +39,9 @@ export default function PlantDetails({ plant }) {
       break;
   }
 
-  function handleDeletePlant() {}
+  // function onDeletePlant() {
+
+  // }
 
   return (
     <>
@@ -79,9 +81,21 @@ export default function PlantDetails({ plant }) {
           </span>
         ))}
       </section>
-      <button type="button" onClick={handleDeletePlant}>
+      <button command="show-modal" commandfor="deleteConfirmation">
         <Trash2 />
       </button>
+      <dialog id="deleteConfirmation">
+        <p>Do you really want to discard this plant from your garden?</p>
+        <button commandfor="deleteConfirmation" command="close">
+          cancel
+        </button>
+        <button
+          type="button"
+          onClick={() => onDeletePlant(deleteConfirmation.close())}
+        >
+          delete
+        </button>
+      </dialog>
     </>
   );
 }
