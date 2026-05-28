@@ -7,7 +7,8 @@ export default function PlantForm() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-const plantData = Object.fromEntries(formData);
+    const plantData = Object.fromEntries(formData);
+    plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
 
     const imageUrl = "/images/greenary_guy.png";
 
