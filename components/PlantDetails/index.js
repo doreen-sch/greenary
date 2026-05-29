@@ -12,8 +12,11 @@ import {
   Snowflake,
   Trash2,
 } from "lucide-react";
+import PlantForm from "../PlantForm";
 
-export default function PlantDetails({ plant, onDeletePlant }) {
+export default function PlantDetails({ plant, onDeletePlant,onEditPlant,
+  showEditForm,
+  setShowEditForm, }) {
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   let waterNeed = 0;
@@ -53,6 +56,18 @@ export default function PlantDetails({ plant, onDeletePlant }) {
           height={600}
           style={{ objectFit: "cover" }}
         />
+
+        {showEditForm ? (
+          <PlantForm
+            onSubmit={onEditPlant}
+            plant={plant}
+            isEditMode
+            setShowEditForm={setShowEditForm}
+            showEditForm={showEditForm}
+          />
+        ) : (
+          <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
+        )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>
         <p>{plant.description}</p>
