@@ -101,6 +101,7 @@ export default function PlantForm({
           type="text"
           id="description"
           name="description"
+          defaultValue={plant.description}
           size={300}
         ></input>
 
