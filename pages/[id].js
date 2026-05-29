@@ -13,7 +13,7 @@ export default function PlantDetailPage() {
   }
 
   if (!plant || error) {
-    return <h1>oops… something went wrong.</h1>;
+    return <h1>Oops… something went wrong.</h1>;
   }
 
   async function handleDeletePlant() {
