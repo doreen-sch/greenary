@@ -3,6 +3,7 @@ import PlantDetails from "@/components/PlantDetails";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function PlantDetailPage() {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -28,6 +29,13 @@ export default function PlantDetailPage() {
     if (response.ok) {
       mutate();
       setShowEditForm(false);
+      toast.success("Your plant 🪴 was successfully updated.");
+    }
+
+    if (!response.ok) {
+      toast.error(
+        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+      );
     }
   }
 
@@ -46,6 +54,13 @@ export default function PlantDetailPage() {
 
     if (response.ok) {
       router.push("/");
+      toast.success("Your plant 🥀 was successfully composted.");
+    }
+
+    if (!response.ok) {
+      toast.error(
+        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+      );
     }
   }
 
