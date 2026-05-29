@@ -53,6 +53,13 @@ export default function PlantDetailPage() {
 
     if (response.ok) {
       router.push("/");
+      toast.success("Your plant 🥀 was successfully composted.");
+    }
+
+    if (!response.ok) {
+      toast.error(
+        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+      );
     }
   }
 
