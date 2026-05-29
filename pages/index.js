@@ -3,7 +3,7 @@ import PlantForm from "@/components/PlantForm";
 import PlantList from "@/components/PlantList";
 
 export default function HomePage() {
-  const { data: plants, isLoading, mutate } = useSWR("/api/plants");
+  const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
   async function handleAddPlant(event) {
     event.preventDefault();
@@ -33,6 +33,10 @@ export default function HomePage() {
   }
 
   if (isLoading) return <p>Loading your garden...</p>;
+
+  if (!plants || error) {
+    return <h1>Oops… something went wrong.</h1>;
+  }
 
   return (
     <div>

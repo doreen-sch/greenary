@@ -36,7 +36,17 @@ export default function PlantDetailPage() {
   }
 
   if (!plant || error) {
-    return <h1>oops… something went wrong.</h1>;
+    return <h1>Oops… something went wrong.</h1>;
+  }
+
+  async function handleDeletePlant() {
+    const response = await fetch(`/api/plants/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      router.push("/");
+    }
   }
 
   return (
@@ -49,6 +59,7 @@ export default function PlantDetailPage() {
         onEditPlant={handleEditPlant}
         showEditForm={showEditForm}
         setShowEditForm={setShowEditForm}
+        onDeletePlant={handleDeletePlant}
       />
     </>
   );

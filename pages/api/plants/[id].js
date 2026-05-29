@@ -12,6 +12,12 @@ export default async function handler(request, response) {
       }
       return response.status(200).json(plant);
     }
+
+    if (request.method === "DELETE") {
+      await Plant.findByIdAndDelete(id);
+      return response.status(200).json({ status: "Success!" });
+    }
+    
     if (request.method === "PUT") {
       const updatedPlant = request.body;
       await Plant.findByIdAndUpdate(id, updatedPlant);

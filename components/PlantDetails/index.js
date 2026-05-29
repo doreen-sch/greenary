@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,15 +10,15 @@ import {
   Sun,
   Leaf,
   Snowflake,
+  Trash2,
 } from "lucide-react";
 import PlantForm from "../PlantForm";
 
-export default function PlantDetails({
-  plant,
-  onEditPlant,
+export default function PlantDetails({ plant, onDeletePlant,onEditPlant,
   showEditForm,
-  setShowEditForm,
-}) {
+  setShowEditForm, }) {
+  const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
+
   let waterNeed = 0;
   switch (plant.waterNeed) {
     case "Low":
@@ -94,6 +95,33 @@ export default function PlantDetails({
           </span>
         ))}
       </section>
+
+      <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
+        <Trash2 />
+        Delete Plant
+      </button>
+
+      {isDeleteConfirmation && (
+        <div aria-description="Delete Confirmation">
+          <p>
+            Do you really want to discard the {plant.name} from your garden?
+          </p>
+
+          <button type="button" onClick={() => setIsDeleteConfirmation(false)}>
+            cancel
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              onDeletePlant();
+              setIsDeleteConfirmation(false);
+            }}
+          >
+            delete
+          </button>
+        </div>
+      )}
     </>
   );
 }
