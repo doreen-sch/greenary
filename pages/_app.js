@@ -30,7 +30,20 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          success: {
+            icon: null,
+            duration: 4000,
+            style: { background: "#E5FEBF", textAlign: "center" },
+          },
+          error: {
+            icon: null,
+            duration: 4000,
+            style: { background: "#F7EBE8", textAlign: "center" },
+          },
+        }}
+      />
       <SWRConfig value={{ fetcher }}>
         <Component {...pageProps} plants={plants} />
       </SWRConfig>

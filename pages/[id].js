@@ -3,6 +3,7 @@ import PlantDetails from "@/components/PlantDetails";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function PlantDetailPage() {
   const [showEditForm, setShowEditForm] = useState(false);
