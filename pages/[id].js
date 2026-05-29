@@ -28,6 +28,13 @@ export default function PlantDetailPage() {
     if (response.ok) {
       mutate();
       setShowEditForm(false);
+      toast.success("Your plant 🪴 was successfully updated.");
+    }
+
+    if (!response.ok) {
+      toast.error(
+        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+      );
     }
   }
 
