@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Sprout } from "lucide-react";
 
 export default function PlantList({ plants }) {
-  console.log(plants);
   if (plants.length === 0)
     return (
       <p>

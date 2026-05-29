@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,6 +14,8 @@ import {
 } from "lucide-react";
 
 export default function PlantDetails({ plant, onDeletePlant }) {
+  const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
+
   let waterNeed = 0;
   switch (plant.waterNeed) {
     case "Low":
@@ -77,22 +80,33 @@ export default function PlantDetails({ plant, onDeletePlant }) {
           </span>
         ))}
       </section>
-      <button command="show-modal" commandfor="deleteConfirmation">
+
+      <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
         <Trash2 />
         Delete Plant
       </button>
-      <dialog id="deleteConfirmation">
-        <p>Do you really want to discard the {plant.name} from your garden?</p>
-        <button commandfor="deleteConfirmation" command="close">
-          cancel
-        </button>
-        <button
-          type="button"
-          onClick={() => onDeletePlant(deleteConfirmation.close())}
-        >
-          delete
-        </button>
-      </dialog>
+
+      {isDeleteConfirmation && (
+        <div aria-description="Delete Confirmation">
+          <p>
+            Do you really want to discard the {plant.name} from your garden?
+          </p>
+
+          <button type="button" onClick={() => setIsDeleteConfirmation(false)}>
+            cancel
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              onDeletePlant();
+              setIsDeleteConfirmation(false);
+            }}
+          >
+            delete
+          </button>
+        </div>
+      )}
     </>
   );
 }
