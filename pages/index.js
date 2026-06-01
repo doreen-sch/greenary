@@ -34,6 +34,7 @@ export default function HomePage() {
     if (response.ok) {
       mutate();
       setIsExpanded(!isExpanded);
+      localStorage.clear();
 
       event.target.reset();
       event.target.elements.name.focus();

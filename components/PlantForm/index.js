@@ -32,7 +32,6 @@ export default function PlantForm({
   function handleSetPlant(event) {
     const key = event.target.name;
     const value = event.target.value;
-    let fertiliserSeasons = [];
 
     if (key === "fertiliserSeason") {
       console.log("im fertiliser case");
@@ -56,6 +55,8 @@ export default function PlantForm({
     setPlant({ ...plant, [key]: value });
     console.log(plant);
   }
+
+  console.log(plant);
 
   return (
     <div>
