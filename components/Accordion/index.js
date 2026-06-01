@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import PlantForm from "../PlantForm";
-import { useState } from "react";
 
-export default function Accordion({ title, onSubmit, plant }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+export default function Accordion({
+  title,
+  onSubmit,
+  plant,
+  isExpanded,
+  setIsExpanded,
+}) {
   return (
     <StyledWrapper>
       <StyledHeaderWrapper>

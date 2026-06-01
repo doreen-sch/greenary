@@ -1,8 +1,10 @@
 import useSWR from "swr";
 import PlantList from "@/components/PlantList";
 import Accordion from "@/components/Accordion";
+import { useState } from "react";
 
 export default function HomePage() {
+  const [isExpanded, setIsExpanded] = useState(false);
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
   async function handleAddPlant(event) {
@@ -26,6 +28,7 @@ export default function HomePage() {
 
     if (response.ok) {
       mutate();
+      setIsExpanded(!isExpanded);
 
       event.target.reset();
       event.target.elements.name.focus();
@@ -45,6 +48,8 @@ export default function HomePage() {
         title={"Expand your garden"}
         onSubmit={handleAddPlant}
         plant=""
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
       ></Accordion>
 
       <PlantList plants={plants} />
