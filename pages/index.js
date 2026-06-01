@@ -1,7 +1,6 @@
 import useSWR from "swr";
-import PlantForm from "@/components/PlantForm";
 import PlantList from "@/components/PlantList";
-import PlantFormAccordion from "@/components/PlantFormAccordion";
+import Accordion from "@/components/Accordion";
 
 export default function HomePage() {
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
@@ -42,8 +41,11 @@ export default function HomePage() {
   return (
     <div>
       <h1>Greenary 🌱</h1>
-      {/* <PlantFormAccordion onSubmit={handleAddPlant} plant="" /> */}
-      <PlantForm onSubmit={handleAddPlant} plant="" />
+      <Accordion
+        title={"Expand your garden"}
+        onSubmit={handleAddPlant}
+        plant=""
+      ></Accordion>
 
       <PlantList plants={plants} />
     </div>

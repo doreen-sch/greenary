@@ -36,8 +36,6 @@ export default function PlantForm({
         aria-describedby="add a new plant"
       >
         <fieldset>
-          <legend>Expand your Garden</legend>
-
           <StyledLabel htmlFor="name">Name:</StyledLabel>
           <StyledInput
             type="text"
