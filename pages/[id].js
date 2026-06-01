@@ -32,7 +32,7 @@ export default function PlantDetailPage() {
       toast.success("Your plant 🪴 was successfully updated.");
     }
 
-    if (!response.ok) {
+    if (!response) {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );
@@ -57,7 +57,7 @@ export default function PlantDetailPage() {
       toast.success("Your plant 🥀 was successfully composted.");
     }
 
-    if (!response.ok) {
+    if (!response) {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );
