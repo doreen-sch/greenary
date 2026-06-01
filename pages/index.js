@@ -31,9 +31,7 @@ export default function HomePage() {
 
       event.target.reset();
       event.target.elements.name.focus();
-    }
-
-    if (!response) {
+    } else {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );

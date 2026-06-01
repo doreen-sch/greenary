@@ -30,9 +30,7 @@ export default function PlantDetailPage() {
       mutate();
       setShowEditForm(false);
       toast.success("Your plant 🪴 was successfully updated.");
-    }
-
-    if (!response) {
+    } else {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );
@@ -55,9 +53,7 @@ export default function PlantDetailPage() {
     if (response.ok) {
       router.push("/");
       toast.success("Your plant 🥀 was successfully composted.");
-    }
-
-    if (!response) {
+    } else {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );
