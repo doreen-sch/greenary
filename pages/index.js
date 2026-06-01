@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import PlantForm from "@/components/PlantForm";
 import PlantList from "@/components/PlantList";
+import toast from "react-hot-toast";
 
 export default function HomePage() {
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
@@ -26,9 +27,14 @@ export default function HomePage() {
 
     if (response.ok) {
       mutate();
+      toast.success("Your plant 🪴 was successfully planted.");
 
       event.target.reset();
       event.target.elements.name.focus();
+    } else {
+      toast.error(
+        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+      );
     }
   }
 
