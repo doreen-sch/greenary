@@ -1,10 +1,15 @@
 import useSWR from "swr";
 import PlantList from "@/components/PlantList";
 import Accordion from "@/components/Accordion";
-import { useState } from "react";
+import React, { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [plant, setPlant] = useLocalStorageState("plant", { defaultValue: {} });
+
+  //localStorage.clear();
+
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
   async function handleAddPlant(event) {
@@ -47,7 +52,8 @@ export default function HomePage() {
       <Accordion
         title={"Expand your garden"}
         onSubmit={handleAddPlant}
-        plant=""
+        plant={plant}
+        setPlant={setPlant}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
       ></Accordion>
