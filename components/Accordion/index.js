@@ -8,6 +8,7 @@ export default function Accordion({
   setPlant,
   isExpanded,
   setIsExpanded,
+  initialPlant,
 }) {
   return (
     <StyledWrapper>
@@ -21,11 +22,14 @@ export default function Accordion({
         </StyledButton>
       </StyledHeaderWrapper>
       <StyledContentWrapper isExpanded={isExpanded}>
-        <PlantForm
-          onSubmit={onSubmit}
-          plant={plant}
-          setPlant={setPlant}
-        ></PlantForm>
+        {isExpanded && (
+          <PlantForm
+            onSubmit={onSubmit}
+            plant={plant}
+            setPlant={setPlant}
+            initialPlant={initialPlant}
+          ></PlantForm>
+        )}
       </StyledContentWrapper>
     </StyledWrapper>
   );

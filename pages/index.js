@@ -4,11 +4,18 @@ import Accordion from "@/components/Accordion";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
+const initialPlant = {
+  name: "",
+  botanicalName: "",
+  lightNeed: "",
+  waterNeed: "",
+  description: "",
+  fertiliserSeason: [],
+};
+
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [plant, setPlant] = useLocalStorageState("plant", { defaultValue: {} });
-
-  //localStorage.clear();
+  const [plant, setPlant] = useLocalStorageState("plant", initialPlant);
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
@@ -34,7 +41,8 @@ export default function HomePage() {
     if (response.ok) {
       mutate();
       setIsExpanded(!isExpanded);
-      localStorage.clear();
+
+      setPlant(initialPlant);
 
       event.target.reset();
       event.target.elements.name.focus();
@@ -57,6 +65,7 @@ export default function HomePage() {
         setPlant={setPlant}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
+        initialPlant={initialPlant}
       ></Accordion>
 
       <PlantList plants={plants} />
