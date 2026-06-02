@@ -35,12 +35,18 @@ export default function App({ Component, pageProps }) {
           success: {
             icon: null,
             duration: 4000,
-            style: { background: "#E5FEBF", textAlign: "center" },
+            style: {
+              background: "var(--primary-green-50)",
+              textAlign: "center",
+            },
           },
           error: {
             icon: null,
             duration: 4000,
-            style: { background: "#F7EBE8", textAlign: "center" },
+            style: {
+              background: "var(--primary-red-50)",
+              textAlign: "center",
+            },
           },
         }}
       />

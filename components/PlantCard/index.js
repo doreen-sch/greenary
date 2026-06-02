@@ -22,6 +22,7 @@ const StyledPlantCard = styled.article`
   border-radius: 10px;
   overflow: hidden;
   flex: 1 1 300px;
+  background-color: var(--off-white);
 `;
 
 const StyledPlantCardDiv = styled.div`

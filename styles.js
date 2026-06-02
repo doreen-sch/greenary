@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 :root {
+  --off-white: #fdfbf9;
   --primary-green-50: #EFFED8;
   --primary-green-100: #E5FEBF;
   --primary-green-200: #D1FC8E;
@@ -23,7 +24,7 @@ export default createGlobalStyle`
   --secondary-green-700: #83A603;
   --secondary-green-800: #5B7402;
   --secondary-green-900: #344201;
-  --primary-red-50: #FCECE3;
+  --primary-red-50: #faf4f0;
   --primary-red-100: #FADDCC;
   --primary-red-200: #F6BD9D;
   --primary-red-300: #F29E6E;
@@ -65,5 +66,6 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
+    background-color: var(--primary-red-50);
   }
 `;
