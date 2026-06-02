@@ -75,6 +75,10 @@ export default function HomePage() {
     }
   }
 
+  function handleIsExpanded() {
+    setIsExpanded(!isExpanded);
+  }
+
   if (isLoading) return <p>Loading your garden...</p>;
 
   if (!plants || error) {
@@ -86,12 +90,11 @@ export default function HomePage() {
       <h1>Greenary 🌱</h1>
       <Accordion
         title={"Expand your garden"}
-        onSubmit={handleAddPlant}
+        isExpanded={isExpanded}
+        onIsExpanded={handleIsExpanded}
         plant={plant}
         handleSetPlant={handleSetPlant}
-        isExpanded={isExpanded}
-        setIsExpanded={setIsExpanded}
-        initialPlant={initialPlant}
+        handleSubmit={handleAddPlant}
         handleClearPlant={handleClearPlant}
       ></Accordion>
 

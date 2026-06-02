@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export default function PlantForm({
   plant,
-  onSetPlant,
   isEditMode,
-  setShowEditForm,
-  showEditForm,
+  onSetPlant,
   onSubmit,
   onClearPlant,
+  onShowEditForm,
 }) {
   return (
     <div>
@@ -161,10 +160,7 @@ export default function PlantForm({
           {isEditMode ? (
             <>
               <button type="submit">save edits</button>
-              <button
-                type="button"
-                onClick={() => setShowEditForm(!showEditForm)}
-              >
+              <button type="button" onClick={onShowEditForm}>
                 cancel
               </button>
             </>
