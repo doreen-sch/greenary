@@ -14,6 +14,15 @@ import {
 } from "lucide-react";
 import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
+import styled from "styled-components";
+
+const StyledSection = styled.section`
+  position: absolute;
+`;
+
+const StyledSpan = styled.span`
+  right: 0;
+`;
 
 export default function PlantDetails({
   plant,
@@ -82,6 +91,9 @@ export default function PlantDetails({
         <span>{waterNeed >= 1 ? <Droplet /> : <DropletOff />}</span>
         <span>{waterNeed >= 2 ? <Droplet /> : <DropletOff />}</span>
         <span>{waterNeed >= 3 ? <Droplet /> : <DropletOff />}</span>
+        <span>
+          <PopoverCard />
+        </span>
       </section>
       <section>
         <span>Light: </span>
@@ -99,7 +111,6 @@ export default function PlantDetails({
             {season === "Winter" && <Snowflake />}
           </span>
         ))}
-        <PopoverCard />
       </section>
 
       {isDeleteConfirmation ? (
