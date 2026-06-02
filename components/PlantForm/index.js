@@ -166,7 +166,7 @@ export default function PlantForm({
             </>
           ) : (
             <>
-              <button type="button" onClick={onClearPlant}>
+              <button type="reset" onClick={onClearPlant}>
                 clear form
               </button>
               <button type="submit">plant your plant</button>
