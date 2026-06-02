@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }) {
             icon: null,
             duration: 4000,
             style: {
-              background: "var(--primary-green-50)",
+              background: "var(--secondary-green-50)",
               textAlign: "center",
             },
           },
@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
             icon: null,
             duration: 4000,
             style: {
-              background: "var(--primary-red-50)",
+              background: "var(--secondary-red-100)",
               textAlign: "center",
             },
           },

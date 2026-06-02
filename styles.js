@@ -3,28 +3,29 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 :root {
-  --off-white: #fdfbf9;
+  --primary-off-white: #fdf9f5;
+  --secondary-off-white: #fffbf8;
   --primary-green-50: #EFFED8;
-  --primary-green-100: #E5FEBF;
-  --primary-green-200: #D1FC8E;
+  --primary-green-100: #d6eab7;
+  --primary-green-200: #c4e391;
   --primary-green-300: #BDFB5C;
-  --primary-green-400:  #A8FA2A;
-  --primary-green-500: #91EC05;
-  --primary-green-600: #72BA04;
+  --primary-green-400:  #98cc49;
+  --primary-green-500: #82cf10;
+  --primary-green-600: #75b811;
   --primary-green-700: #548803;
   --primary-green-800: #355602;
   --primary-green-900: #162401;
   --secondary-green-50: #FDFFF6;
   --secondary-green-100: #F7FEDD;
   --secondary-green-200: #ECFDAB;
-  --secondary-green-300: #E0FD78;
-  --secondary-green-400: #D5FC46;
-  --secondary-green-500: #C9FB14;
-  --secondary-green-600: #ABD804;
-  --secondary-green-700: #83A603;
-  --secondary-green-800: #5B7402;
-  --secondary-green-900: #344201;
-  --primary-red-50: #faf4f0;
+  --secondary-green-300: #c9e077;
+  --secondary-green-400: #bed85e;
+  --secondary-green-500: #a2c231;
+  --secondary-green-600: #97bd10;
+  --secondary-green-700: #759309;
+  --secondary-green-800: #516606;
+  --secondary-green-900: #2e3a04;
+  --primary-red-50: #f9f5f2;
   --primary-red-100: #FADDCC;
   --primary-red-200: #F6BD9D;
   --primary-red-300: #F29E6E;
@@ -66,6 +67,6 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: var(--primary-red-50);
+    background-color: var(--primary-off-white);
   }
 `;
