@@ -3,6 +3,7 @@ import PlantList from "@/components/PlantList";
 import Accordion from "@/components/Accordion";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import toast from "react-hot-toast";
 
 const initialPlant = {
   name: "",
@@ -43,9 +44,15 @@ export default function HomePage() {
       setIsExpanded(!isExpanded);
 
       setPlant(initialPlant);
+      
+      toast.success("Your plant 🪴 was successfully planted.");
 
       event.target.reset();
       event.target.elements.name.focus();
+    } else {
+      toast.error(
+        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+      );
     }
   }
 

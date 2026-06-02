@@ -14,9 +14,13 @@ import {
 } from "lucide-react";
 import PlantForm from "../PlantForm";
 
-export default function PlantDetails({ plant, onDeletePlant,onEditPlant,
+export default function PlantDetails({
+  plant,
+  onDeletePlant,
+  onEditPlant,
   showEditForm,
-  setShowEditForm, }) {
+  setShowEditForm,
+}) {
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   let waterNeed = 0;
@@ -96,12 +100,7 @@ export default function PlantDetails({ plant, onDeletePlant,onEditPlant,
         ))}
       </section>
 
-      <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
-        <Trash2 />
-        Delete Plant
-      </button>
-
-      {isDeleteConfirmation && (
+      {isDeleteConfirmation ? (
         <div aria-description="Delete Confirmation">
           <p>
             Do you really want to discard the {plant.name} from your garden?
@@ -121,6 +120,11 @@ export default function PlantDetails({ plant, onDeletePlant,onEditPlant,
             delete
           </button>
         </div>
+      ) : (
+        <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
+          <Trash2 />
+          Delete Plant
+        </button>
       )}
     </>
   );
