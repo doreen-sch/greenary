@@ -18,12 +18,19 @@ import styled from "styled-components";
 
 const StyledSection = styled.section`
   position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-start;
 `;
 
 const StyledSpan = styled.span`
   right: 8px;
   position: absolute;
 `;
+const WaterGroup = styled.div``;
+const LightGroup = styled.div``;
+const SeasonGroup = styled.div``;
 
 export default function PlantDetails({
   plant,
@@ -88,31 +95,42 @@ export default function PlantDetails({
         <p>{plant.description}</p>
       </section>
       <StyledSection>
-        <span>Watering: </span>
-        <span>{waterNeed >= 1 ? <Droplet /> : <DropletOff />}</span>
-        <span>{waterNeed >= 2 ? <Droplet /> : <DropletOff />}</span>
-        <span>{waterNeed >= 3 ? <Droplet /> : <DropletOff />}</span>
+        <WaterGroup>
+          <span>
+            {waterNeed >= 1 ? <Droplet /> : <Droplet opacity={0.2} />}
+          </span>
+          <span>
+            {waterNeed >= 2 ? <Droplet /> : <Droplet opacity={0.2} />}
+          </span>
+          <span>
+            {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
+          </span>
+        </WaterGroup>
+        <LightGroup>
+          <span>
+            {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+          </span>
+          <span>
+            {lightNeed >= 2 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+          </span>
+          <span>
+            {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+          </span>
+        </LightGroup>
+        <SeasonGroup>
+          {plant.fertiliserSeason.map((season) => (
+            <span key={season}>
+              {season === "Spring" && <Sprout />}
+              {season === "Summer" && <Sun />}
+              {season === "Autumn" && <Leaf />}
+              {season === "Winter" && <Snowflake />}
+            </span>
+          ))}
+        </SeasonGroup>
         <StyledSpan>
           <PopoverCard />
         </StyledSpan>
       </StyledSection>
-      <section>
-        <span>Light: </span>
-        <span>{lightNeed >= 1 ? <Lightbulb /> : <LightbulbOff />}</span>
-        <span>{lightNeed >= 2 ? <Lightbulb /> : <LightbulbOff />}</span>
-        <span>{lightNeed >= 3 ? <Lightbulb /> : <LightbulbOff />}</span>
-      </section>
-      <section>
-        <span>Season: </span>
-        {plant.fertiliserSeason.map((season) => (
-          <span key={season}>
-            {season === "Spring" && <Sprout />}
-            {season === "Summer" && <Sun />}
-            {season === "Autumn" && <Leaf />}
-            {season === "Winter" && <Snowflake />}
-          </span>
-        ))}
-      </section>
 
       {isDeleteConfirmation ? (
         <div aria-description="Delete Confirmation">
