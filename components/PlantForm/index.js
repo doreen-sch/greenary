@@ -1,26 +1,5 @@
 import styled from "styled-components";
 
-const StyledForm = styled.form`
-  width: 30em;
-  max-width: 90%;
-  /* margin: 0 auto; */ /*centers the form */
-`;
-
-const StyledLabel = styled.label`
-  display: block;
-  font-weight: 600;
-  font-size: 1.2rem;
-  margin-bottom: 0.4rem;
-`;
-
-const StyledInput = styled.input`
-  font-size: 1.2rem;
-  padding: 0.4rem;
-  width: 100%;
-  line-height: 1.2;
-  margin-top: 0.2rem;
-`;
-
 export default function PlantForm({
   plant,
   setPlant,
@@ -220,3 +199,24 @@ export default function PlantForm({
     </div>
   );
 }
+
+const StyledForm = styled.form`
+  width: 30em;
+  max-width: 90%;
+  /* margin: 0 auto; */ /*centers the form */
+`;
+
+const StyledLabel = styled.label`
+  display: block;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+`;
+
+const StyledInput = styled.input`
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  width: 100%;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+`;
