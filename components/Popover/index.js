@@ -12,10 +12,11 @@ import styled from "styled-components";
 const StyledContent = styled.div`
   border-radius: 4px;
   padding: 20px;
+  margin: 0;
   width: 260px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   background-color: white;
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
@@ -34,6 +35,12 @@ const StyledButton = styled.button`
   all: unset;
 `;
 
+const PopoverHeadline = styled.p`
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+`;
+
 export default function PopoverCard() {
   return (
     <Root>
@@ -45,7 +52,11 @@ export default function PopoverCard() {
       <Portal>
         <Content sideOffset={5}>
           <StyledContent>
-            <p>Hello from the Popover.</p>
+            <PopoverHeadline>Explanation</PopoverHeadline>
+            <p>
+              <small>The water need is displayed as drops of water.</small>
+            </p>
+
             <Close
               aria-label="Close"
               style={{

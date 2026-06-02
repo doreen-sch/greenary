@@ -17,11 +17,12 @@ import PopoverCard from "../Popover";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
-  position: absolute;
+  position: relative;
 `;
 
 const StyledSpan = styled.span`
-  right: 0;
+  right: 8px;
+  position: absolute;
 `;
 
 export default function PlantDetails({
@@ -86,15 +87,15 @@ export default function PlantDetails({
         <h2>{plant.botanicalName}</h2>
         <p>{plant.description}</p>
       </section>
-      <section>
+      <StyledSection>
         <span>Watering: </span>
         <span>{waterNeed >= 1 ? <Droplet /> : <DropletOff />}</span>
         <span>{waterNeed >= 2 ? <Droplet /> : <DropletOff />}</span>
         <span>{waterNeed >= 3 ? <Droplet /> : <DropletOff />}</span>
-        <span>
+        <StyledSpan>
           <PopoverCard />
-        </span>
-      </section>
+        </StyledSpan>
+      </StyledSection>
       <section>
         <span>Light: </span>
         <span>{lightNeed >= 1 ? <Lightbulb /> : <LightbulbOff />}</span>
