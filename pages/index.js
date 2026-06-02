@@ -1,9 +1,23 @@
 import useSWR from "swr";
-import PlantForm from "@/components/PlantForm";
 import PlantList from "@/components/PlantList";
+import Accordion from "@/components/Accordion";
+import React, { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
 
+const initialPlant = {
+  name: "",
+  botanicalName: "",
+  lightNeed: "",
+  waterNeed: "",
+  description: "",
+  fertiliserSeason: [],
+};
+
 export default function HomePage() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [plant, setPlant] = useLocalStorageState("plant", initialPlant);
+
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
   async function handleAddPlant(event) {
@@ -27,6 +41,10 @@ export default function HomePage() {
 
     if (response.ok) {
       mutate();
+      setIsExpanded(!isExpanded);
+
+      setPlant(initialPlant);
+      
       toast.success("Your plant 🪴 was successfully planted.");
 
       event.target.reset();
@@ -47,7 +65,16 @@ export default function HomePage() {
   return (
     <div>
       <h1>Greenary 🌱</h1>
-      <PlantForm onSubmit={handleAddPlant} plant="" />
+      <Accordion
+        title={"Expand your garden"}
+        onSubmit={handleAddPlant}
+        plant={plant}
+        setPlant={setPlant}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
+        initialPlant={initialPlant}
+      ></Accordion>
+
       <PlantList plants={plants} />
     </div>
   );
