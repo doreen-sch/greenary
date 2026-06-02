@@ -13,6 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import PlantForm from "../PlantForm";
+import PopoverCard from "../Popover";
 
 export default function PlantDetails({
   plant,
@@ -98,6 +99,7 @@ export default function PlantDetails({
             {season === "Winter" && <Snowflake />}
           </span>
         ))}
+        <PopoverCard />
       </section>
 
       {isDeleteConfirmation ? (
