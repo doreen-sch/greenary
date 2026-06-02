@@ -20,6 +20,28 @@ export default function HomePage() {
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
+  function handleSetPlant(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+
+    if (key === "fertiliserSeason") {
+      setPlant({
+        ...plant,
+        [key]: plant.fertiliserSeason.find((season) => season === value)
+          ? plant.fertiliserSeason.filter((season) => season !== value)
+          : [...plant.fertiliserSeason, value],
+      });
+
+      return;
+    }
+
+    setPlant({ ...plant, [key]: value });
+  }
+
+  function handleClearPlant() {
+    setPlant(initialPlant);
+  }
+
   async function handleAddPlant(event) {
     event.preventDefault();
 
@@ -44,16 +66,17 @@ export default function HomePage() {
       setIsExpanded(!isExpanded);
 
       setPlant(initialPlant);
-      
-      toast.success("Your plant 🪴 was successfully planted.");
 
-      event.target.reset();
-      event.target.elements.name.focus();
+      toast.success("Your plant 🪴 was successfully planted.");
     } else {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );
     }
+  }
+
+  function handleIsExpanded() {
+    setIsExpanded(!isExpanded);
   }
 
   if (isLoading) return <p>Loading your garden...</p>;
@@ -67,12 +90,12 @@ export default function HomePage() {
       <h1>Greenary 🌱</h1>
       <Accordion
         title={"Expand your garden"}
-        onSubmit={handleAddPlant}
-        plant={plant}
-        setPlant={setPlant}
         isExpanded={isExpanded}
-        setIsExpanded={setIsExpanded}
-        initialPlant={initialPlant}
+        onIsExpanded={handleIsExpanded}
+        plant={plant}
+        handleSetPlant={handleSetPlant}
+        handleSubmit={handleAddPlant}
+        handleClearPlant={handleClearPlant}
       ></Accordion>
 
       <PlantList plants={plants} />

@@ -60,6 +60,10 @@ export default function PlantDetailPage() {
     }
   }
 
+  function handleShowEditForm() {
+    setShowEditForm(!showEditForm);
+  }
+
   return (
     <>
       <Head>
@@ -67,9 +71,9 @@ export default function PlantDetailPage() {
       </Head>
       <PlantDetails
         plant={plant}
-        onEditPlant={handleEditPlant}
+        handleEditPlant={handleEditPlant}
         showEditForm={showEditForm}
-        setShowEditForm={setShowEditForm}
+        handleShowEditForm={handleShowEditForm}
         onDeletePlant={handleDeletePlant}
       />
     </>

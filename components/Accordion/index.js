@@ -3,31 +3,28 @@ import PlantForm from "../PlantForm";
 
 export default function Accordion({
   title,
-  onSubmit,
-  plant,
-  setPlant,
   isExpanded,
-  setIsExpanded,
-  initialPlant,
+  onIsExpanded,
+  plant,
+  handleSetPlant,
+  handleSubmit,
+  handleClearPlant,
 }) {
   return (
     <StyledWrapper>
       <StyledHeaderWrapper>
         <StyledHeader>{title}</StyledHeader>
-        <StyledButton
-          isExpanded={isExpanded}
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
+        <StyledButton isExpanded={isExpanded} onClick={onIsExpanded}>
           {isExpanded ? "-" : "+"}
         </StyledButton>
       </StyledHeaderWrapper>
       <StyledContentWrapper isExpanded={isExpanded}>
         {isExpanded && (
           <PlantForm
-            onSubmit={onSubmit}
             plant={plant}
-            setPlant={setPlant}
-            initialPlant={initialPlant}
+            onSetPlant={handleSetPlant}
+            onSubmit={handleSubmit}
+            onClearPlant={handleClearPlant}
           ></PlantForm>
         )}
       </StyledContentWrapper>

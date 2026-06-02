@@ -2,31 +2,12 @@ import styled from "styled-components";
 
 export default function PlantForm({
   plant,
-  setPlant,
   isEditMode,
-  setShowEditForm,
-  showEditForm,
+  onSetPlant,
   onSubmit,
-  initialPlant,
+  onClearPlant,
+  onShowEditForm,
 }) {
-  function handleSetPlant(event) {
-    const key = event.target.name;
-    const value = event.target.value;
-
-    if (key === "fertiliserSeason") {
-      setPlant({
-        ...plant,
-        [key]: plant.fertiliserSeason.find((season) => season === value)
-          ? plant.fertiliserSeason.filter((season) => season !== value)
-          : [...plant.fertiliserSeason, value],
-      });
-
-      return;
-    }
-
-    setPlant({ ...plant, [key]: value });
-  }
-
   return (
     <div>
       <StyledForm
@@ -40,9 +21,9 @@ export default function PlantForm({
             type="text"
             id="name"
             name="name"
-            value={plant.name}
+            defaultValue={plant.name}
             required
-            onChange={handleSetPlant}
+            onChange={onSetPlant}
           />
 
           <StyledLabel htmlFor="botanicalName">Botanical Name: </StyledLabel>
@@ -50,9 +31,9 @@ export default function PlantForm({
             type="text"
             id="botanicalName"
             name="botanicalName"
-            value={plant.botanicalName}
+            defaultValue={plant.botanicalName}
             required
-            onChange={handleSetPlant}
+            onChange={onSetPlant}
           />
 
           <fieldset>
@@ -63,8 +44,8 @@ export default function PlantForm({
               id="lightNeed-fullSun"
               name="lightNeed"
               value="Full Sun"
-              checked={plant.lightNeed === "Full Sun"}
-              onChange={handleSetPlant}
+              defaultChecked={plant.lightNeed === "Full Sun"}
+              onChange={onSetPlant}
               required
             />
             <StyledLabel htmlFor="lightNeed-fullSun">Full Sun</StyledLabel>
@@ -74,8 +55,8 @@ export default function PlantForm({
               id="lightNeed-partialShade"
               name="lightNeed"
               value="Partial Shade"
-              checked={plant.lightNeed === "Partial Shade"}
-              onChange={handleSetPlant}
+              defaultChecked={plant.lightNeed === "Partial Shade"}
+              onChange={onSetPlant}
             />
             <StyledLabel htmlFor="lightNeed-partialShade">
               Partial Shade
@@ -86,8 +67,8 @@ export default function PlantForm({
               id="lightNeed-fullShade"
               name="lightNeed"
               value="Full Shade"
-              checked={plant.lightNeed === "Full Shade"}
-              onChange={handleSetPlant}
+              defaultChecked={plant.lightNeed === "Full Shade"}
+              onChange={onSetPlant}
             />
             <StyledLabel htmlFor="lightNeed-fullShade">Full Shade</StyledLabel>
           </fieldset>
@@ -100,8 +81,8 @@ export default function PlantForm({
               id="waterNeed-low"
               name="waterNeed"
               value="Low"
-              checked={plant.waterNeed === "Low"}
-              onChange={handleSetPlant}
+              defaultChecked={plant.waterNeed === "Low"}
+              onChange={onSetPlant}
               required
             />
             <StyledLabel htmlFor="waterNeed-low">Low</StyledLabel>
@@ -111,8 +92,8 @@ export default function PlantForm({
               id="waterNeed-medium"
               name="waterNeed"
               value="Medium"
-              checked={plant.waterNeed === "Medium"}
-              onChange={handleSetPlant}
+              defaultChecked={plant.waterNeed === "Medium"}
+              onChange={onSetPlant}
             />
             <StyledLabel htmlFor="waterNeed-medium">Medium</StyledLabel>
 
@@ -121,8 +102,8 @@ export default function PlantForm({
               id="waterNeed-high"
               name="waterNeed"
               value="High"
-              checked={plant.waterNeed === "High"}
-              onChange={handleSetPlant}
+              defaultChecked={plant.waterNeed === "High"}
+              onChange={onSetPlant}
             />
             <StyledLabel htmlFor="waterNeed-high">High</StyledLabel>
           </fieldset>
@@ -132,8 +113,8 @@ export default function PlantForm({
             type="text"
             id="description"
             name="description"
-            value={plant.description}
-            onChange={handleSetPlant}
+            defaultValue={plant.description}
+            onChange={onSetPlant}
             size={300}
           ></StyledInput>
 
@@ -144,8 +125,8 @@ export default function PlantForm({
               id="fertiliserSeason-spring"
               name="fertiliserSeason"
               value="Spring"
-              checked={plant.fertiliserSeason?.includes("Spring")}
-              onChange={handleSetPlant}
+              defaultChecked={plant.fertiliserSeason?.includes("Spring")}
+              onChange={onSetPlant}
             ></StyledInput>
             <StyledLabel htmlFor="fertiliserSeason-spring">Spring</StyledLabel>
             <StyledInput
@@ -153,8 +134,8 @@ export default function PlantForm({
               id="fertiliserSeason-summer"
               name="fertiliserSeason"
               value="Summer"
-              checked={plant.fertiliserSeason?.includes("Summer")}
-              onChange={handleSetPlant}
+              defaultChecked={plant.fertiliserSeason?.includes("Summer")}
+              onChange={onSetPlant}
             ></StyledInput>
             <StyledLabel htmlFor="fertiliserSeason-summer">Summer</StyledLabel>
             <StyledInput
@@ -162,8 +143,8 @@ export default function PlantForm({
               id="fertiliserSeason-autumn"
               name="fertiliserSeason"
               value="Autumn"
-              checked={plant.fertiliserSeason?.includes("Autumn")}
-              onChange={handleSetPlant}
+              defaultChecked={plant.fertiliserSeason?.includes("Autumn")}
+              onChange={onSetPlant}
             ></StyledInput>
             <StyledLabel htmlFor="fertiliserSeason-autumn">Autumn</StyledLabel>
             <StyledInput
@@ -171,24 +152,21 @@ export default function PlantForm({
               id="fertiliserSeason-winter"
               name="fertiliserSeason"
               value="Winter"
-              checked={plant.fertiliserSeason?.includes("Winter")}
-              onChange={handleSetPlant}
+              defaultChecked={plant.fertiliserSeason?.includes("Winter")}
+              onChange={onSetPlant}
             ></StyledInput>
             <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
           </fieldset>
           {isEditMode ? (
             <>
               <button type="submit">save edits</button>
-              <button
-                type="button"
-                onClick={() => setShowEditForm(!showEditForm)}
-              >
+              <button type="button" onClick={onShowEditForm}>
                 cancel
               </button>
             </>
           ) : (
             <>
-              <button type="button" onClick={() => setPlant(initialPlant)}>
+              <button type="button" onClick={onClearPlant}>
                 clear form
               </button>
               <button type="submit">plant your plant</button>
