@@ -5,10 +5,11 @@ export default function Accordion({
   title,
   onSubmit,
   plant,
-  setPlant,
+  handleSetPlant,
   isExpanded,
   setIsExpanded,
   initialPlant,
+  handleClearPlant,
 }) {
   return (
     <StyledWrapper>
@@ -26,8 +27,9 @@ export default function Accordion({
           <PlantForm
             onSubmit={onSubmit}
             plant={plant}
-            setPlant={setPlant}
+            onSetPlant={handleSetPlant}
             initialPlant={initialPlant}
+            onClearPlant={handleClearPlant}
           ></PlantForm>
         )}
       </StyledContentWrapper>
