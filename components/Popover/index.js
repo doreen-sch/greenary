@@ -146,7 +146,7 @@ export default function PopoverCard() {
                 <LegendRow>
                   <Lightbulb size={14} strokeWidth={1.5} />
                   <Lightbulb size={14} strokeWidth={1.5} />
-                  <span>Partial Sun</span>
+                  <span>Partial Shade</span>
                 </LegendRow>
                 <LegendRow>
                   <Lightbulb size={14} strokeWidth={1.5} />

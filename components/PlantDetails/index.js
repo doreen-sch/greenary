@@ -20,7 +20,7 @@ const StyledSection = styled.section`
   position: relative;
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 24px;
   justify-content: flex-start;
 `;
 
