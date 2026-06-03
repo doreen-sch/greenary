@@ -35,9 +35,9 @@ const SeasonGroup = styled.div``;
 export default function PlantDetails({
   plant,
   onDeletePlant,
-  onEditPlant,
+  handleEditPlant,
   showEditForm,
-  setShowEditForm,
+  handleShowEditForm,
 }) {
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
@@ -81,14 +81,13 @@ export default function PlantDetails({
 
         {showEditForm ? (
           <PlantForm
-            onSubmit={onEditPlant}
             plant={plant}
             isEditMode
-            setShowEditForm={setShowEditForm}
-            showEditForm={showEditForm}
+            onSubmit={handleEditPlant}
+            onShowEditForm={handleShowEditForm}
           />
         ) : (
-          <button onClick={() => setShowEditForm(!showEditForm)}>Edit</button>
+          <button onClick={handleShowEditForm}>Edit</button>
         )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>
