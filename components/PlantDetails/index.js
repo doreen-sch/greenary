@@ -28,9 +28,6 @@ const StyledSpan = styled.span`
   right: 8px;
   position: absolute;
 `;
-const WaterGroup = styled.div``;
-const LightGroup = styled.div``;
-const SeasonGroup = styled.div``;
 
 export default function PlantDetails({
   plant,
@@ -94,7 +91,7 @@ export default function PlantDetails({
         <p>{plant.description}</p>
       </section>
       <StyledSection>
-        <WaterGroup>
+        <div>
           <span>
             {waterNeed >= 1 ? <Droplet /> : <Droplet opacity={0.2} />}
           </span>
@@ -104,8 +101,8 @@ export default function PlantDetails({
           <span>
             {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
           </span>
-        </WaterGroup>
-        <LightGroup>
+        </div>
+        <div>
           <span>
             {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
           </span>
@@ -115,8 +112,8 @@ export default function PlantDetails({
           <span>
             {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
           </span>
-        </LightGroup>
-        <SeasonGroup>
+        </div>
+        <div>
           {plant.fertiliserSeason.map((season) => (
             <span key={season}>
               {season === "Spring" && <Sprout />}
@@ -125,7 +122,7 @@ export default function PlantDetails({
               {season === "Winter" && <Snowflake />}
             </span>
           ))}
-        </SeasonGroup>
+        </div>
         <StyledSpan>
           <PopoverCard />
         </StyledSpan>

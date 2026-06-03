@@ -7,26 +7,21 @@ import {
   Sun,
   Leaf,
   Snowflake,
+  Droplet,
 } from "lucide-react";
 import styled from "styled-components";
-import { Droplet } from "lucide-react";
 
 const StyledContent = styled.div`
   border-radius: 12px;
   padding: 16px;
   margin: 16px;
   width: min(320px, calc(100vw - 32px));
-  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
-  gap: 0;
   background-color: white;
   box-shadow:
     hsl(206 22% 7% / 20%) 0px 8px 30px -8px,
     hsl(206 22% 7% / 12%) 0px 4px 16px -4px;
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
   &:focus {
     box-shadow:
       hsl(206 22% 7% / 20%) 0px 8px 30px -8px,
@@ -38,7 +33,7 @@ const StyledButton = styled.button`
   all: unset;
 `;
 
-const PopoverHeadline = styled.p`
+const PopoverHeadline = styled.h3`
   margin: 0 0 14px;
   padding: 0;
   font-size: 11px;
@@ -82,6 +77,16 @@ const Divider = styled.div`
   height: 0.5px;
   background: #ebebeb;
   margin: 0 -16px;
+`;
+
+const StyledClose = styled(Close)`
+  all: unset;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default function PopoverCard() {
@@ -131,7 +136,7 @@ export default function PopoverCard() {
                 <LegendRow>
                   <Lightbulb size={14} strokeWidth={1.5} />
                   <Lightbulb size={14} strokeWidth={1.5} />
-                  <Lightbulb size={14} strokeWidth={1.5} />{" "}
+                  <Lightbulb size={14} strokeWidth={1.5} />
                   <span>Full Sun</span>
                 </LegendRow>
               </LegendContainer>
@@ -154,20 +159,9 @@ export default function PopoverCard() {
                 </LegendRow>
               </LegendContainer>
             </LegendSection>
-            <Close
-              aria-label="Close"
-              style={{
-                all: "unset",
-                position: "absolute",
-                top: "5px",
-                right: "5px",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <StyledClose aria-label="Close">
               <CircleX />
-            </Close>
+            </StyledClose>
           </StyledContent>
         </Content>
       </Portal>
