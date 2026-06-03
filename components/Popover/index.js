@@ -26,7 +26,7 @@ const StyledContent = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
   background-color: white;
   box-shadow:
     hsl(206 22% 7% / 20%) 0px 8px 30px -8px,
@@ -46,19 +46,43 @@ const StyledButton = styled.button`
 `;
 
 const PopoverHeadline = styled.p`
-  margin: 0;
+  margin: 0 0 14px;
   padding: 0;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #888;
+  color: #999;
+`;
+
+const LegendSection = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+`;
+
+const LegendLabel = styled.span`
+  font-size: 12px;
+  color: #999;
+  width: 56px;
+  flex-shrink: 0;
+  padding-top: 2px;
+`;
+
+const LegendRows = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
 `;
 
 const LegendRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 6px;
+  font-size: 13px;
+  color: #666;
 `;
 
 const LegendItem = styled.div`
@@ -92,54 +116,64 @@ export default function PopoverCard() {
         <Content sideOffset={5} avoidCollisions collisionPadding={16}>
           <StyledContent>
             <PopoverHeadline>Explanation</PopoverHeadline>
-            <LegendRow>
-              <LegendItem>
-                <Droplet size={14} strokeWidth={1.5} />
-                Low
-              </LegendItem>
-              <LegendItem>
-                <Droplet size={14} strokeWidth={1.5} />
-                <Droplet size={14} strokeWidth={1.5} />
-                Medium
-              </LegendItem>
-              <LegendItem>
-                <Droplet size={14} strokeWidth={1.5} />
-                <Droplet size={14} strokeWidth={1.5} />
-                <Droplet size={14} strokeWidth={1.5} /> High
-              </LegendItem>
-            </LegendRow>
+            <LegendSection>
+              <LegendLabel>Watering</LegendLabel>
+              <LegendRows>
+                <LegendRow>
+                  <Droplet size={14} strokeWidth={1.5} />
+                  <span>Low</span>
+                </LegendRow>
+                <LegendRow>
+                  <Droplet size={14} strokeWidth={1.5} />
+                  <Droplet size={14} strokeWidth={1.5} />
+                  <span>Medium</span>
+                </LegendRow>
+                <LegendRow>
+                  <Droplet size={14} strokeWidth={1.5} />
+                  <Droplet size={14} strokeWidth={1.5} />
+                  <Droplet size={14} strokeWidth={1.5} /> <span>High</span>
+                </LegendRow>
+              </LegendRows>
+            </LegendSection>
             <Divider />
-            <LegendRow>
-              <LegendItem>
-                <Lightbulb size={14} strokeWidth={1.5} />
-                Full Shade
-              </LegendItem>
-              <LegendItem>
-                <Lightbulb size={14} strokeWidth={1.5} />
-                <Lightbulb size={14} strokeWidth={1.5} />
-                Partial Shade
-              </LegendItem>
-              <LegendItem>
-                <Lightbulb size={14} strokeWidth={1.5} />
-                <Lightbulb size={14} strokeWidth={1.5} />
-                <Lightbulb size={14} strokeWidth={1.5} /> Full Sun
-              </LegendItem>
-            </LegendRow>
+            <LegendSection>
+              <LegendLabel>Lighting</LegendLabel>
+              <LegendRows>
+                <LegendRow>
+                  <Lightbulb size={14} strokeWidth={1.5} />
+                  <span>Full Shade</span>
+                </LegendRow>
+                <LegendRow>
+                  <Lightbulb size={14} strokeWidth={1.5} />
+                  <Lightbulb size={14} strokeWidth={1.5} />
+                  <span>Partial Sun</span>
+                </LegendRow>
+                <LegendRow>
+                  <Lightbulb size={14} strokeWidth={1.5} />
+                  <Lightbulb size={14} strokeWidth={1.5} />
+                  <Lightbulb size={14} strokeWidth={1.5} />{" "}
+                  <span>Full Sun</span>
+                </LegendRow>
+              </LegendRows>
+            </LegendSection>
             <Divider />
-            <LegendRow>
-              <LegendItem>
-                <Sprout size={14} strokeWidth={1.5} /> Spring
-              </LegendItem>
-              <LegendItem>
-                <Sun size={14} strokeWidth={1.5} /> Summer
-              </LegendItem>
-              <LegendItem>
-                <Leaf size={14} strokeWidth={1.5} /> Autumn
-              </LegendItem>
-              <LegendItem>
-                <Snowflake size={14} strokeWidth={1.5} /> Winter
-              </LegendItem>
-            </LegendRow>
+            <LegendSection>
+              <LegendLabel>Season</LegendLabel>
+              <LegendRows>
+                <LegendRow>
+                  <Sprout size={14} strokeWidth={1.5} /> <span>Spring</span>
+                </LegendRow>
+                <LegendRow>
+                  <Sun size={14} strokeWidth={1.5} /> <span>Summer</span>
+                </LegendRow>
+                <LegendRow>
+                  <Leaf size={14} strokeWidth={1.5} /> <span>Autumn</span>
+                </LegendRow>
+                <LegendRow>
+                  <Snowflake size={14} strokeWidth={1.5} /> <span>Winter</span>
+                </LegendRow>
+              </LegendRows>
+            </LegendSection>
             <Close
               aria-label="Close"
               style={{
