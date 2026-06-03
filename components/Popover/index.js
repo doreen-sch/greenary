@@ -1,11 +1,4 @@
-import {
-  Root,
-  Trigger,
-  Portal,
-  Content,
-  Close,
-  Arrow,
-} from "@radix-ui/react-popover";
+import { Root, Trigger, Portal, Content, Close } from "@radix-ui/react-popover";
 import {
   Info,
   CircleX,
@@ -23,7 +16,7 @@ const StyledContent = styled.div`
   padding: 16px;
   margin: 16px;
   width: min(320px, calc(100vw - 32px));
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -70,7 +63,7 @@ const LegendLabel = styled.span`
   padding-top: 2px;
 `;
 
-const LegendRows = styled.div`
+const LegendContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -85,19 +78,6 @@ const LegendRow = styled.div`
   color: #666;
 `;
 
-const LegendItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex: 1;
-  margin: 4px;
-  min-width: 0;
-  background: #f5f5f5;
-  border-radius: 8px;
-  padding: 4px 5px;
-  font-size: 11px;
-  color: #666;
-`;
 const Divider = styled.div`
   height: 0.5px;
   background: #ebebeb;
@@ -118,7 +98,7 @@ export default function PopoverCard() {
             <PopoverHeadline>Explanation</PopoverHeadline>
             <LegendSection>
               <LegendLabel>Watering</LegendLabel>
-              <LegendRows>
+              <LegendContainer>
                 <LegendRow>
                   <Droplet size={14} strokeWidth={1.5} />
                   <span>Low</span>
@@ -133,12 +113,12 @@ export default function PopoverCard() {
                   <Droplet size={14} strokeWidth={1.5} />
                   <Droplet size={14} strokeWidth={1.5} /> <span>High</span>
                 </LegendRow>
-              </LegendRows>
+              </LegendContainer>
             </LegendSection>
             <Divider />
             <LegendSection>
               <LegendLabel>Lighting</LegendLabel>
-              <LegendRows>
+              <LegendContainer>
                 <LegendRow>
                   <Lightbulb size={14} strokeWidth={1.5} />
                   <span>Full Shade</span>
@@ -154,12 +134,12 @@ export default function PopoverCard() {
                   <Lightbulb size={14} strokeWidth={1.5} />{" "}
                   <span>Full Sun</span>
                 </LegendRow>
-              </LegendRows>
+              </LegendContainer>
             </LegendSection>
             <Divider />
             <LegendSection>
               <LegendLabel>Season</LegendLabel>
-              <LegendRows>
+              <LegendContainer>
                 <LegendRow>
                   <Sprout size={14} strokeWidth={1.5} /> <span>Spring</span>
                 </LegendRow>
@@ -172,7 +152,7 @@ export default function PopoverCard() {
                 <LegendRow>
                   <Snowflake size={14} strokeWidth={1.5} /> <span>Winter</span>
                 </LegendRow>
-              </LegendRows>
+              </LegendContainer>
             </LegendSection>
             <Close
               aria-label="Close"
