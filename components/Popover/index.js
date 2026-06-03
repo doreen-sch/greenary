@@ -94,50 +94,50 @@ export default function PopoverCard() {
             <PopoverHeadline>Explanation</PopoverHeadline>
             <LegendRow>
               <LegendItem>
-                <Droplet />
+                <Droplet size={14} strokeWidth={1.5} />
                 Low
               </LegendItem>
               <LegendItem>
-                <Droplet />
-                <Droplet />
+                <Droplet size={14} strokeWidth={1.5} />
+                <Droplet size={14} strokeWidth={1.5} />
                 Medium
               </LegendItem>
               <LegendItem>
-                <Droplet />
-                <Droplet />
-                <Droplet /> High
+                <Droplet size={14} strokeWidth={1.5} />
+                <Droplet size={14} strokeWidth={1.5} />
+                <Droplet size={14} strokeWidth={1.5} /> High
               </LegendItem>
             </LegendRow>
             <Divider />
             <LegendRow>
               <LegendItem>
-                <Lightbulb />
+                <Lightbulb size={14} strokeWidth={1.5} />
                 Full Shade
               </LegendItem>
               <LegendItem>
-                <Lightbulb />
-                <Lightbulb />
+                <Lightbulb size={14} strokeWidth={1.5} />
+                <Lightbulb size={14} strokeWidth={1.5} />
                 Partial Shade
               </LegendItem>
               <LegendItem>
-                <Lightbulb />
-                <Lightbulb />
-                <Lightbulb /> Full Sun
+                <Lightbulb size={14} strokeWidth={1.5} />
+                <Lightbulb size={14} strokeWidth={1.5} />
+                <Lightbulb size={14} strokeWidth={1.5} /> Full Sun
               </LegendItem>
             </LegendRow>
             <Divider />
             <LegendRow>
               <LegendItem>
-                <Sprout /> Spring
+                <Sprout size={14} strokeWidth={1.5} /> Spring
               </LegendItem>
               <LegendItem>
-                <Sun /> Summer
+                <Sun size={14} strokeWidth={1.5} /> Summer
               </LegendItem>
               <LegendItem>
-                <Leaf /> Autumn
+                <Leaf size={14} strokeWidth={1.5} /> Autumn
               </LegendItem>
               <LegendItem>
-                <Snowflake /> Winter
+                <Snowflake size={14} strokeWidth={1.5} /> Winter
               </LegendItem>
             </LegendRow>
             <Close
