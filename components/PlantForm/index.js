@@ -109,17 +109,6 @@ export default function PlantForm({
           <StyledLabel htmlFor="waterNeed-high">High</StyledLabel>
         </fieldset>
 
-        <StyledLabel htmlFor="description">Description</StyledLabel>
-        <StyledTextarea
-          id="description"
-          name="description"
-          defaultValue={plant?.description}
-          onChange={onSetPlant}
-          size={300}
-          cols={45}
-          rows={10}
-        ></StyledTextarea>
-
         <fieldset>
           <legend>Fertiliser Season</legend>
           <StyledInput
@@ -159,6 +148,17 @@ export default function PlantForm({
           ></StyledInput>
           <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
         </fieldset>
+
+        <StyledLabel htmlFor="description">Description</StyledLabel>
+        <StyledTextarea
+          id="description"
+          name="description"
+          defaultValue={plant?.description}
+          onChange={onSetPlant}
+          size={300}
+          cols={45}
+          rows={10}
+        ></StyledTextarea>
         {isEditMode ? (
           <>
             <button type="submit">save edits</button>
@@ -198,7 +198,7 @@ const StyledInput = styled.input`
   width: 100%;
   line-height: 1.2;
   margin-top: 0.2rem;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius-input-field);
 `;
 
 const StyledNameWrapper = styled.div`
@@ -208,4 +208,6 @@ const StyledNameWrapper = styled.div`
   gap: 1rem;
 `;
 
-const StyledTextarea = styled.textarea``;
+const StyledTextarea = styled.textarea`
+  border-radius: var(--border-radius-input-field);
+`;

@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 :root {
+  /*colors */
   --primary-off-white: #fdf9f5;
   --secondary-off-white: #fffbf8;
   --primary-green-50: #EFFED8;
@@ -56,6 +57,8 @@ export default createGlobalStyle`
   --primary-grey-800: #2D2E2D;
   --primary-grey-900: #141414;
 
+  /*variables */
+  --border-radius-input-field: 0.5rem;
 }
 
   *,
