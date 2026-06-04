@@ -61,8 +61,8 @@ export default function PlantDetails({
     <StyledDevideLinkAndCard>
       <StyledLink href="/">← BACK TO GARDEN</StyledLink>
       <StyledPlantDetails>
-        <h1>{plant.name}</h1>
-        <h2>{plant.botanicalName}</h2>
+        <StyledH1>{plant.name}</StyledH1>
+        <StyledH2>{plant.botanicalName}</StyledH2>
         <section>
           <StyledImageContainer>
             <StyledImage
@@ -82,9 +82,13 @@ export default function PlantDetails({
           ) : (
             <button onClick={handleShowEditForm}>Edit</button>
           )}
-
-          <p>{plant.description}</p>
+          <StyledDescription>{plant.description}</StyledDescription>
         </section>
+
+        <StyledSpan>
+          <StyledH3>{plant.name} grows best with:</StyledH3>
+          <PopoverCard />
+        </StyledSpan>
         <StyledSection>
           <div>
             <span>
@@ -97,6 +101,7 @@ export default function PlantDetails({
               {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
             </span>
           </div>
+          <StyledDevider>|</StyledDevider>
           <div>
             <span>
               {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
@@ -108,6 +113,7 @@ export default function PlantDetails({
               {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
             </span>
           </div>
+          <StyledDevider>|</StyledDevider>
           <div>
             {plant.fertiliserSeason.map((season) => (
               <span key={season}>
@@ -118,9 +124,6 @@ export default function PlantDetails({
               </span>
             ))}
           </div>
-          <StyledSpan>
-            <PopoverCard />
-          </StyledSpan>
         </StyledSection>
 
         {isDeleteConfirmation ? (
@@ -157,19 +160,6 @@ export default function PlantDetails({
   );
 }
 
-const StyledSection = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  justify-content: flex-start;
-`;
-
-const StyledSpan = styled.span`
-  right: 8px;
-  position: absolute;
-`;
-
 const StyledDevideLinkAndCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -205,4 +195,44 @@ const StyledImageContainer = styled.div`
 const StyledImage = styled(Image)`
   object-fit: cover;
   object-position: center;
+`;
+
+const StyledDescription = styled.article`
+  padding: 1rem;
+`;
+
+const StyledH1 = styled.h1`
+  padding: 0 1rem 0 1rem;
+`;
+
+const StyledH2 = styled.h2`
+  font-weight: 200;
+  font-size: large;
+  padding: 0 1rem 0 1rem;
+`;
+
+const StyledH3 = styled.h3`
+  font-weight: 700;
+  padding: 0 1rem 0 1rem;
+`;
+
+const StyledSpan = styled.span`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  position: relative;
+  width: 95%;
+`;
+
+const StyledSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  padding: 3% 15%;
+`;
+
+const StyledDevider = styled.span`
+  color: var(--primary-grey-200);
 `;

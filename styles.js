@@ -61,6 +61,7 @@ export default createGlobalStyle`
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-comfortaa);
+  color: var(--primary-grey-900);
 }
 
   *,
@@ -75,5 +76,6 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 2rem;
     font-family: system-ui;
     background-color: var(--primary-off-white);
+    color: var(--primary-grey-800)
   }
 `;
