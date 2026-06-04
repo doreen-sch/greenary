@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PlantNeeds from "../PlantNeeds";
 
 export default function PlantForm({
   plant,
@@ -9,13 +10,14 @@ export default function PlantForm({
   onCancelEdit,
   // onShowEditForm,
 }) {
+  console.log("form water need", plant);
   return (
     <StyledForm
       onSubmit={onSubmit}
       aria-labelledby="Expand your Garden"
       aria-describedby="add a new plant"
     >
-      <fieldset>
+      <StyledFieldset>
         <StyledNameWrapper aria-label="naem and botanical name">
           <StyledLabel htmlFor="name">Name *</StyledLabel>
           <StyledInput
@@ -37,6 +39,17 @@ export default function PlantForm({
             onChange={onSetPlant}
           />
         </StyledNameWrapper>
+
+        <StyledFieldset>
+          {/* <label>Watering</label> */}
+
+          <PlantNeeds
+            onSetPlant={onSetPlant}
+            need={"waterNeed"}
+            value={plant.waterNeed}
+          ></PlantNeeds>
+        </StyledFieldset>
+
         <fieldset>
           <legend>Light needs</legend>
 
@@ -174,7 +187,7 @@ export default function PlantForm({
             <button type="submit">plant your plant</button>
           </>
         )}
-      </fieldset>
+      </StyledFieldset>
     </StyledForm>
   );
 }
@@ -183,6 +196,10 @@ const StyledForm = styled.form`
   width: 25em;
   max-width: 90%;
   /* margin: 0 auto; */ /*centers the form */
+`;
+
+const StyledFieldset = styled.fieldset`
+  border-radius: var(--border-radius-input-field);
 `;
 
 const StyledLabel = styled.label`
