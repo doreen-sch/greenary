@@ -66,7 +66,7 @@ export default function HomePage() {
         width: width ?? 300,
         url: url ?? "/images/greenary_guy.png",
       };
-
+      console.log("plantData before save:", plantData);
       const plantResponse = await fetch("/api/plants", {
         method: "POST",
         headers: {
