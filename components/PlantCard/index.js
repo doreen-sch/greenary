@@ -3,12 +3,14 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export default function PlantCard({ plant }) {
-  const { _id, imageUrl, name, botanicalName } = plant;
+  const { _id, image, imageUrl, name, botanicalName } = plant;
+  const src = image?.url ?? imageUrl ?? "/images/greenary_guy.png";
+
   return (
     <StyledPlantCard>
       <Link href={`/${_id}`}>
         <StyledPlantCardDiv>
-          <StyledImage src={imageUrl} alt={name} fill />
+          <StyledImage src={src} alt={name} fill />
         </StyledPlantCardDiv>
         <h2>{name}</h2>
         <p>{botanicalName}</p>

@@ -160,7 +160,7 @@ export default function PlantForm({
           <fieldset>
             <legend>Image</legend>
             <label htmlFor="image">Upload:</label>
-            <input id="image" type="file" accept="image/*"></input>
+            <input id="image" name="image" type="file" accept="image/*"></input>
           </fieldset>
           {isEditMode ? (
             <>

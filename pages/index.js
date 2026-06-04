@@ -60,6 +60,7 @@ export default function HomePage() {
       // plantData.imageUrl = imageUrl;
 
       const { height, width, url } = await uploadResponse.json();
+      console.log("upload response:", { height, width, url });
       plantData.image = {
         height: height ?? 300,
         width: width ?? 300,
