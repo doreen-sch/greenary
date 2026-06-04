@@ -4,6 +4,7 @@ import Accordion from "@/components/Accordion";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
+import BackToTopButton from "@/components/BackToTopButton";
 
 const initialPlant = {
   name: "",
@@ -86,7 +87,7 @@ export default function HomePage() {
   }
 
   return (
-    <div>
+    <>
       <h1>Greenary 🌱</h1>
       <Accordion
         title={"Expand your garden"}
@@ -99,6 +100,7 @@ export default function HomePage() {
       ></Accordion>
 
       <PlantList plants={plants} />
-    </div>
+      <BackToTopButton />
+    </>
   );
 }
