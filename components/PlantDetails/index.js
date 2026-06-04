@@ -61,6 +61,8 @@ export default function PlantDetails({
     <StyledDevideLinkAndCard>
       <StyledLink href="/">← BACK TO GARDEN</StyledLink>
       <StyledPlantDetails>
+        <h1>{plant.name}</h1>
+        <h2>{plant.botanicalName}</h2>
         <section>
           <StyledImageContainer>
             <StyledImage
@@ -80,8 +82,7 @@ export default function PlantDetails({
           ) : (
             <button onClick={handleShowEditForm}>Edit</button>
           )}
-          <h1>{plant.name}</h1>
-          <h2>{plant.botanicalName}</h2>
+
           <p>{plant.description}</p>
         </section>
         <StyledSection>
