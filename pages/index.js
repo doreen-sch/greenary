@@ -58,18 +58,12 @@ export default function HomePage() {
         body: formData,
       });
       if (!uploadResponse.ok) throw new Error("Upload failed");
-
-      // const imageUrl = "/images/greenary_guy.png";
-      // plantData.imageUrl = imageUrl;
-
       const { height, width, url } = await uploadResponse.json();
-      console.log("upload response:", { height, width, url });
       plantData.image = {
         height: height ?? 300,
         width: width ?? 300,
         url: url ?? "/images/greenary_guy.png",
       };
-      console.log("plantData before save:", plantData);
       const plantResponse = await fetch("/api/plants", {
         method: "POST",
         headers: {
