@@ -109,13 +109,15 @@ export default function PlantForm({
         </fieldset>
 
         <StyledLabel htmlFor="description">Description</StyledLabel>
-        <StyledInput
+        <StyledTextarea
           id="description"
           name="description"
           defaultValue={plant?.description}
           onChange={onSetPlant}
           size={300}
-        ></StyledInput>
+          cols={45}
+          rows={10}
+        ></StyledTextarea>
 
         <fieldset>
           <legend>Fertiliser Season</legend>
@@ -195,4 +197,8 @@ const StyledInput = styled.input`
   width: 100%;
   line-height: 1.2;
   margin-top: 0.2rem;
+`;
+
+const StyledTextarea = styled.textarea`
+  max-width: 100%;
 `;
