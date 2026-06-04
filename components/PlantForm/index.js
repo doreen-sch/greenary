@@ -16,26 +16,27 @@ export default function PlantForm({
       aria-describedby="add a new plant"
     >
       <fieldset>
-        <StyledLabel htmlFor="name">Name:</StyledLabel>
-        <StyledInput
-          type="text"
-          id="name"
-          name="name"
-          defaultValue={plant?.name}
-          required
-          onChange={onSetPlant}
-        />
+        <StyledNameWrapper aria-label="naem and botanical name">
+          <StyledLabel htmlFor="name">Name *</StyledLabel>
+          <StyledInput
+            type="text"
+            id="name"
+            name="name"
+            defaultValue={plant?.name}
+            required
+            onChange={onSetPlant}
+          />
 
-        <StyledLabel htmlFor="botanicalName">Botanical Name: </StyledLabel>
-        <StyledInput
-          type="text"
-          id="botanicalName"
-          name="botanicalName"
-          defaultValue={plant?.botanicalName}
-          required
-          onChange={onSetPlant}
-        />
-
+          <StyledLabel htmlFor="botanicalName">Botanical Name * </StyledLabel>
+          <StyledInput
+            type="text"
+            id="botanicalName"
+            name="botanicalName"
+            defaultValue={plant?.botanicalName}
+            required
+            onChange={onSetPlant}
+          />
+        </StyledNameWrapper>
         <fieldset>
           <legend>Light needs</legend>
 
@@ -197,8 +198,14 @@ const StyledInput = styled.input`
   width: 100%;
   line-height: 1.2;
   margin-top: 0.2rem;
+  border-radius: 0.5rem;
 `;
 
-const StyledTextarea = styled.textarea`
-  max-width: 100%;
+const StyledNameWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto 3fr;
+  align-items: center;
+  gap: 1rem;
 `;
+
+const StyledTextarea = styled.textarea``;
