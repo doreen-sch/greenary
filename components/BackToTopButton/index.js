@@ -1,4 +1,4 @@
-import { MoveUp } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 
@@ -6,6 +6,14 @@ const StyledButton = styled.button`
   position: fixed;
   bottom: 30px;
   right: 30px;
+  background-color: var(--secondary-green-400);
+  border: 1px solid var(--secondary-green-900);
+  border-radius: 4px;
+`;
+
+const StyledMoveUpArrow = styled(ChevronUp)`
+  color: var(--secondary-green-900);
+  stroke-width: 1.5;
 `;
 
 export default function BackToTopButton() {
@@ -28,7 +36,7 @@ export default function BackToTopButton() {
     <>
       {isVisible && (
         <StyledButton onClick={handleScrollToTop}>
-          <MoveUp />
+          <StyledMoveUpArrow />
         </StyledButton>
       )}
     </>
