@@ -9,7 +9,7 @@ cloudinary.config({
 
 export const config = {
   api: {
-    bodyParse: false,
+    bodyParser: false,
   },
 };
 
@@ -20,6 +20,10 @@ export default async function handler(request, response) {
 
   const form = formidable({});
   const [fields, files] = await form.parse(request);
+
+  if (!files.image) {
+    return response.status(200).json({ height: null, width: null, url: null });
+  }
 
   const file = files.image[0];
   const { newFilename, filepath } = file;

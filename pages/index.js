@@ -49,27 +49,38 @@ export default function HomePage() {
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
+    try {
+      const uploadResponse = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!uploadResponse.ok) throw new Error("Upload failed");
 
-    const imageUrl = "/images/greenary_guy.png";
+      // const imageUrl = "/images/greenary_guy.png";
+      // plantData.imageUrl = imageUrl;
 
-    plantData.imageUrl = imageUrl;
+      const { height, width, url } = await uploadResponse.json();
+      plantData.image = {
+        height: height ?? 300,
+        width: width ?? 300,
+        url: url ?? "/images/greenary_guy.png",
+      };
 
-    const response = await fetch("/api/plants", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plantData),
-    });
+      const plantResponse = await fetch("/api/plants", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plantData),
+      });
 
-    if (response.ok) {
-      mutate();
-      setIsExpanded(!isExpanded);
-
-      setPlant(initialPlant);
-
-      toast.success("Your plant 🪴 was successfully planted.");
-    } else {
+      if (plantResponse.ok) {
+        mutate();
+        setIsExpanded(!isExpanded);
+        setPlant(initialPlant);
+        toast.success("Your plant 🪴 was successfully planted.");
+      }
+    } catch {
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again."
       );
