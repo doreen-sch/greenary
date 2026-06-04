@@ -100,6 +100,6 @@ export default function HomePage() {
 
       <PlantList plants={plants} />
       <BackToTopButton />
-    </>
+    </div>
   );
 }
