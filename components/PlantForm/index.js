@@ -157,6 +157,11 @@ export default function PlantForm({
             ></StyledInput>
             <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
           </fieldset>
+          <fieldset>
+            <legend>Image</legend>
+            <label htmlFor="image">Upload:</label>
+            <input id="image" type="file" accept="image/*"></input>
+          </fieldset>
           {isEditMode ? (
             <>
               <button type="submit">save edits</button>
