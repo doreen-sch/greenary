@@ -157,11 +157,7 @@ export default function PlantForm({
             ></StyledInput>
             <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
           </fieldset>
-          <fieldset>
-            <legend>Image</legend>
-            <label htmlFor="image">Upload:</label>
-            <input id="image" name="image" type="file" accept="image/*"></input>
-          </fieldset>
+
           {isEditMode ? (
             <>
               <button type="submit">save edits</button>
@@ -171,6 +167,16 @@ export default function PlantForm({
             </>
           ) : (
             <>
+              <fieldset>
+                <legend>Image</legend>
+                <label htmlFor="image">Upload:</label>
+                <input
+                  id="image"
+                  name="image"
+                  type="file"
+                  accept="image/*"
+                ></input>
+              </fieldset>
               <button type="reset" onClick={onClearPlant}>
                 clear form
               </button>
