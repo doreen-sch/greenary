@@ -16,8 +16,8 @@ export default createGlobalStyle`
   --primary-green-800: #355602;
   --primary-green-900: #162401;
   --secondary-green-50: #FDFFF6;
-  --secondary-green-100: #F7FEDD;
-  --secondary-green-200: #ECFDAB;
+  --secondary-green-100-rgb: 247, 254, 221;
+  --secondary-green-200-rgb: 236, 253, 171;
   --secondary-green-300: #c9e077;
   --secondary-green-400: #bed85e;
   --secondary-green-500: #a2c231;
@@ -55,7 +55,12 @@ export default createGlobalStyle`
   --primary-grey-700: #464846;
   --primary-grey-800: #2D2E2D;
   --primary-grey-900: #141414;
+  --header-height: 5rem;
 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-comfortaa);
 }
 
   *,
@@ -66,6 +71,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
+    padding-top: calc(var(--header-height) + 0.5rem);
     font-family: system-ui;
     background-color: var(--primary-off-white);
   }

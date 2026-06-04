@@ -1,6 +1,13 @@
 import GlobalStyle from "../styles";
 import useSWR, { SWRConfig } from "swr";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/Header";
+import { Comfortaa } from "next/font/google";
+
+const comfortaa = Comfortaa({
+  subsets: ["latin"],
+  variable: "--font-comfortaa",
+});
 
 const fetcher = async (url) => {
   const result = await fetch(url);
@@ -28,7 +35,7 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <>
+    <div className={comfortaa.variable}>
       <GlobalStyle />
       <Toaster
         toastOptions={{
@@ -50,9 +57,10 @@ export default function App({ Component, pageProps }) {
           },
         }}
       />
+      <Header />
       <SWRConfig value={{ fetcher }}>
         <Component {...pageProps} plants={plants} />
       </SWRConfig>
-    </>
+    </div>
   );
 }
