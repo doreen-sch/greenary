@@ -17,6 +17,7 @@ const initialPlant = {
 
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [plant, setPlant] = useLocalStorageState("plant", initialPlant);
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
@@ -50,6 +51,8 @@ export default function HomePage() {
     const plantData = Object.fromEntries(formData);
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
     try {
+      setIsUploading(true);
+      toast.loading("Planting…🌱", { id: "uploading" });
       const uploadResponse = await fetch("/api/upload", {
         method: "POST",
         body: formData,
@@ -79,11 +82,14 @@ export default function HomePage() {
         mutate();
         setIsExpanded(!isExpanded);
         setPlant(initialPlant);
-        toast.success("Your plant 🪴 was successfully planted.");
+        toast.success("Your plant 🪴 was successfully planted.", {
+          id: "uploading",
+        });
       }
     } catch {
       toast.error(
-        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+        "Oops, something went wrong. Take a deep breath 🍃 and check again.",
+        { id: "uploading" }
       );
     }
   }

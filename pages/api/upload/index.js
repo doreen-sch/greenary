@@ -18,10 +18,10 @@ export default async function handler(request, response) {
     return response.status(400).json({ status: "Method not allowed" });
   }
 
-  const form = formidable({});
+  const form = formidable({ allowEmptyFiles: true, minFileSize: 0 });
   const [fields, files] = await form.parse(request);
 
-  if (!files.image) {
+  if (!files.image || files.image[0].size === 0) {
     return response.status(200).json({ height: null, width: null, url: null });
   }
 
