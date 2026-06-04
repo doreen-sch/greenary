@@ -4,6 +4,7 @@ import Accordion from "@/components/Accordion";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
+import styled from "styled-components";
 
 const initialPlant = {
   name: "",
@@ -88,17 +89,23 @@ export default function HomePage() {
   return (
     <div>
       <h1>Greenary 🌱</h1>
-      <Accordion
-        title={"Expand your garden"}
-        isExpanded={isExpanded}
-        onIsExpanded={handleIsExpanded}
-        plant={plant}
-        handleSetPlant={handleSetPlant}
-        handleSubmit={handleAddPlant}
-        handleClearPlant={handleClearPlant}
-      ></Accordion>
-
+      <StyledWrapper>
+        <Accordion
+          // title={"Expand your garden"}
+          isExpanded={isExpanded}
+          onIsExpanded={handleIsExpanded}
+          plant={plant}
+          handleSetPlant={handleSetPlant}
+          handleSubmit={handleAddPlant}
+          handleClearPlant={handleClearPlant}
+        ></Accordion>
+      </StyledWrapper>
       <PlantList plants={plants} />
     </div>
   );
 }
+
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;

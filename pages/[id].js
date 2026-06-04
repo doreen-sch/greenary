@@ -6,7 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function PlantDetailPage() {
-  const [showEditForm, setShowEditForm] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 
@@ -28,7 +28,7 @@ export default function PlantDetailPage() {
 
     if (response.ok) {
       mutate();
-      setShowEditForm(false);
+      setIsExpanded(false);
       toast.success("Your plant 🪴 was successfully updated.");
     } else {
       toast.error(
@@ -60,8 +60,8 @@ export default function PlantDetailPage() {
     }
   }
 
-  function handleShowEditForm() {
-    setShowEditForm(!showEditForm);
+  function handleIsExpanded() {
+    setIsExpanded(!isExpanded);
   }
 
   return (
@@ -72,8 +72,8 @@ export default function PlantDetailPage() {
       <PlantDetails
         plant={plant}
         handleEditPlant={handleEditPlant}
-        showEditForm={showEditForm}
-        handleShowEditForm={handleShowEditForm}
+        isExpanded={isExpanded}
+        handleIsExpanded={handleIsExpanded}
         onDeletePlant={handleDeletePlant}
       />
     </>

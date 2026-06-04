@@ -12,29 +12,16 @@ import {
   Snowflake,
   Trash2,
 } from "lucide-react";
-import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
-
-const StyledSection = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  justify-content: flex-start;
-`;
-
-const StyledSpan = styled.span`
-  right: 8px;
-  position: absolute;
-`;
+import Accordion from "../Accordion";
 
 export default function PlantDetails({
   plant,
   onDeletePlant,
   handleEditPlant,
-  showEditForm,
-  handleShowEditForm,
+  isExpanded,
+  handleIsExpanded,
 }) {
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
@@ -66,7 +53,16 @@ export default function PlantDetails({
 
   return (
     <>
-      <Link href="/">← BACK TO GARDEN</Link>
+      <StyledWrapper>
+        <Link href="/">← BACK TO GARDEN</Link>
+        <Accordion
+          isExpanded={isExpanded}
+          onIsExpanded={handleIsExpanded}
+          plant={plant}
+          isEditMode={true}
+          handleSubmit={handleEditPlant}
+        ></Accordion>
+      </StyledWrapper>
       <section>
         <Image
           src={plant.imageUrl}
@@ -76,16 +72,6 @@ export default function PlantDetails({
           style={{ objectFit: "cover" }}
         />
 
-        {showEditForm ? (
-          <PlantForm
-            plant={plant}
-            isEditMode
-            onSubmit={handleEditPlant}
-            onShowEditForm={handleShowEditForm}
-          />
-        ) : (
-          <button onClick={handleShowEditForm}>Edit</button>
-        )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>
         <p>{plant.description}</p>
@@ -157,3 +143,19 @@ export default function PlantDetails({
     </>
   );
 }
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const StyledSection = styled.section`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: flex-start;
+`;
+
+const StyledSpan = styled.span`
+  right: 8px;
+  position: absolute;
+`;

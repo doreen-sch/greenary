@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import PlantForm from "../PlantForm";
+import { LucideX, LucidePencil, LucidePlus } from "lucide-react";
 
 export default function Accordion({
   title,
   isExpanded,
   onIsExpanded,
   plant,
+  isEditMode,
   handleSetPlant,
   handleSubmit,
   handleClearPlant,
@@ -13,18 +15,26 @@ export default function Accordion({
   return (
     <StyledWrapper>
       <StyledHeaderWrapper>
-        <StyledHeader>{title}</StyledHeader>
-        <StyledButton isExpanded={isExpanded} onClick={onIsExpanded}>
-          {isExpanded ? "-" : "+"}
+        {/* <StyledHeader>{title}</StyledHeader> */}
+        <StyledButton onClick={onIsExpanded}>
+          {isExpanded ? (
+            <LucideX />
+          ) : isEditMode ? (
+            <LucidePencil />
+          ) : (
+            <LucidePlus />
+          )}
         </StyledButton>
       </StyledHeaderWrapper>
-      <StyledContentWrapper isExpanded={isExpanded}>
+      <StyledContentWrapper>
         {isExpanded && (
           <PlantForm
             plant={plant}
+            isEditMode={isEditMode}
             onSetPlant={handleSetPlant}
             onSubmit={handleSubmit}
             onClearPlant={handleClearPlant}
+            onCancelEdit={onIsExpanded}
           ></PlantForm>
         )}
       </StyledContentWrapper>
@@ -35,12 +45,9 @@ export default function Accordion({
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30em;
 `;
 const StyledHeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-self: center;
   margin-bottom: 0.5rem;
 `;
 
@@ -49,13 +56,18 @@ const StyledHeader = styled.p`
 `;
 
 const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 2rem;
   width: 2rem;
-  border-radius: 50%;
-  color: white;
-  background-color: ${(props) => (props.isExpanded ? "black" : "green")};
+  border-radius: 10%;
+  color: var(--secondary-green-800);
+  background-color: var(--secondary-green-50);
+  border-color: var(--secondary-green-400);
 `;
 
 const StyledContentWrapper = styled.div`
-  display: ${(props) => (props.isExpanded ? "flex" : "none")};
+  display: flex;
+  justify-content: center;
 `;
