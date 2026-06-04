@@ -1,6 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR, { SWRConfig } from "swr";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/Header";
 
 const fetcher = async (url) => {
   const result = await fetch(url);
@@ -50,6 +51,7 @@ export default function App({ Component, pageProps }) {
           },
         }}
       />
+      <Header />
       <SWRConfig value={{ fetcher }}>
         <Component {...pageProps} plants={plants} />
       </SWRConfig>

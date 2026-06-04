@@ -87,7 +87,6 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>Greenary 🌱</h1>
       <Accordion
         title={"Expand your garden"}
         isExpanded={isExpanded}
