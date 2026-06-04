@@ -87,7 +87,7 @@ export default function HomePage() {
   }
 
   return (
-    <div>
+    <>
       <h1>Greenary 🌱</h1>
       <Accordion
         title={"Expand your garden"}
@@ -101,6 +101,6 @@ export default function HomePage() {
 
       <PlantList plants={plants} />
       <BackToTopButton />
-    </div>
+    </>
   );
 }
