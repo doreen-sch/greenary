@@ -3,9 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Droplet,
-  DropletOff,
   Lightbulb,
-  LightbulbOff,
   Sprout,
   Sun,
   Leaf,
@@ -36,6 +34,8 @@ export default function PlantDetails({
   showEditForm,
   handleShowEditForm,
 }) {
+  const src = plant.imageUrl ?? plant.image?.url ?? "/images/greenary_guy.png";
+
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   let waterNeed = 0;
@@ -69,7 +69,7 @@ export default function PlantDetails({
       <Link href="/">← BACK TO GARDEN</Link>
       <section>
         <Image
-          src={plant.imageUrl}
+          src={src}
           alt="placeholder Image"
           width={400}
           height={600}
