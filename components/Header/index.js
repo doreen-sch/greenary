@@ -3,17 +3,14 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <>
-      <StyledHeader>
-        <StyledLogo
-          src="/images/Greenary_logo.png"
-          alt="greenary logo"
-          width={150}
-          height={0}
-          style={{ height: "auto" }}
-        />
-      </StyledHeader>
-    </>
+    <StyledHeader>
+      <StyledLogo
+        src="/images/Greenary_logo.png"
+        alt="greenary logo"
+        width={150}
+        height={0}
+      />
+    </StyledHeader>
   );
 }
 
@@ -32,9 +29,10 @@ const StyledHeader = styled.header`
   width: 100%;
   height: var(--header-height);
   z-index: 10;
-  padding: 0;
+  padding: 0.5rem;
 `;
 
 const StyledLogo = styled(Image)`
   display: block;
+  height: auto;
 `;
