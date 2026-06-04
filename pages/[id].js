@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import styled from "styled-components";
 
 export default function PlantDetailPage() {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -69,13 +70,20 @@ export default function PlantDetailPage() {
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <PlantDetails
-        plant={plant}
-        handleEditPlant={handleEditPlant}
-        showEditForm={showEditForm}
-        handleShowEditForm={handleShowEditForm}
-        onDeletePlant={handleDeletePlant}
-      />
+      <StyledDiv>
+        <PlantDetails
+          plant={plant}
+          handleEditPlant={handleEditPlant}
+          showEditForm={showEditForm}
+          handleShowEditForm={handleShowEditForm}
+          onDeletePlant={handleDeletePlant}
+        />
+      </StyledDiv>
     </>
   );
 }
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;

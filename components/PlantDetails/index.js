@@ -16,19 +16,6 @@ import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
 
-const StyledSection = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  justify-content: flex-start;
-`;
-
-const StyledSpan = styled.span`
-  right: 8px;
-  position: absolute;
-`;
-
 export default function PlantDetails({
   plant,
   onDeletePlant,
@@ -37,6 +24,12 @@ export default function PlantDetails({
   handleShowEditForm,
 }) {
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
+
+  const [isPortrait, setIsPortrait] = useState(true);
+
+  function handleImageLoad({ naturalWidth, naturalHeight }) {
+    setIsPortrait(naturalHeight > naturalWidth);
+  }
 
   let waterNeed = 0;
   switch (plant.waterNeed) {
@@ -65,95 +58,150 @@ export default function PlantDetails({
   }
 
   return (
-    <>
-      <Link href="/">← BACK TO GARDEN</Link>
-      <section>
-        <Image
-          src={plant.imageUrl}
-          alt="placeholder Image"
-          width={400}
-          height={600}
-          style={{ objectFit: "cover" }}
-        />
+    <StyledDevideLinkAndCard>
+      <StyledLink href="/">← BACK TO GARDEN</StyledLink>
+      <StyledPlantDetails>
+        <section>
+          <StyledImageContainer>
+            <StyledImage
+              src={plant.imageUrl}
+              alt={`Image of ${plant.name}`}
+              fill
+            />
+          </StyledImageContainer>
 
-        {showEditForm ? (
-          <PlantForm
-            plant={plant}
-            isEditMode
-            onSubmit={handleEditPlant}
-            onShowEditForm={handleShowEditForm}
-          />
-        ) : (
-          <button onClick={handleShowEditForm}>Edit</button>
-        )}
-        <h1>{plant.name}</h1>
-        <h2>{plant.botanicalName}</h2>
-        <p>{plant.description}</p>
-      </section>
-      <StyledSection>
-        <div>
-          <span>
-            {waterNeed >= 1 ? <Droplet /> : <Droplet opacity={0.2} />}
-          </span>
-          <span>
-            {waterNeed >= 2 ? <Droplet /> : <Droplet opacity={0.2} />}
-          </span>
-          <span>
-            {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
-          </span>
-        </div>
-        <div>
-          <span>
-            {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
-          </span>
-          <span>
-            {lightNeed >= 2 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
-          </span>
-          <span>
-            {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
-          </span>
-        </div>
-        <div>
-          {plant.fertiliserSeason.map((season) => (
-            <span key={season}>
-              {season === "Spring" && <Sprout />}
-              {season === "Summer" && <Sun />}
-              {season === "Autumn" && <Leaf />}
-              {season === "Winter" && <Snowflake />}
+          {showEditForm ? (
+            <PlantForm
+              plant={plant}
+              isEditMode
+              onSubmit={handleEditPlant}
+              onShowEditForm={handleShowEditForm}
+            />
+          ) : (
+            <button onClick={handleShowEditForm}>Edit</button>
+          )}
+          <h1>{plant.name}</h1>
+          <h2>{plant.botanicalName}</h2>
+          <p>{plant.description}</p>
+        </section>
+        <StyledSection>
+          <div>
+            <span>
+              {waterNeed >= 1 ? <Droplet /> : <Droplet opacity={0.2} />}
             </span>
-          ))}
-        </div>
-        <StyledSpan>
-          <PopoverCard />
-        </StyledSpan>
-      </StyledSection>
+            <span>
+              {waterNeed >= 2 ? <Droplet /> : <Droplet opacity={0.2} />}
+            </span>
+            <span>
+              {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
+            </span>
+          </div>
+          <div>
+            <span>
+              {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+            </span>
+            <span>
+              {lightNeed >= 2 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+            </span>
+            <span>
+              {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+            </span>
+          </div>
+          <div>
+            {plant.fertiliserSeason.map((season) => (
+              <span key={season}>
+                {season === "Spring" && <Sprout />}
+                {season === "Summer" && <Sun />}
+                {season === "Autumn" && <Leaf />}
+                {season === "Winter" && <Snowflake />}
+              </span>
+            ))}
+          </div>
+          <StyledSpan>
+            <PopoverCard />
+          </StyledSpan>
+        </StyledSection>
 
-      {isDeleteConfirmation ? (
-        <div aria-description="Delete Confirmation">
-          <p>
-            Do you really want to discard the {plant.name} from your garden?
-          </p>
+        {isDeleteConfirmation ? (
+          <div aria-description="Delete Confirmation">
+            <p>
+              Do you really want to discard the {plant.name} from your garden?
+            </p>
 
-          <button type="button" onClick={() => setIsDeleteConfirmation(false)}>
-            cancel
+            <button
+              type="button"
+              onClick={() => setIsDeleteConfirmation(false)}
+            >
+              cancel
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                onDeletePlant();
+                setIsDeleteConfirmation(false);
+              }}
+            >
+              delete
+            </button>
+          </div>
+        ) : (
+          <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
+            <Trash2 />
+            Delete Plant
           </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              onDeletePlant();
-              setIsDeleteConfirmation(false);
-            }}
-          >
-            delete
-          </button>
-        </div>
-      ) : (
-        <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
-          <Trash2 />
-          Delete Plant
-        </button>
-      )}
-    </>
+        )}
+      </StyledPlantDetails>
+    </StyledDevideLinkAndCard>
   );
 }
+
+const StyledSection = styled.section`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: flex-start;
+`;
+
+const StyledSpan = styled.span`
+  right: 8px;
+  position: absolute;
+`;
+
+const StyledDevideLinkAndCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+`;
+
+const StyledPlantDetails = styled.div`
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 50rem;
+  background-color: var(--secondary-off-white);
+  margin: 0 auto;
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075);
+`;
+
+const StyledLink = styled(Link)`
+  margin: 1em;
+`;
+
+const StyledImageContainer = styled.div`
+  position: relative;
+  aspect-ratio: ${({ $isPortrait }) => ($isPortrait ? "5 / 6" : "6 / 5")};
+  overflow: hidden;
+  width: 100%;
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  object-position: center;
+`;
