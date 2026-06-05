@@ -62,46 +62,6 @@ export default function PlantForm({
           ></PlantFertiliserSeason>
         </StyledFieldset>
 
-        {/* <fieldset>
-          <legend>Fertiliser Season</legend>
-          <StyledInput
-            type="checkbox"
-            id="fertiliserSeason-spring"
-            name="fertiliserSeason"
-            value="Spring"
-            defaultChecked={plant?.fertiliserSeason?.includes("Spring")}
-            onChange={onSetPlantForm}
-          ></StyledInput>
-          <StyledLabel htmlFor="fertiliserSeason-spring">Spring</StyledLabel>
-          <StyledInput
-            type="checkbox"
-            id="fertiliserSeason-summer"
-            name="fertiliserSeason"
-            value="Summer"
-            defaultChecked={plant?.fertiliserSeason?.includes("Summer")}
-            onChange={onSetPlantForm}
-          ></StyledInput>
-          <StyledLabel htmlFor="fertiliserSeason-summer">Summer</StyledLabel>
-          <StyledInput
-            type="checkbox"
-            id="fertiliserSeason-autumn"
-            name="fertiliserSeason"
-            value="Autumn"
-            defaultChecked={plant?.fertiliserSeason?.includes("Autumn")}
-            onChange={onSetPlantForm}
-          ></StyledInput>
-          <StyledLabel htmlFor="fertiliserSeason-autumn">Autumn</StyledLabel>
-          <StyledInput
-            type="checkbox"
-            id="fertiliserSeason-winter"
-            name="fertiliserSeason"
-            value="Winter"
-            defaultChecked={plant?.fertiliserSeason?.includes("Winter")}
-            onChange={onSetPlantForm}
-          ></StyledInput>
-          <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
-        </fieldset> */}
-
         <StyledLabel htmlFor="description">Description</StyledLabel>
         <StyledTextarea
           id="description"

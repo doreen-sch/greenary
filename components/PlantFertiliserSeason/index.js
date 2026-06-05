@@ -91,8 +91,6 @@ const plantFertiliserSeasons = {
 };
 
 export default function PlantFertiliserSeason({ plant, onSetPlantForm }) {
-  console.log("plant", plant.fertiliserSeason);
-
   function getTechnicalName(season) {
     return plantFertiliserSeasons.id.concat("-", season.toLowerCase());
   }
@@ -103,7 +101,6 @@ export default function PlantFertiliserSeason({ plant, onSetPlantForm }) {
       const currentSeason = plantFertiliserSeasons.seasons[i - 1];
 
       const technicalValue = getTechnicalName(currentSeason);
-      console.log(technicalValue);
 
       returnComponent.push(
         <StyledLabel
@@ -132,7 +129,7 @@ export default function PlantFertiliserSeason({ plant, onSetPlantForm }) {
   return (
     <StyledWrapper>
       <p>{plantFertiliserSeasons.name}</p>
-      <>{showSeasons()}</>
+      <div>{showSeasons()}</div>
     </StyledWrapper>
   );
 }
@@ -140,22 +137,13 @@ export default function PlantFertiliserSeason({ plant, onSetPlantForm }) {
 const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const StyledLabel = styled.label`
   opacity: ${(props) => (props.$checked ? 1 : 0.2)};
-
-  /* &:checked {
-    opacity: 1;
-  } */
-  /* &:checked{
-        opacity: 0
-    } */
-  /* opacity: {:checked} */
 `;
 
 const StyledInput = styled.input`
   opacity: 0;
-
-  // display: none;
 `;

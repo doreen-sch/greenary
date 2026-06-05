@@ -96,7 +96,6 @@ export default function PlantNeeds({ plant, need, onSetPlantForm }) {
         </StyledLabel>
       );
     }
-    //console.log(returnComponent);
     return returnComponent;
   }
 
