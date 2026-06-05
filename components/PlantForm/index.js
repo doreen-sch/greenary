@@ -54,11 +54,11 @@ export default function PlantForm({
             need={"lightNeed"}
             onSetPlantForm={onSetPlantForm}
           ></PlantNeeds>
-
-          {/* <PlantNeeds
-            onSetPlant={onSetPlantForm}
-            need={"fertiliserSeason"}
+          {/* 
+          <PlantNeeds
             plant={plant}
+            need={"fertiliserSeason"}
+            onSetPlant={onSetPlantForm}
           ></PlantNeeds> */}
         </StyledFieldset>
 

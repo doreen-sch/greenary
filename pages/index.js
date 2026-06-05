@@ -28,6 +28,8 @@ export default function HomePage() {
     const key = event.target.name;
     const value = event.target.value;
 
+    console.log("key", key, "value", value);
+
     if (key === "fertiliserSeason") {
       setPlantForm({
         ...plantForm,
