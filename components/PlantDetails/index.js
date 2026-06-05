@@ -118,9 +118,7 @@ export default function PlantDetails({
         </StyledSection>
       </StyledPlantDetails>
       <StyledWrapper>
-        <button type="button" onClick={() => router.push("/")}>
-          ← BACK TO GARDEN
-        </button>
+        <Link href="/">← back to the garden</Link>
         <div>
           {showEditForm ? (
             <PlantForm
@@ -130,7 +128,7 @@ export default function PlantDetails({
               onShowEditForm={handleShowEditForm}
             />
           ) : (
-            <button onClick={handleShowEditForm}>
+            <button type="button" onClick={handleShowEditForm}>
               <PenIcon />
               Edit
             </button>
@@ -206,7 +204,7 @@ const StyledImage = styled(Image)`
   object-position: center;
 `;
 
-const StyledDescription = styled.article`
+const StyledDescription = styled.p`
   padding: 1rem;
 `;
 
