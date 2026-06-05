@@ -18,10 +18,12 @@ import Accordion from "../Accordion";
 
 export default function PlantDetails({
   plant,
+  plantForm,
+  isExpanded,
   onDeletePlant,
   handleEditPlant,
-  isExpanded,
   handleIsExpanded,
+  handleSetPlantForm,
 }) {
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
@@ -58,9 +60,10 @@ export default function PlantDetails({
         <Accordion
           isExpanded={isExpanded}
           onIsExpanded={handleIsExpanded}
-          plant={plant}
+          plant={plantForm}
           isEditMode={true}
           handleSubmit={handleEditPlant}
+          handleSetPlantForm={handleSetPlantForm}
         ></Accordion>
       </StyledWrapper>
       <section>

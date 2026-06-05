@@ -7,15 +7,42 @@ import toast from "react-hot-toast";
 
 export default function PlantDetailPage() {
   const [isExpanded, setIsExpanded] = useState(false);
+
   const router = useRouter();
   const { id } = router.query;
 
   const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
 
+  const [plantFormEdit, setPlantFormEdit] = useState(plant);
+  console.log("from id page, plant data", plant);
+
+  function handleSetPlantFormEdit(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+
+    console.log("i am in the details page");
+    console.log("key", key, "value", value);
+
+    if (key === "fertiliserSeason") {
+      setPlantFormEdit({
+        ...plantFormEdit,
+        [key]: plantFormEdit.fertiliserSeason.find((season) => season === value)
+          ? plantFormEdit.fertiliserSeason.filter((season) => season !== value)
+          : [...plantFormEdit.fertiliserSeason, value],
+      });
+
+      return;
+    }
+
+    setPlantFormEdit({ ...plantFormEdit, [key]: value });
+  }
+
   async function handleEditPlant(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
+
+    console.log(formData);
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
 
     const response = await fetch(`/api/plants/${id}`, {
@@ -28,7 +55,8 @@ export default function PlantDetailPage() {
 
     if (response.ok) {
       mutate();
-      setIsExpanded(false);
+      setIsExpanded(!isExpanded);
+
       toast.success("Your plant 🪴 was successfully updated.");
     } else {
       toast.error(
@@ -62,6 +90,7 @@ export default function PlantDetailPage() {
 
   function handleIsExpanded() {
     setIsExpanded(!isExpanded);
+    setPlantFormEdit(plant);
   }
 
   return (
@@ -71,10 +100,12 @@ export default function PlantDetailPage() {
       </Head>
       <PlantDetails
         plant={plant}
-        handleEditPlant={handleEditPlant}
+        plantForm={plantFormEdit}
         isExpanded={isExpanded}
-        handleIsExpanded={handleIsExpanded}
         onDeletePlant={handleDeletePlant}
+        handleEditPlant={handleEditPlant}
+        handleIsExpanded={handleIsExpanded}
+        handleSetPlantForm={handleSetPlantFormEdit}
       />
     </>
   );

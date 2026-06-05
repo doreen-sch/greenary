@@ -8,7 +8,7 @@ export default function Accordion({
   onIsExpanded,
   plant,
   isEditMode,
-  handleSetPlant,
+  handleSetPlantForm,
   handleSubmit,
   handleClearPlant,
 }) {
@@ -31,7 +31,7 @@ export default function Accordion({
           <PlantForm
             plant={plant}
             isEditMode={isEditMode}
-            onSetPlant={handleSetPlant}
+            onSetPlantForm={handleSetPlantForm}
             onSubmit={handleSubmit}
             onClearPlant={handleClearPlant}
             onCancelEdit={onIsExpanded}

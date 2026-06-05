@@ -17,32 +17,36 @@ const initialPlant = {
 
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [plant, setPlant] = useLocalStorageState("plant", initialPlant);
+  const [plantForm, setPlantForm] = useLocalStorageState(
+    "plantForm",
+    initialPlant
+  );
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
-  function handleSetPlant(event) {
+  function handleSetPlantForm(event) {
     const key = event.target.name;
     const value = event.target.value;
 
-    console.log(key, value);
+    console.log("is this working??");
+    console.log("key", key, "value", value);
 
     if (key === "fertiliserSeason") {
-      setPlant({
-        ...plant,
-        [key]: plant.fertiliserSeason.find((season) => season === value)
-          ? plant.fertiliserSeason.filter((season) => season !== value)
-          : [...plant.fertiliserSeason, value],
+      setPlantForm({
+        ...plantForm,
+        [key]: plantForm.fertiliserSeason.find((season) => season === value)
+          ? plantForm.fertiliserSeason.filter((season) => season !== value)
+          : [...plantForm.fertiliserSeason, value],
       });
 
       return;
     }
 
-    setPlant({ ...plant, [key]: value });
+    setPlantForm({ ...plantForm, [key]: value });
   }
 
   function handleClearPlant() {
-    setPlant(initialPlant);
+    setPlantForm(initialPlant);
   }
 
   async function handleAddPlant(event) {
@@ -68,7 +72,7 @@ export default function HomePage() {
       mutate();
       setIsExpanded(!isExpanded);
 
-      setPlant(initialPlant);
+      setPlantForm(initialPlant);
 
       toast.success("Your plant 🪴 was successfully planted.");
     } else {
@@ -93,11 +97,11 @@ export default function HomePage() {
       <h1>Greenary 🌱</h1>
       <StyledWrapper>
         <Accordion
-          // title={"Expand your garden"}
+          //title={"Expand your garden"}
           isExpanded={isExpanded}
           onIsExpanded={handleIsExpanded}
-          plant={plant}
-          handleSetPlant={handleSetPlant}
+          plant={plantForm}
+          handleSetPlantForm={handleSetPlantForm}
           handleSubmit={handleAddPlant}
           handleClearPlant={handleClearPlant}
         ></Accordion>
