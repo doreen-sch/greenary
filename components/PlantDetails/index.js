@@ -116,7 +116,7 @@ export default function PlantDetails({
         </StyledSection>
       </StyledPlantDetails>
       <StyledWrapper>
-        <Link href="/">← back to the garden</Link>
+        <StyledLink href="/">← back to the garden</StyledLink>
         <div>
           {showEditForm ? (
             <PlantForm
@@ -241,5 +241,10 @@ const StyledWrapper = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: var(--primary-grey-800);
+  text-decoration: none;
 `;
