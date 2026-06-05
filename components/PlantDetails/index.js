@@ -73,6 +73,7 @@ export default function PlantDetails({
       <StyledPlantFormWrapper>
         {isExpanded && (
           <PlantForm
+            title={"Edit your plant"}
             plant={plantForm}
             isEditMode={true}
             onSetPlantForm={handleSetPlantForm}

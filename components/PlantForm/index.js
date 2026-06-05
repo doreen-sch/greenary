@@ -4,6 +4,7 @@ import PlantFertiliserSeason from "../PlantFertiliserSeason";
 import PopoverCard from "../Popover";
 
 export default function PlantForm({
+  title,
   plant,
   isEditMode,
   onSetPlantForm,
@@ -18,6 +19,7 @@ export default function PlantForm({
       aria-describedby="add a new plant"
     >
       <StyledFieldset>
+        <StyledTitle>{title}</StyledTitle>
         <StyledNameWrapper aria-label="name and botanical name">
           <StyledLabel htmlFor="name">
             Name<span aria-hidden="true">*</span>
@@ -105,6 +107,11 @@ const StyledForm = styled.form`
 
 const StyledFieldset = styled.fieldset`
   border-radius: var(--border-radius-input-field);
+`;
+
+const StyledTitle = styled.h2`
+  text-align: center;
+  margin: 1rem 0 2rem 0;
 `;
 
 const StyledLabel = styled.label`

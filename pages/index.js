@@ -23,8 +23,6 @@ export default function HomePage() {
     "plantForm",
     initialPlant
   );
-  console.log(plantForm);
-  //localStorage.clear();
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
@@ -105,8 +103,8 @@ export default function HomePage() {
       <StyledPlantFormWrapper>
         {isExpanded && (
           <PlantForm
+            title={"Expand your garden"}
             plant={plantForm}
-            //isEditMode={isEditMode}
             onSetPlantForm={handleSetPlantForm}
             onSubmit={handleAddPlant}
             onClearPlant={handleClearPlant}
