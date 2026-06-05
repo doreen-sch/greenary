@@ -61,14 +61,6 @@ export default function PlantDetails({
           onIsExpanded={handleIsExpanded}
           isEditMode={true}
         ></PlantFormButton>
-        {/* <Accordion
-          isExpanded={isExpanded}
-          onIsExpanded={handleIsExpanded}
-          plant={plantForm}
-          isEditMode={true}
-          handleSubmit={handleEditPlant}
-          handleSetPlantForm={handleSetPlantForm}
-        ></Accordion> */}
       </StyledWrapper>
       <StyledPlantFormWrapper>
         {isExpanded && (

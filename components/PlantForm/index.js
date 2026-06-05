@@ -18,8 +18,9 @@ export default function PlantForm({
       aria-labelledby="Expand your Garden"
       aria-describedby="add a new plant"
     >
-      <StyledFieldset>
+      <StyledFieldsetMain>
         <StyledTitle>{title}</StyledTitle>
+
         <StyledNameWrapper aria-label="name and botanical name">
           <StyledLabel htmlFor="name">
             Name<span aria-hidden="true">*</span>
@@ -46,7 +47,7 @@ export default function PlantForm({
           />
         </StyledNameWrapper>
 
-        <StyledFieldset>
+        <StyledFieldsetNeeds>
           <legend>
             <PopoverCard />
           </legend>
@@ -67,7 +68,7 @@ export default function PlantForm({
             plant={plant}
             onSetPlantForm={onSetPlantForm}
           ></PlantFertiliserSeason>
-        </StyledFieldset>
+        </StyledFieldsetNeeds>
 
         <StyledLabel htmlFor="description">Description</StyledLabel>
         <StyledTextarea
@@ -79,22 +80,24 @@ export default function PlantForm({
           cols={45}
           rows={10}
         ></StyledTextarea>
-        {isEditMode ? (
-          <>
-            <button type="submit">save edits</button>
-            <button type="button" onClick={onCancelEdit}>
-              cancel
-            </button>
-          </>
-        ) : (
-          <>
-            <button type="reset" onClick={onClearPlant}>
-              clear form
-            </button>
-            <button type="submit">plant your plant</button>
-          </>
-        )}
-      </StyledFieldset>
+        <StyledButtonWrapper>
+          {isEditMode ? (
+            <>
+              <button type="submit">save & close</button>
+              <button type="button" onClick={onCancelEdit}>
+                cancel
+              </button>
+            </>
+          ) : (
+            <>
+              <button type="submit">plant your plant</button>
+              <button type="reset" onClick={onClearPlant}>
+                clear
+              </button>
+            </>
+          )}
+        </StyledButtonWrapper>
+      </StyledFieldsetMain>
     </StyledForm>
   );
 }
@@ -105,8 +108,16 @@ const StyledForm = styled.form`
   /* margin: 0 auto; */ /*centers the form */
 `;
 
-const StyledFieldset = styled.fieldset`
+const StyledFieldsetNeeds = styled.fieldset`
+  margin: 1rem 0;
+`;
+
+const StyledFieldsetMain = styled.fieldset`
   border-radius: var(--border-radius-input-field);
+  padding: 0 1rem;
+  border: 2px solid var(--secondary-green-500);
+  //border-color: var(--secondary-green-200);
+  box-shadow: 5px 5px 20px var(--primary-grey-400);
 `;
 
 const StyledTitle = styled.h2`
@@ -128,6 +139,13 @@ const StyledInput = styled.input`
   line-height: 1.2;
   margin-top: 0.2rem;
   border-radius: var(--border-radius-input-field);
+  outline: none;
+  border: 0.1rem solid var(--primary-grey-200);
+
+  &:focus {
+    border-color: var(--secondary-green-500);
+    box-shadow: 0 0 5px var(--secondary-green-700);
+  }
 `;
 
 const StyledNameWrapper = styled.div`
@@ -135,8 +153,24 @@ const StyledNameWrapper = styled.div`
   grid-template-columns: auto 3fr;
   align-items: center;
   gap: 1rem;
+  margin: 1rem 0;
 `;
 
 const StyledTextarea = styled.textarea`
   border-radius: var(--border-radius-input-field);
+  outline: none;
+  border: 0.1rem solid var(--primary-grey-200);
+
+  &:focus {
+    border-color: var(--secondary-green-500);
+    box-shadow: 0 0 5px var(--secondary-green-500);
+  }
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  gap: 1rem;
 `;
