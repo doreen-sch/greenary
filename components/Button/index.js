@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export default styled.button`
-  background-color: var(--primary-off-white);
+  background-color: var(--primary-grey-50);
   color: var(--primary-green-400);
   border: 1px solid var(--primary-green-400);
   border-radius: 4px;
