@@ -116,7 +116,7 @@ export default function PlantForm({
             defaultValue={plant?.description}
             onChange={onSetPlant}
             size={300}
-          ></StyledInput>
+          />
 
           <fieldset>
             <legend>Fertiliser Season</legend>
@@ -127,7 +127,7 @@ export default function PlantForm({
               value="Spring"
               defaultChecked={plant?.fertiliserSeason?.includes("Spring")}
               onChange={onSetPlant}
-            ></StyledInput>
+            />
             <StyledLabel htmlFor="fertiliserSeason-spring">Spring</StyledLabel>
             <StyledInput
               type="checkbox"
@@ -136,7 +136,7 @@ export default function PlantForm({
               value="Summer"
               defaultChecked={plant?.fertiliserSeason?.includes("Summer")}
               onChange={onSetPlant}
-            ></StyledInput>
+            />
             <StyledLabel htmlFor="fertiliserSeason-summer">Summer</StyledLabel>
             <StyledInput
               type="checkbox"
@@ -145,7 +145,7 @@ export default function PlantForm({
               value="Autumn"
               defaultChecked={plant?.fertiliserSeason?.includes("Autumn")}
               onChange={onSetPlant}
-            ></StyledInput>
+            />
             <StyledLabel htmlFor="fertiliserSeason-autumn">Autumn</StyledLabel>
             <StyledInput
               type="checkbox"
@@ -154,9 +154,10 @@ export default function PlantForm({
               value="Winter"
               defaultChecked={plant?.fertiliserSeason?.includes("Winter")}
               onChange={onSetPlant}
-            ></StyledInput>
+            />
             <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
           </fieldset>
+
           {isEditMode ? (
             <>
               <button type="submit">save edits</button>
@@ -166,6 +167,12 @@ export default function PlantForm({
             </>
           ) : (
             <>
+              <fieldset>
+                <legend>Image</legend>
+                <label htmlFor="image">Upload:</label>
+                <input id="image" name="image" type="file" accept="image/*" />
+                <p>optional – supported formats: JPG, PNG, WEBP.</p>
+              </fieldset>
               <button type="reset" onClick={onClearPlant}>
                 clear form
               </button>
@@ -181,7 +188,6 @@ export default function PlantForm({
 const StyledForm = styled.form`
   width: 30em;
   max-width: 90%;
-  /* margin: 0 auto; */ /*centers the form */
 `;
 
 const StyledLabel = styled.label`

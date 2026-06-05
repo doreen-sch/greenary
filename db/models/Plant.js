@@ -6,6 +6,11 @@ const plantSchema = new Schema(
     name: { type: String, required: true },
     botanicalName: { type: String, required: true },
     imageUrl: { type: String },
+    image: {
+      url: { type: String },
+      width: { type: Number },
+      height: { type: Number },
+    },
     waterNeed: { type: String, required: true },
     lightNeed: { type: String, required: true },
     fertiliserSeason: [{ type: String }],

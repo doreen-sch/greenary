@@ -22,6 +22,8 @@ export default function PlantDetails({
   showEditForm,
   handleShowEditForm,
 }) {
+  const src = plant.imageUrl ?? plant.image?.url ?? "/images/greenary_guy.png";
+
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   const [isPortrait, setIsPortrait] = useState(true);
