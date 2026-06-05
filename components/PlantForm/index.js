@@ -103,15 +103,16 @@ export default function PlantForm({
 }
 
 const StyledForm = styled.form`
-  width: 25em;
+  //width: 25em;
   max-width: 90%;
-  /* margin: 0 auto; */ /*centers the form */
+  //margin: 0 auto; /*centers the form */
 `;
 
 const StyledFieldsetNeeds = styled.fieldset`
   margin: 1rem 0;
   border-radius: var(--border-radius-input-field);
   border: 0.1rem solid var(--primary-grey-200);
+  background-color: white;
 `;
 
 const StyledFieldsetMain = styled.fieldset`
@@ -119,6 +120,7 @@ const StyledFieldsetMain = styled.fieldset`
   padding: 0 1rem;
   border: 2px outset var(--secondary-green-500);
   box-shadow: 5px 5px 20px var(--primary-grey-400);
+  margin: 0;
 `;
 
 const StyledTitle = styled.h2`
@@ -161,6 +163,7 @@ const StyledTextarea = styled.textarea`
   border-radius: var(--border-radius-input-field);
   outline: none;
   border: 0.1rem solid var(--primary-grey-200);
+  font-family: Arial, Helvetica, sans-serif;
 
   &:focus {
     border-color: var(--secondary-green-500);

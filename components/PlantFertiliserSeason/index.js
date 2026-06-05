@@ -128,7 +128,7 @@ export default function PlantFertiliserSeason({ plant, onSetPlantForm }) {
 
   return (
     <StyledWrapper>
-      <p>{plantFertiliserSeasons.name}</p>
+      <StyledP>{plantFertiliserSeasons.name}</StyledP>
       <div>{showSeasons()}</div>
     </StyledWrapper>
   );
@@ -142,8 +142,14 @@ const StyledWrapper = styled.div`
 
 const StyledLabel = styled.label`
   opacity: ${(props) => (props.$checked ? 1 : 0.2)};
+  margin: 0.01rem;
 `;
 
 const StyledInput = styled.input`
   opacity: 0;
+`;
+
+const StyledP = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
 `;

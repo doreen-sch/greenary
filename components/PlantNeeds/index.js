@@ -101,10 +101,10 @@ export default function PlantNeeds({ plant, need, onSetPlantForm }) {
 
   return (
     <StyledWrapper>
-      <p>
+      <StyledP>
         {plantNeed.name}
         <span aria-hidden="true">*</span>
-      </p>
+      </StyledP>
       <div>{showNeeds()}</div>
     </StyledWrapper>
   );
@@ -122,4 +122,9 @@ const StyledLabel = styled.label`
 
 const StyledInput = styled.input`
   opacity: 0;
+`;
+
+const StyledP = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
 `;

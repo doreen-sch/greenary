@@ -111,15 +111,7 @@ export default function HomePage() {
           ></PlantForm>
         )}
       </StyledPlantFormWrapper>
-      {/* <Accordion
-        //title={"Expand your garden"}
-        isExpanded={isExpanded}
-        onIsExpanded={handleIsExpanded}
-        plant={plantForm}
-        handleSetPlantForm={handleSetPlantForm}
-        handleSubmit={handleAddPlant}
-        handleClearPlant={handleClearPlant}
-      ></Accordion> */}
+
       <PlantList plants={plants} />
     </div>
   );
@@ -134,5 +126,6 @@ const StyledWrapper = styled.div`
 const StyledPlantFormWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 1rem 0;
 `;
