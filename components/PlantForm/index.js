@@ -110,13 +110,14 @@ const StyledForm = styled.form`
 
 const StyledFieldsetNeeds = styled.fieldset`
   margin: 1rem 0;
+  border-radius: var(--border-radius-input-field);
+  border: 0.1rem solid var(--primary-grey-200);
 `;
 
 const StyledFieldsetMain = styled.fieldset`
   border-radius: var(--border-radius-input-field);
   padding: 0 1rem;
-  border: 2px solid var(--secondary-green-500);
-  //border-color: var(--secondary-green-200);
+  border: 2px outset var(--secondary-green-500);
   box-shadow: 5px 5px 20px var(--primary-grey-400);
 `;
 
