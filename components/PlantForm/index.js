@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PlantNeeds from "../PlantNeeds";
+import PlantFertiliserSeason from "../PlantFertiliserSeason";
 
 export default function PlantForm({
   plant,
@@ -54,15 +55,14 @@ export default function PlantForm({
             need={"lightNeed"}
             onSetPlantForm={onSetPlantForm}
           ></PlantNeeds>
-          {/* 
-          <PlantNeeds
+
+          <PlantFertiliserSeason
             plant={plant}
-            need={"fertiliserSeason"}
-            onSetPlant={onSetPlantForm}
-          ></PlantNeeds> */}
+            onSetPlantForm={onSetPlantForm}
+          ></PlantFertiliserSeason>
         </StyledFieldset>
 
-        <fieldset>
+        {/* <fieldset>
           <legend>Fertiliser Season</legend>
           <StyledInput
             type="checkbox"
@@ -100,7 +100,7 @@ export default function PlantForm({
             onChange={onSetPlantForm}
           ></StyledInput>
           <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
-        </fieldset>
+        </fieldset> */}
 
         <StyledLabel htmlFor="description">Description</StyledLabel>
         <StyledTextarea

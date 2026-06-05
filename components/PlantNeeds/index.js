@@ -89,20 +89,23 @@ export default function PlantNeeds({ plant, need, onSetPlantForm }) {
             id={technicalValue}
             name={need}
             value={value}
-            defaultChecked={plant?.need === value}
+            defaultChecked={plant?.[need] === value}
             onChange={onSetPlantForm}
             required
           />
         </StyledLabel>
       );
     }
-    console.log(returnComponent);
+    //console.log(returnComponent);
     return returnComponent;
   }
 
   return (
     <StyledWrapper>
-      <p>{plantNeed.name}</p>
+      <p>
+        {plantNeed.name}
+        <span aria-hidden="true">*</span>
+      </p>
       <div>{showNeeds()}</div>
     </StyledWrapper>
   );
@@ -119,5 +122,5 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
-  display: none;
+  opacity: 0;
 `;
