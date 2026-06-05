@@ -68,7 +68,7 @@ export default function PlantDetails({
         <section>
           <StyledImageContainer $isPortrait={isPortrait}>
             <StyledImage
-              src={plant.imageUrl}
+              src={src}
               alt={`Image of ${plant.name}`}
               fill
               onLoad={(event) => handleImageLoad(event.target)}
@@ -199,7 +199,7 @@ const StyledPlantDetails = styled.div`
   border-radius: 10px;
   overflow: hidden;
   max-width: 50rem;
-  min-width: 28rem;
+  min-width: 100%;
   background-color: white;
   margin: 2rem auto;
   box-shadow:
@@ -208,6 +208,10 @@ const StyledPlantDetails = styled.div`
     0 4px 4px hsl(0deg 0% 0% / 0.075),
     0 8px 8px hsl(0deg 0% 0% / 0.075),
     0 16px 16px hsl(0deg 0% 0% / 0.075);
+
+  @media (min-width: 768px) {
+    min-width: 30rem;
+  }
 `;
 
 const StyledImageContainer = styled.div`
