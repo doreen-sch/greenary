@@ -1,11 +1,42 @@
 import styled, { css } from "styled-components";
 
 export default styled.button`
-  background-color: var(--secondary-off-white);
+  background-color: var(--primary-off-white);
   color: var(--primary-green-400);
   border: 1px solid var(--primary-green-400);
   border-radius: 4px;
-  padding: 16px 8px;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
+  padding: 8px 32px;
+
+  ${(props) =>
+    props.$variant === "cancel" &&
+    css`
+      background-color: transparent;
+      color: var(--secondary-green-900);
+      border: none;
+    `}
+
+  ${(props) =>
+    props.$variant === "clear" &&
+    css`
+      background-color: transparent;
+      color: var(--secondary-green-900);
+      border: none;
+    `}
+
+    ${(props) =>
+    props.$variant === "delete" &&
+    css`
+      background-color: transparent;
+      color: red;
+      border: none;
+    `}
+
+     ${(props) =>
+    props.$variant === "icon" &&
+    css`
+      background-color: transparent;
+      color: ${(props) =>
+        props.$color === "red" ? "red" : "var(--primary-green-400)"};
+      border: none;
+    `}
 `;

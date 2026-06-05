@@ -9,10 +9,13 @@ import {
   Leaf,
   Snowflake,
   Trash2,
+  SquarePen,
+  SquareArrowLeft,
 } from "lucide-react";
 import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
+import Button from "../Button";
 
 const StyledSection = styled.section`
   position: relative;
@@ -66,7 +69,11 @@ export default function PlantDetails({
 
   return (
     <>
-      <Link href="/">← BACK TO GARDEN</Link>
+      <Link href="/">
+        <Button $variant="icon">
+          <SquareArrowLeft />
+        </Button>
+      </Link>
       <section>
         <Image
           src={src}
@@ -84,7 +91,9 @@ export default function PlantDetails({
             onShowEditForm={handleShowEditForm}
           />
         ) : (
-          <button onClick={handleShowEditForm}>Edit</button>
+          <Button onClick={handleShowEditForm} $variant="icon">
+            <SquarePen />
+          </Button>
         )}
         <h1>{plant.name}</h1>
         <h2>{plant.botanicalName}</h2>
@@ -134,25 +143,34 @@ export default function PlantDetails({
             Do you really want to discard the {plant.name} from your garden?
           </p>
 
-          <button type="button" onClick={() => setIsDeleteConfirmation(false)}>
-            cancel
-          </button>
-
-          <button
+          <Button
             type="button"
+            $variant="cancel"
+            onClick={() => setIsDeleteConfirmation(false)}
+          >
+            cancel
+          </Button>
+
+          <Button
+            type="button"
+            $variant="delete"
             onClick={() => {
               onDeletePlant();
               setIsDeleteConfirmation(false);
             }}
           >
             delete
-          </button>
+          </Button>
         </div>
       ) : (
-        <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
+        <Button
+          type="button"
+          $variant="icon"
+          $color="red"
+          onClick={() => setIsDeleteConfirmation(true)}
+        >
           <Trash2 />
-          Delete Plant
-        </button>
+        </Button>
       )}
     </>
   );
