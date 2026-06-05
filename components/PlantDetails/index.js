@@ -1,11 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Droplet,
-  DropletOff,
   Lightbulb,
-  LightbulbOff,
   Sprout,
   Sun,
   Leaf,
@@ -134,11 +131,10 @@ export default function PlantDetails({
             />
           ) : (
             <button onClick={handleShowEditForm}>
-              {" "}
               <PenIcon />
               Edit
             </button>
-          )}{" "}
+          )}
         </div>
         <div>
           {isDeleteConfirmation ? (
@@ -169,7 +165,7 @@ export default function PlantDetails({
               <Trash2 />
               Delete Plant
             </button>
-          )}{" "}
+          )}
         </div>
       </StyledWrapper>
     </StyledDivideLinkAndCard>
@@ -183,12 +179,12 @@ const StyledDivideLinkAndCard = styled.div`
 `;
 
 const StyledPlantDetails = styled.div`
-  border: 1px solid darkgray;
+  border: 1px solid var(--primary-grey-100);
   border-radius: 10px;
   overflow: hidden;
   max-width: 50rem;
   min-width: 28rem;
-  background-color: var(--secondary-off-white);
+  background-color: white;
   margin: 2rem auto;
   box-shadow:
     0 1px 1px hsl(0deg 0% 0% / 0.075),
