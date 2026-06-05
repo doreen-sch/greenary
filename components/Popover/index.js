@@ -10,6 +10,7 @@ import {
   Droplet,
 } from "lucide-react";
 import styled from "styled-components";
+import { useRef, useState, useEffect } from "react";
 
 const StyledContent = styled.div`
   border-radius: 12px;
@@ -31,6 +32,18 @@ const StyledContent = styled.div`
 `;
 const StyledButton = styled.button`
   all: unset;
+  @keyframes slideIn {
+    from {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  animation: ${({ $isVisible }) =>
+    $isVisible ? "slideIn 0.5s ease-out" : "none"};
 `;
 
 const PopoverHeadline = styled.h3`
@@ -90,10 +103,33 @@ const StyledClose = styled(Close)`
 `;
 
 export default function PopoverCard() {
+  const buttonRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { rootMargin: "-16px" }
+    );
+    if (buttonRef.current) {
+      observer.observe(buttonRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Root>
       <Trigger asChild>
-        <StyledButton aria-label="Get Information">
+        <StyledButton
+          aria-label="Get Information"
+          ref={buttonRef}
+          $isVisible={isVisible}
+        >
           <Info />
         </StyledButton>
       </Trigger>

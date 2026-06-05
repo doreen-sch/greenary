@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import Button from "@/components/Button";
 import { SquareArrowLeft } from "lucide-react";
+import styled from "styled-components";
 
 export default function PlantDetailPage() {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -48,7 +49,7 @@ export default function PlantDetailPage() {
     return (
       <>
         <Link href="/">
-          <Button $variant="icon">
+          <Button $variant="icon" aria-label="Back to Homepage Button">
             <SquareArrowLeft />
           </Button>
         </Link>
@@ -81,13 +82,20 @@ export default function PlantDetailPage() {
       <Head>
         <title>{plant.name}</title>
       </Head>
-      <PlantDetails
-        plant={plant}
-        handleEditPlant={handleEditPlant}
-        showEditForm={showEditForm}
-        handleShowEditForm={handleShowEditForm}
-        onDeletePlant={handleDeletePlant}
-      />
+      <StyledDiv>
+        <PlantDetails
+          plant={plant}
+          handleEditPlant={handleEditPlant}
+          showEditForm={showEditForm}
+          handleShowEditForm={handleShowEditForm}
+          onDeletePlant={handleDeletePlant}
+        />
+      </StyledDiv>
     </>
   );
 }
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
