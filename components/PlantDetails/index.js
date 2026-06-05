@@ -8,11 +8,13 @@ import {
   Leaf,
   Snowflake,
   Trash2,
-  PenIcon,
+  SquarePen,
+  SquareArrowLeft,
 } from "lucide-react";
 import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
+import Button from "../Button";
 import Link from "next/link";
 
 export default function PlantDetails({
@@ -118,7 +120,11 @@ export default function PlantDetails({
         </StyledSection>
       </StyledPlantDetails>
       <StyledWrapper>
-        <StyledLink href="/">← back to the garden</StyledLink>
+        <Link href="/" aria-label="Back to Homepage Button">
+          <Button $variant="icon">
+            <SquareArrowLeft />
+          </Button>
+        </Link>
         <div>
           {showEditForm ? (
             <PlantForm
@@ -128,10 +134,13 @@ export default function PlantDetails({
               onShowEditForm={handleShowEditForm}
             />
           ) : (
-            <button type="button" onClick={handleShowEditForm}>
-              <PenIcon />
-              Edit
-            </button>
+            <Button
+              onClick={handleShowEditForm}
+              $variant="icon"
+              aria-label="Edit Plant Form Button"
+            >
+              <SquarePen />
+            </Button>
           )}
         </div>
         <div>
@@ -141,28 +150,37 @@ export default function PlantDetails({
                 Do you really want to discard the {plant.name} from your garden?
               </p>
 
-              <button
+              <Button
                 type="button"
+                aria-label="Button to cancel delete process"
+                $variant="cancel"
                 onClick={() => setIsDeleteConfirmation(false)}
               >
                 cancel
-              </button>
+              </Button>
 
-              <button
+              <Button
                 type="button"
+                $variant="delete"
+                aria-label="Button to confirm delete process"
                 onClick={() => {
                   onDeletePlant();
                   setIsDeleteConfirmation(false);
                 }}
               >
                 delete
-              </button>
+              </Button>
             </div>
           ) : (
-            <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
+            <Button
+              type="button"
+              $variant="icon"
+              aria-label="Button to delete plant"
+              $color="red"
+              onClick={() => setIsDeleteConfirmation(true)}
+            >
               <Trash2 />
-              Delete Plant
-            </button>
+            </Button>
           )}
         </div>
       </StyledWrapper>
@@ -244,9 +262,4 @@ const StyledWrapper = styled.nav`
   justify-content: space-between;
   align-items: flex-start;
   padding: 2rem 1rem;
-`;
-
-const StyledLink = styled(Link)`
-  color: var(--primary-grey-800);
-  text-decoration: none;
 `;

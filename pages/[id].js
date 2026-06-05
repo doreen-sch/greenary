@@ -4,6 +4,9 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Link from "next/link";
+import Button from "@/components/Button";
+import { SquareArrowLeft } from "lucide-react";
 import styled from "styled-components";
 
 export default function PlantDetailPage() {
@@ -43,7 +46,16 @@ export default function PlantDetailPage() {
   }
 
   if (!plant || error) {
-    return <h1>Oops… something went wrong.</h1>;
+    return (
+      <>
+        <Link href="/">
+          <Button $variant="icon" aria-label="Back to Homepage Button">
+            <SquareArrowLeft />
+          </Button>
+        </Link>
+        <h1>Oops… something went wrong.</h1>
+      </>
+    );
   }
 
   async function handleDeletePlant() {

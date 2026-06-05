@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../Button";
 
 export default function PlantForm({
   plant,
@@ -160,10 +161,10 @@ export default function PlantForm({
 
           {isEditMode ? (
             <>
-              <button type="submit">save edits</button>
-              <button type="button" onClick={onShowEditForm}>
-                cancel
-              </button>
+              <Button type="submit">Save & Close</Button>
+              <Button type="button" $variant="cancel" onClick={onShowEditForm}>
+                Cancel
+              </Button>
             </>
           ) : (
             <>
@@ -173,10 +174,10 @@ export default function PlantForm({
                 <input id="image" name="image" type="file" accept="image/*" />
                 <p>optional – supported formats: JPG, PNG, WEBP.</p>
               </fieldset>
-              <button type="reset" onClick={onClearPlant}>
-                clear form
-              </button>
-              <button type="submit">plant your plant</button>
+              <Button type="reset" $variant="clear" onClick={onClearPlant}>
+                Clear
+              </Button>
+              <Button type="submit">plant your plant</Button>
             </>
           )}
         </fieldset>
