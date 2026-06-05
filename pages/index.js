@@ -17,6 +17,7 @@ const initialPlant = {
 
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [plant, setPlant] = useLocalStorageState("plant", initialPlant);
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
@@ -49,29 +50,44 @@ export default function HomePage() {
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
+    try {
+      setIsUploading(true);
+      toast.loading("Planting…🌱", { id: "uploading" });
+      const uploadResponse = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!uploadResponse.ok) throw new Error("Upload failed");
+      const { height, width, url } = await uploadResponse.json();
+      plantData.image = {
+        height: height ?? 300,
+        width: width ?? 300,
+        url: url ?? "/images/greenary_guy.png",
+      };
+      const plantResponse = await fetch("/api/plants", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plantData),
+      });
 
-    const imageUrl = "/images/greenary_guy.png";
-
-    plantData.imageUrl = imageUrl;
-
-    const response = await fetch("/api/plants", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plantData),
-    });
-
-    if (response.ok) {
-      mutate();
-      setIsExpanded(!isExpanded);
-
-      setPlant(initialPlant);
-
-      toast.success("Your plant 🪴 was successfully planted.");
-    } else {
+      if (plantResponse.ok) {
+        mutate();
+        setIsExpanded(!isExpanded);
+        setPlant(initialPlant);
+        toast.success("Your plant 🪴 was successfully planted.", {
+          id: "uploading",
+        });
+      } else {
+        setIsUploading(false);
+        throw new Error("Saving plant failed");
+      }
+    } catch {
+      setIsUploading(false);
       toast.error(
-        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+        "Oops, something went wrong. Take a deep breath 🍃 and check again.",
+        { id: "uploading" }
       );
     }
   }
@@ -96,7 +112,7 @@ export default function HomePage() {
         handleSetPlant={handleSetPlant}
         handleSubmit={handleAddPlant}
         handleClearPlant={handleClearPlant}
-      ></Accordion>
+      />
 
       <PlantList plants={plants} />
       <BackToTopButton />
