@@ -61,7 +61,7 @@ export default function PlantDetails({
     <StyledDevideLinkAndCard>
       <StyledLink href="/">← BACK TO GARDEN</StyledLink>
       <StyledPlantDetails>
-        <StyledH1>{plant.name}</StyledH1>
+        <h1>{plant.name}</h1>
         <StyledH2>{plant.botanicalName}</StyledH2>
         <section>
           <StyledImageContainer>
@@ -201,19 +201,17 @@ const StyledDescription = styled.article`
   padding: 1rem;
 `;
 
-const StyledH1 = styled.h1`
-  padding: 0 1rem 0 1rem;
-`;
+// const StyledH1 = styled.h1`
+//   padding: 0 1rem 0 1rem;
+// `;
 
 const StyledH2 = styled.h2`
   font-weight: 200;
   font-size: large;
-  padding: 0 1rem 0 1rem;
 `;
 
 const StyledH3 = styled.h3`
   font-weight: 700;
-  padding: 0 1rem 0 1rem;
 `;
 
 const StyledSpan = styled.span`
