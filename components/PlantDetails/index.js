@@ -13,7 +13,7 @@ import {
 import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function PlantDetails({
   plant,
@@ -25,8 +25,6 @@ export default function PlantDetails({
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   const [isPortrait, setIsPortrait] = useState(true);
-
-  const router = useRouter();
 
   function handleImageLoad({ naturalWidth, naturalHeight }) {
     setIsPortrait(naturalHeight > naturalWidth);
