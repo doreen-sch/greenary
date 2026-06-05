@@ -11,10 +11,12 @@ import {
   Leaf,
   Snowflake,
   Trash2,
+  PenIcon,
 } from "lucide-react";
 import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 export default function PlantDetails({
   plant,
@@ -26,6 +28,8 @@ export default function PlantDetails({
   const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   const [isPortrait, setIsPortrait] = useState(true);
+
+  const router = useRouter();
 
   function handleImageLoad({ naturalWidth, naturalHeight }) {
     setIsPortrait(naturalHeight > naturalWidth);
@@ -58,30 +62,20 @@ export default function PlantDetails({
   }
 
   return (
-    <StyledDevideLinkAndCard>
-      <StyledLink href="/">← BACK TO GARDEN</StyledLink>
+    <StyledDivideLinkAndCard>
       <StyledPlantDetails>
         <h1>{plant.name}</h1>
         <StyledH2>{plant.botanicalName}</StyledH2>
         <section>
-          <StyledImageContainer>
+          <StyledImageContainer $isPortrait={isPortrait}>
             <StyledImage
               src={plant.imageUrl}
               alt={`Image of ${plant.name}`}
               fill
+              onLoad={(event) => handleImageLoad(event.target)}
             />
           </StyledImageContainer>
 
-          {showEditForm ? (
-            <PlantForm
-              plant={plant}
-              isEditMode
-              onSubmit={handleEditPlant}
-              onShowEditForm={handleShowEditForm}
-            />
-          ) : (
-            <button onClick={handleShowEditForm}>Edit</button>
-          )}
           <StyledDescription>{plant.description}</StyledDescription>
         </section>
 
@@ -101,7 +95,7 @@ export default function PlantDetails({
               {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
             </span>
           </div>
-          <StyledDevider>|</StyledDevider>
+          <StyledDivider>|</StyledDivider>
           <div>
             <span>
               {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
@@ -113,7 +107,7 @@ export default function PlantDetails({
               {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
             </span>
           </div>
-          <StyledDevider>|</StyledDevider>
+          <StyledDivider>|</StyledDivider>
           <div>
             {plant.fertiliserSeason.map((season) => (
               <span key={season}>
@@ -125,42 +119,64 @@ export default function PlantDetails({
             ))}
           </div>
         </StyledSection>
-
-        {isDeleteConfirmation ? (
-          <div aria-description="Delete Confirmation">
-            <p>
-              Do you really want to discard the {plant.name} from your garden?
-            </p>
-
-            <button
-              type="button"
-              onClick={() => setIsDeleteConfirmation(false)}
-            >
-              cancel
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                onDeletePlant();
-                setIsDeleteConfirmation(false);
-              }}
-            >
-              delete
-            </button>
-          </div>
-        ) : (
-          <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
-            <Trash2 />
-            Delete Plant
-          </button>
-        )}
       </StyledPlantDetails>
-    </StyledDevideLinkAndCard>
+      <StyledWrapper>
+        <button type="button" onClick={() => router.push("/")}>
+          ← BACK TO GARDEN
+        </button>
+        <div>
+          {showEditForm ? (
+            <PlantForm
+              plant={plant}
+              isEditMode
+              onSubmit={handleEditPlant}
+              onShowEditForm={handleShowEditForm}
+            />
+          ) : (
+            <button onClick={handleShowEditForm}>
+              {" "}
+              <PenIcon />
+              Edit
+            </button>
+          )}{" "}
+        </div>
+        <div>
+          {isDeleteConfirmation ? (
+            <div aria-description="Delete Confirmation">
+              <p>
+                Do you really want to discard the {plant.name} from your garden?
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setIsDeleteConfirmation(false)}
+              >
+                cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  onDeletePlant();
+                  setIsDeleteConfirmation(false);
+                }}
+              >
+                delete
+              </button>
+            </div>
+          ) : (
+            <button type="button" onClick={() => setIsDeleteConfirmation(true)}>
+              <Trash2 />
+              Delete Plant
+            </button>
+          )}{" "}
+        </div>
+      </StyledWrapper>
+    </StyledDivideLinkAndCard>
   );
 }
 
-const StyledDevideLinkAndCard = styled.div`
+const StyledDivideLinkAndCard = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
@@ -171,18 +187,15 @@ const StyledPlantDetails = styled.div`
   border-radius: 10px;
   overflow: hidden;
   max-width: 50rem;
+  min-width: 28rem;
   background-color: var(--secondary-off-white);
-  margin: 0 auto;
+  margin: 2rem auto;
   box-shadow:
     0 1px 1px hsl(0deg 0% 0% / 0.075),
     0 2px 2px hsl(0deg 0% 0% / 0.075),
     0 4px 4px hsl(0deg 0% 0% / 0.075),
     0 8px 8px hsl(0deg 0% 0% / 0.075),
     0 16px 16px hsl(0deg 0% 0% / 0.075);
-`;
-
-const StyledLink = styled(Link)`
-  margin: 1em;
 `;
 
 const StyledImageContainer = styled.div`
@@ -200,10 +213,6 @@ const StyledImage = styled(Image)`
 const StyledDescription = styled.article`
   padding: 1rem;
 `;
-
-// const StyledH1 = styled.h1`
-//   padding: 0 1rem 0 1rem;
-// `;
 
 const StyledH2 = styled.h2`
   font-weight: 200;
@@ -231,6 +240,14 @@ const StyledSection = styled.section`
   padding: 3% 15%;
 `;
 
-const StyledDevider = styled.span`
+const StyledDivider = styled.span`
   color: var(--primary-grey-200);
+`;
+
+const StyledWrapper = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 0;
 `;
