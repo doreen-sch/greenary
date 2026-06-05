@@ -38,7 +38,6 @@ export default function PlantDetailPage() {
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
 
-    console.log(formData);
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
 
     const response = await fetch(`/api/plants/${id}`, {

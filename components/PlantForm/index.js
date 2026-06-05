@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PlantNeeds from "../PlantNeeds";
 import PlantFertiliserSeason from "../PlantFertiliserSeason";
+import PopoverCard from "../Popover";
 
 export default function PlantForm({
   plant,
@@ -44,6 +45,10 @@ export default function PlantForm({
         </StyledNameWrapper>
 
         <StyledFieldset>
+          <legend>
+            <PopoverCard />
+          </legend>
+
           <PlantNeeds
             plant={plant}
             need={"waterNeed"}
