@@ -113,7 +113,7 @@ export default function HomePage() {
         handleSetPlant={handleSetPlant}
         handleSubmit={handleAddPlant}
         handleClearPlant={handleClearPlant}
-      ></Accordion>
+      />
 
       <PlantList plants={plants} />
       <BackToTopButton />
