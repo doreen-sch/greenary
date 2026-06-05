@@ -8,8 +8,8 @@ const plantSchema = new Schema(
     imageUrl: { type: String },
     image: {
       url: { type: String },
-      width: { type: String },
-      height: { type: String },
+      width: { type: Number },
+      height: { type: Number },
     },
     waterNeed: { type: String, required: true },
     lightNeed: { type: String, required: true },
