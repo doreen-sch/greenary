@@ -9,8 +9,8 @@ import styled from "styled-components";
 const initialPlant = {
   name: "",
   botanicalName: "",
-  lightNeed: "Full Shade",
-  waterNeed: "Low",
+  lightNeed: "",
+  waterNeed: "",
   description: "",
   fertiliserSeason: [],
 };
@@ -27,9 +27,6 @@ export default function HomePage() {
   function handleSetPlantForm(event) {
     const key = event.target.name;
     const value = event.target.value;
-
-    console.log("is this working??");
-    console.log("key", key, "value", value);
 
     if (key === "fertiliserSeason") {
       setPlantForm({

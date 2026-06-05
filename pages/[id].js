@@ -14,14 +14,10 @@ export default function PlantDetailPage() {
   const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
 
   const [plantFormEdit, setPlantFormEdit] = useState(plant);
-  console.log("from id page, plant data", plant);
 
   function handleSetPlantFormEdit(event) {
     const key = event.target.name;
     const value = event.target.value;
-
-    console.log("i am in the details page");
-    console.log("key", key, "value", value);
 
     if (key === "fertiliserSeason") {
       setPlantFormEdit({
