@@ -3,9 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Droplet,
-  DropletOff,
   Lightbulb,
-  LightbulbOff,
   Sprout,
   Sun,
   Leaf,
@@ -14,7 +12,8 @@ import {
 } from "lucide-react";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
-import Accordion from "../Accordion";
+import PlantFormButton from "../PlantFormButton";
+import PlantForm from "../PlantForm";
 
 export default function PlantDetails({
   plant,
@@ -57,15 +56,31 @@ export default function PlantDetails({
     <>
       <StyledWrapper>
         <Link href="/">← BACK TO GARDEN</Link>
-        <Accordion
+        <PlantFormButton
+          isExpanded={isExpanded}
+          onIsExpanded={handleIsExpanded}
+          isEditMode={true}
+        ></PlantFormButton>
+        {/* <Accordion
           isExpanded={isExpanded}
           onIsExpanded={handleIsExpanded}
           plant={plantForm}
           isEditMode={true}
           handleSubmit={handleEditPlant}
           handleSetPlantForm={handleSetPlantForm}
-        ></Accordion>
+        ></Accordion> */}
       </StyledWrapper>
+      <StyledPlantFormWrapper>
+        {isExpanded && (
+          <PlantForm
+            plant={plantForm}
+            isEditMode={true}
+            onSetPlantForm={handleSetPlantForm}
+            onSubmit={handleEditPlant}
+            handleSetPlantForm={handleSetPlantForm}
+          ></PlantForm>
+        )}
+      </StyledPlantFormWrapper>
       <section>
         <Image
           src={plant.imageUrl}
@@ -161,4 +176,10 @@ const StyledSection = styled.section`
 const StyledSpan = styled.span`
   right: 8px;
   position: absolute;
+`;
+
+const StyledPlantFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
 `;

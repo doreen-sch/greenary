@@ -16,7 +16,7 @@ export default function Accordion({
     <StyledWrapper>
       <StyledHeaderWrapper>
         {/* <StyledHeader>{title}</StyledHeader> */}
-        <StyledButton onClick={onIsExpanded}>
+        {/* <StyledButton onClick={onIsExpanded}>
           {isExpanded ? (
             <LucideX />
           ) : isEditMode ? (
@@ -24,10 +24,10 @@ export default function Accordion({
           ) : (
             <LucidePlus />
           )}
-        </StyledButton>
+        </StyledButton> */}
       </StyledHeaderWrapper>
       <StyledContentWrapper>
-        {isExpanded && (
+        {/* {isExpanded && (
           <PlantForm
             plant={plant}
             isEditMode={isEditMode}
@@ -36,7 +36,7 @@ export default function Accordion({
             onClearPlant={handleClearPlant}
             onCancelEdit={onIsExpanded}
           ></PlantForm>
-        )}
+        )} */}
       </StyledContentWrapper>
     </StyledWrapper>
   );
@@ -55,17 +55,17 @@ const StyledHeader = styled.p`
   font-weight: 600;
 `;
 
-const StyledButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 10%;
-  color: var(--secondary-green-800);
-  background-color: var(--secondary-green-50);
-  border-color: var(--secondary-green-400);
-`;
+// const StyledButton = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 2rem;
+//   width: 2rem;
+//   border-radius: 10%;
+//   color: var(--secondary-green-800);
+//   background-color: var(--secondary-green-50);
+//   border-color: var(--secondary-green-400);
+// `;
 
 const StyledContentWrapper = styled.div`
   display: flex;

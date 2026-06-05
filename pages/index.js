@@ -1,10 +1,12 @@
 import useSWR from "swr";
 import PlantList from "@/components/PlantList";
-import Accordion from "@/components/Accordion";
+//import Accordion from "@/components/Accordion";
+import PlantForm from "@/components/PlantForm";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
 import styled from "styled-components";
+import PlantFormButton from "@/components/PlantFormButton";
 
 const initialPlant = {
   name: "",
@@ -21,6 +23,8 @@ export default function HomePage() {
     "plantForm",
     initialPlant
   );
+  console.log(plantForm);
+  //localStorage.clear();
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
@@ -93,16 +97,31 @@ export default function HomePage() {
     <div>
       <h1>Greenary 🌱</h1>
       <StyledWrapper>
-        <Accordion
-          //title={"Expand your garden"}
+        <PlantFormButton
           isExpanded={isExpanded}
           onIsExpanded={handleIsExpanded}
-          plant={plantForm}
-          handleSetPlantForm={handleSetPlantForm}
-          handleSubmit={handleAddPlant}
-          handleClearPlant={handleClearPlant}
-        ></Accordion>
+        ></PlantFormButton>
       </StyledWrapper>
+      <StyledPlantFormWrapper>
+        {isExpanded && (
+          <PlantForm
+            plant={plantForm}
+            //isEditMode={isEditMode}
+            onSetPlantForm={handleSetPlantForm}
+            onSubmit={handleAddPlant}
+            onClearPlant={handleClearPlant}
+          ></PlantForm>
+        )}
+      </StyledPlantFormWrapper>
+      {/* <Accordion
+        //title={"Expand your garden"}
+        isExpanded={isExpanded}
+        onIsExpanded={handleIsExpanded}
+        plant={plantForm}
+        handleSetPlantForm={handleSetPlantForm}
+        handleSubmit={handleAddPlant}
+        handleClearPlant={handleClearPlant}
+      ></Accordion> */}
       <PlantList plants={plants} />
     </div>
   );
@@ -111,4 +130,11 @@ export default function HomePage() {
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
+  //margin: 1rem 0;
+`;
+
+const StyledPlantFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
 `;
