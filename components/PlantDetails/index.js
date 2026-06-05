@@ -70,7 +70,7 @@ export default function PlantDetails({
       <section>
         <Image
           src={src}
-          alt="placeholder Image"
+          alt={`Image of the ${plant.name}`}
           width={400}
           height={600}
           style={{ objectFit: "cover" }}

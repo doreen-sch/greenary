@@ -79,8 +79,12 @@ export default function HomePage() {
         toast.success("Your plant 🪴 was successfully planted.", {
           id: "uploading",
         });
+      } else {
+        setIsUploading(false);
+        throw new Error("Saving plant failed");
       }
     } catch {
+      setIsUploading(false);
       toast.error(
         "Oops, something went wrong. Take a deep breath 🍃 and check again.",
         { id: "uploading" }

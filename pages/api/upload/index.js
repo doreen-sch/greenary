@@ -15,7 +15,7 @@ export const config = {
 
 export default async function handler(request, response) {
   if (request.method !== "POST") {
-    return response.status(400).json({ status: "Method not allowed" });
+    return response.status(405).json({ status: "Method not allowed" });
   }
 
   const form = formidable({ allowEmptyFiles: true, minFileSize: 0 });
@@ -28,18 +28,23 @@ export default async function handler(request, response) {
   const file = files.image[0];
   const { newFilename, filepath } = file;
 
-  const {
-    height,
-    width,
-    secure_url: url,
-  } = await cloudinary.v2.uploader.upload(filepath, {
-    public_id: newFilename,
-    folder: "nf",
-  });
+  try {
+    const {
+      height,
+      width,
+      secure_url: url,
+    } = await cloudinary.v2.uploader.upload(filepath, {
+      public_id: newFilename,
+      folder: "nf",
+    });
 
-  response.status(201).json({
-    height,
-    width,
-    url,
-  });
+    response.status(201).json({
+      height,
+      width,
+      url,
+    });
+  } catch (error) {
+    console.error("Cloudinary upload failed:", error);
+    return response.status(500).json({ status: "Image Upload failed" });
+  }
 }
