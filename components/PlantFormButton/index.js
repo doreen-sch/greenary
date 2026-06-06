@@ -60,6 +60,12 @@ const StyledButton = styled.button`
   color: var(--secondary-green-800);
   background-color: var(--secondary-green-50);
   border-color: var(--secondary-green-400);
+
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 /*Animation */
