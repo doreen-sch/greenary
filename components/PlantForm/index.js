@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PlantNeeds from "../PlantNeeds";
 import PlantFertiliserSeason from "../PlantFertiliserSeason";
 import PopoverCard from "../Popover";
+import Button from "../Button";
 
 export default function PlantForm({
   title,
@@ -83,17 +84,23 @@ export default function PlantForm({
         <StyledButtonWrapper>
           {isEditMode ? (
             <>
-              <button type="submit">save & close</button>
-              <button type="button" onClick={onCancelEdit}>
-                cancel
-              </button>
+              <Button type="submit">Save & Close</Button>
+              <Button type="button" $variant="cancel" onClick={onCancelEdit}>
+                Cancel
+              </Button>
             </>
           ) : (
             <>
-              <button type="submit">plant your plant</button>
-              <button type="reset" onClick={onClearPlant}>
-                clear
-              </button>
+              <fieldset>
+                <legend>Image</legend>
+                <label htmlFor="image">Upload:</label>
+                <input id="image" name="image" type="file" accept="image/*" />
+                <p>optional – supported formats: JPG, PNG, WEBP.</p>
+              </fieldset>
+              <Button type="submit">Plant your plant</Button>
+              <Button type="reset" $variant="clear" onClick={onClearPlant}>
+                Clear
+              </Button>
             </>
           )}
         </StyledButtonWrapper>
@@ -103,9 +110,7 @@ export default function PlantForm({
 }
 
 const StyledForm = styled.form`
-  //width: 25em;
   max-width: 90%;
-  //margin: 0 auto; /*centers the form */
 `;
 
 const StyledFieldsetNeeds = styled.fieldset`

@@ -1,10 +1,10 @@
 import useSWR from "swr";
 import PlantList from "@/components/PlantList";
-//import Accordion from "@/components/Accordion";
 import PlantForm from "@/components/PlantForm";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
+import BackToTopButton from "@/components/BackToTopButton";
 import styled from "styled-components";
 import PlantFormButton from "@/components/PlantFormButton";
 
@@ -19,6 +19,7 @@ const initialPlant = {
 
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [plantForm, setPlantForm] = useLocalStorageState(
     "plantForm",
     initialPlant
@@ -53,30 +54,52 @@ export default function HomePage() {
 
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
+
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
 
-    const imageUrl = "/images/greenary_guy.png";
+    try {
+      setIsUploading(true);
+      toast.loading("Planting…🌱", { id: "uploading" });
 
-    plantData.imageUrl = imageUrl;
+      const uploadResponse = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-    const response = await fetch("/api/plants", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plantData),
-    });
+      if (!uploadResponse.ok) throw new Error("Upload failed");
 
-    if (response.ok) {
-      mutate();
-      setIsExpanded(!isExpanded);
+      const { height, width, url } = await uploadResponse.json();
 
-      setPlantForm(initialPlant);
+      plantData.image = {
+        height: height ?? 300,
+        width: width ?? 300,
+        url: url ?? "/images/greenary_guy.png",
+      };
 
-      toast.success("Your plant 🪴 was successfully planted.");
-    } else {
+      const plantResponse = await fetch("/api/plants", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(plantData),
+      });
+
+      if (plantResponse.ok) {
+        mutate();
+        setIsExpanded(!isExpanded);
+        setPlantForm(initialPlant);
+        toast.success("Your plant 🪴 was successfully planted.", {
+          id: "uploading",
+        });
+      } else {
+        setIsUploading(false);
+        throw new Error("Saving plant failed");
+      }
+    } catch {
+      setIsUploading(false);
       toast.error(
-        "Oops, something went wrong. Take a deep breath 🍃 and check again."
+        "Oops, something went wrong. Take a deep breath 🍃 and check again.",
+        { id: "uploading" }
       );
     }
   }
@@ -113,6 +136,7 @@ export default function HomePage() {
       </StyledPlantFormWrapper>
 
       <PlantList plants={plants} />
+      <BackToTopButton />
     </div>
   );
 }
