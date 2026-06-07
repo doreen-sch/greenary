@@ -13,7 +13,7 @@ import Button from "../Button";
 
 const StyledContent = styled.div`
   border-radius: 12px;
-  padding: 16px;
+  padding: 16px 24px;
   margin: 16px;
   width: min(320px, calc(100vw - 32px));
   display: flex;
@@ -32,28 +32,29 @@ const StyledContent = styled.div`
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 15px;
-  justify-content: space-around;
+  margin-top: 8px;
+  gap: 48px;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 const PopoverHeadline = styled.h3`
   padding: 0;
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.02em;
   color: var(--primary-grey-600);
 `;
 const StyledParagraph = styled.p`
   font-size: 14px;
-  margin: 8px 0px 16px 0px;
+  margin-top: 6px;
   color: var(--primary-grey-500);
 `;
 
 const StyledClose = styled(Close)`
   all: unset;
-  font-size: 14px;
+  font-size: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
