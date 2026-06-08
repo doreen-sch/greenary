@@ -11,16 +11,38 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export default function PlantDetailPage() {
-  const [showEditForm, setShowEditForm] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const router = useRouter();
   const { id } = router.query;
 
   const { data: plant, isLoading, error, mutate } = useSWR(`/api/plants/${id}`);
 
+  const [plantFormEdit, setPlantFormEdit] = useState(plant);
+
+  function handleSetPlantFormEdit(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+
+    if (key === "fertiliserSeason") {
+      setPlantFormEdit({
+        ...plantFormEdit,
+        [key]: plantFormEdit.fertiliserSeason.find((season) => season === value)
+          ? plantFormEdit.fertiliserSeason.filter((season) => season !== value)
+          : [...plantFormEdit.fertiliserSeason, value],
+      });
+
+      return;
+    }
+
+    setPlantFormEdit({ ...plantFormEdit, [key]: value });
+  }
+
   async function handleEditPlant(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
+
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
 
     const response = await fetch(`/api/plants/${id}`, {
@@ -33,7 +55,8 @@ export default function PlantDetailPage() {
 
     if (response.ok) {
       mutate();
-      setShowEditForm(false);
+      setIsExpanded(!isExpanded);
+
       toast.success("Your plant 🪴 was successfully updated.");
     } else {
       toast.error(
@@ -74,8 +97,9 @@ export default function PlantDetailPage() {
     }
   }
 
-  function handleShowEditForm() {
-    setShowEditForm(!showEditForm);
+  function handleIsExpanded() {
+    setIsExpanded(!isExpanded);
+    setPlantFormEdit(plant);
   }
 
   return (
@@ -91,10 +115,12 @@ export default function PlantDetailPage() {
       <StyledDiv>
         <PlantDetails
           plant={plant}
-          handleEditPlant={handleEditPlant}
-          showEditForm={showEditForm}
-          handleShowEditForm={handleShowEditForm}
+          plantForm={plantFormEdit}
+          isExpanded={isExpanded}
           onDeletePlant={handleDeletePlant}
+          handleEditPlant={handleEditPlant}
+          handleIsExpanded={handleIsExpanded}
+          handleSetPlantForm={handleSetPlantFormEdit}
         />
       </StyledDiv>
     </motion.div>

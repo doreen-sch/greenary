@@ -1,6 +1,12 @@
+import dns from "dns";
 import mongoose from "mongoose";
 
+const DNS_SERVERS = process.env.DNS_SERVERS?.split(",");
 const MONGODB_URI = process.env.MONGODB_URI;
+
+if (DNS_SERVERS?.length) {
+  dns.setServers(DNS_SERVERS);
+}
 
 if (!MONGODB_URI) {
   throw new Error(
