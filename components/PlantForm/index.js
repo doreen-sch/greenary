@@ -1,168 +1,91 @@
 import styled from "styled-components";
+import PlantNeeds from "../PlantNeeds";
+import PlantFertiliserSeason from "../PlantFertiliserSeason";
+import PopoverCard from "../Popover";
 import Button from "../Button";
 
 export default function PlantForm({
+  title,
   plant,
   isEditMode,
-  onSetPlant,
+  onSetPlantForm,
   onSubmit,
   onClearPlant,
-  onShowEditForm,
+  onCancelEdit,
 }) {
   return (
-    <div>
-      <StyledForm
-        onSubmit={onSubmit}
-        aria-labelledby="Expand your Garden"
-        aria-describedby="add a new plant"
-      >
-        <fieldset>
-          <StyledLabel htmlFor="name">Name:</StyledLabel>
+    <StyledForm
+      onSubmit={onSubmit}
+      aria-labelledby="plant-form-title"
+      aria-describedby="add a new plant"
+    >
+      <StyledFieldsetMain>
+        <StyledTitle id="plant-form-title">{title}</StyledTitle>
+
+        <StyledNameWrapper aria-label="name and botanical name">
+          <StyledLabel htmlFor="name">
+            Name<span aria-hidden="true">*</span>
+          </StyledLabel>
           <StyledInput
             type="text"
             id="name"
             name="name"
             defaultValue={plant?.name}
             required
-            onChange={onSetPlant}
+            onChange={onSetPlantForm}
           />
 
-          <StyledLabel htmlFor="botanicalName">Botanical Name: </StyledLabel>
+          <StyledLabel htmlFor="botanicalName">
+            Botanical Name<span aria-hidden="true">*</span>
+          </StyledLabel>
           <StyledInput
             type="text"
             id="botanicalName"
             name="botanicalName"
             defaultValue={plant?.botanicalName}
             required
-            onChange={onSetPlant}
+            onChange={onSetPlantForm}
+          />
+        </StyledNameWrapper>
+
+        <StyledFieldsetNeeds>
+          <legend>
+            <PopoverCard />
+          </legend>
+
+          <PlantNeeds
+            plant={plant}
+            need={"waterNeed"}
+            onSetPlantForm={onSetPlantForm}
           />
 
-          <fieldset>
-            <legend>Light needs</legend>
-
-            <StyledInput
-              type="radio"
-              id="lightNeed-fullSun"
-              name="lightNeed"
-              value="Full Sun"
-              defaultChecked={plant?.lightNeed === "Full Sun"}
-              onChange={onSetPlant}
-              required
-            />
-            <StyledLabel htmlFor="lightNeed-fullSun">Full Sun</StyledLabel>
-
-            <StyledInput
-              type="radio"
-              id="lightNeed-partialShade"
-              name="lightNeed"
-              value="Partial Shade"
-              defaultChecked={plant?.lightNeed === "Partial Shade"}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="lightNeed-partialShade">
-              Partial Shade
-            </StyledLabel>
-
-            <StyledInput
-              type="radio"
-              id="lightNeed-fullShade"
-              name="lightNeed"
-              value="Full Shade"
-              defaultChecked={plant?.lightNeed === "Full Shade"}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="lightNeed-fullShade">Full Shade</StyledLabel>
-          </fieldset>
-
-          <fieldset>
-            <legend>Water needs</legend>
-
-            <StyledInput
-              type="radio"
-              id="waterNeed-low"
-              name="waterNeed"
-              value="Low"
-              defaultChecked={plant?.waterNeed === "Low"}
-              onChange={onSetPlant}
-              required
-            />
-            <StyledLabel htmlFor="waterNeed-low">Low</StyledLabel>
-
-            <StyledInput
-              type="radio"
-              id="waterNeed-medium"
-              name="waterNeed"
-              value="Medium"
-              defaultChecked={plant?.waterNeed === "Medium"}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="waterNeed-medium">Medium</StyledLabel>
-
-            <StyledInput
-              type="radio"
-              id="waterNeed-high"
-              name="waterNeed"
-              value="High"
-              defaultChecked={plant?.waterNeed === "High"}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="waterNeed-high">High</StyledLabel>
-          </fieldset>
-
-          <StyledLabel htmlFor="description">Description</StyledLabel>
-          <StyledInput
-            type="text"
-            id="description"
-            name="description"
-            defaultValue={plant?.description}
-            onChange={onSetPlant}
-            size={300}
+          <PlantNeeds
+            plant={plant}
+            need={"lightNeed"}
+            onSetPlantForm={onSetPlantForm}
           />
 
-          <fieldset>
-            <legend>Fertiliser Season</legend>
-            <StyledInput
-              type="checkbox"
-              id="fertiliserSeason-spring"
-              name="fertiliserSeason"
-              value="Spring"
-              defaultChecked={plant?.fertiliserSeason?.includes("Spring")}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="fertiliserSeason-spring">Spring</StyledLabel>
-            <StyledInput
-              type="checkbox"
-              id="fertiliserSeason-summer"
-              name="fertiliserSeason"
-              value="Summer"
-              defaultChecked={plant?.fertiliserSeason?.includes("Summer")}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="fertiliserSeason-summer">Summer</StyledLabel>
-            <StyledInput
-              type="checkbox"
-              id="fertiliserSeason-autumn"
-              name="fertiliserSeason"
-              value="Autumn"
-              defaultChecked={plant?.fertiliserSeason?.includes("Autumn")}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="fertiliserSeason-autumn">Autumn</StyledLabel>
-            <StyledInput
-              type="checkbox"
-              id="fertiliserSeason-winter"
-              name="fertiliserSeason"
-              value="Winter"
-              defaultChecked={plant?.fertiliserSeason?.includes("Winter")}
-              onChange={onSetPlant}
-            />
-            <StyledLabel htmlFor="fertiliserSeason-winter">Winter</StyledLabel>
-          </fieldset>
+          <PlantFertiliserSeason
+            plant={plant}
+            onSetPlantForm={onSetPlantForm}
+          />
+        </StyledFieldsetNeeds>
 
+        <StyledLabel htmlFor="description">Description</StyledLabel>
+        <StyledTextarea
+          id="description"
+          name="description"
+          defaultValue={plant?.description}
+          onChange={onSetPlantForm}
+          size={300}
+          cols={45}
+          rows={10}
+        ></StyledTextarea>
+        <StyledButtonWrapper>
           {isEditMode ? (
             <>
               <Button type="submit">Save & Close</Button>
-              <Button type="button" $variant="cancel" onClick={onShowEditForm}>
+              <Button type="button" $variant="cancel" onClick={onCancelEdit}>
                 Cancel
               </Button>
             </>
@@ -174,21 +97,40 @@ export default function PlantForm({
                 <input id="image" name="image" type="file" accept="image/*" />
                 <p>optional – supported formats: JPG, PNG, WEBP.</p>
               </fieldset>
+              <Button type="submit">Plant your plant</Button>
               <Button type="reset" $variant="clear" onClick={onClearPlant}>
                 Clear
               </Button>
-              <Button type="submit">plant your plant</Button>
             </>
           )}
-        </fieldset>
-      </StyledForm>
-    </div>
+        </StyledButtonWrapper>
+      </StyledFieldsetMain>
+    </StyledForm>
   );
 }
 
 const StyledForm = styled.form`
-  width: 30em;
   max-width: 90%;
+`;
+
+const StyledFieldsetNeeds = styled.fieldset`
+  margin: 1rem 0;
+  border-radius: var(--border-radius-input-field);
+  border: 0.1rem solid var(--primary-grey-200);
+  background-color: white;
+`;
+
+const StyledFieldsetMain = styled.fieldset`
+  border-radius: var(--border-radius-input-field);
+  padding: 0 1rem;
+  border: 2px outset var(--secondary-green-500);
+  box-shadow: 5px 5px 20px var(--primary-grey-400);
+  margin: 0;
+`;
+
+const StyledTitle = styled.h2`
+  text-align: center;
+  margin: 1rem 0 2rem 0;
 `;
 
 const StyledLabel = styled.label`
@@ -204,4 +146,40 @@ const StyledInput = styled.input`
   width: 100%;
   line-height: 1.2;
   margin-top: 0.2rem;
+  border-radius: var(--border-radius-input-field);
+  outline: none;
+  border: 0.1rem solid var(--primary-grey-200);
+
+  &:focus {
+    border-color: var(--secondary-green-500);
+    box-shadow: 0 0 5px var(--secondary-green-700);
+  }
+`;
+
+const StyledNameWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto 3fr;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+`;
+
+const StyledTextarea = styled.textarea`
+  border-radius: var(--border-radius-input-field);
+  outline: none;
+  border: 0.1rem solid var(--primary-grey-200);
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:focus {
+    border-color: var(--secondary-green-500);
+    box-shadow: 0 0 5px var(--secondary-green-500);
+  }
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  gap: 1rem;
 `;

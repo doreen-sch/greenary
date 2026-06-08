@@ -11,18 +11,21 @@ import {
   SquarePen,
   SquareArrowLeft,
 } from "lucide-react";
-import PlantForm from "../PlantForm";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
+import PlantFormButton from "../PlantFormButton";
+import PlantForm from "../PlantForm";
 import Button from "../Button";
 import Link from "next/link";
 
 export default function PlantDetails({
   plant,
+  plantForm,
+  isExpanded,
   onDeletePlant,
   handleEditPlant,
-  showEditForm,
-  handleShowEditForm,
+  handleIsExpanded,
+  handleSetPlantForm,
 }) {
   const src = plant.imageUrl ?? plant.image?.url ?? "/images/greenary_guy.png";
 
@@ -61,131 +64,141 @@ export default function PlantDetails({
   }
 
   return (
-    <StyledDivideLinkAndCard>
-      {showEditForm && (
-        <PlantForm
-          plant={plant}
-          isEditMode
-          onSubmit={handleEditPlant}
-          onShowEditForm={handleShowEditForm}
-        />
-      )}
-      <StyledPlantDetails>
-        <h1>{plant.name}</h1>
-        <StyledH2>{plant.botanicalName}</StyledH2>
-        <section>
-          <StyledImageContainer $isPortrait={isPortrait}>
-            <StyledImage
-              src={src}
-              alt={`Image of ${plant.name}`}
-              fill
-              onLoad={(event) => handleImageLoad(event.target)}
+    <>
+      <StyledDivideLinkAndCard>
+        <StyledPlantFormWrapper>
+          {isExpanded && (
+            <PlantForm
+              title={"Edit your plant"}
+              plant={plantForm}
+              isEditMode={true}
+              onSetPlantForm={handleSetPlantForm}
+              onSubmit={handleEditPlant}
+              onCancelEdit={handleIsExpanded}
             />
-          </StyledImageContainer>
-
-          <StyledDescription>{plant.description}</StyledDescription>
-        </section>
-
-        <StyledSpan>
-          <StyledH3>{plant.name} grows best with:</StyledH3>
-          <PopoverCard />
-        </StyledSpan>
-        <StyledSection>
-          <div>
-            <span>
-              {waterNeed >= 1 ? <Droplet /> : <Droplet opacity={0.2} />}
-            </span>
-            <span>
-              {waterNeed >= 2 ? <Droplet /> : <Droplet opacity={0.2} />}
-            </span>
-            <span>
-              {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
-            </span>
-          </div>
-          <StyledDivider>|</StyledDivider>
-          <div>
-            <span>
-              {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
-            </span>
-            <span>
-              {lightNeed >= 2 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
-            </span>
-            <span>
-              {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
-            </span>
-          </div>
-          <StyledDivider>|</StyledDivider>
-          <div>
-            {plant.fertiliserSeason.map((season) => (
-              <span key={season}>
-                {season === "Spring" && <Sprout />}
-                {season === "Summer" && <Sun />}
-                {season === "Autumn" && <Leaf />}
-                {season === "Winter" && <Snowflake />}
-              </span>
-            ))}
-          </div>
-        </StyledSection>
-      </StyledPlantDetails>
-      <StyledWrapper>
-        <Link href="/" aria-label="Back to Homepage Button">
-          <Button $variant="icon">
-            <SquareArrowLeft />
-          </Button>
-        </Link>
-        <div>
-          <Button
-            onClick={handleShowEditForm}
-            $variant="icon"
-            aria-label="Edit Plant Form Button"
-          >
-            <SquarePen />
-          </Button>
-        </div>
-        <div>
-          {isDeleteConfirmation ? (
-            <div aria-description="Delete Confirmation">
-              <p>
-                Do you really want to discard the {plant.name} from your garden?
-              </p>
-
-              <Button
-                type="button"
-                aria-label="Button to cancel delete process"
-                $variant="cancel"
-                onClick={() => setIsDeleteConfirmation(false)}
-              >
-                cancel
-              </Button>
-
-              <Button
-                type="button"
-                $variant="delete"
-                aria-label="Button to confirm delete process"
-                onClick={() => {
-                  onDeletePlant();
-                  setIsDeleteConfirmation(false);
-                }}
-              >
-                delete
-              </Button>
-            </div>
-          ) : (
-            <Button
-              type="button"
-              $variant="icon"
-              aria-label="Button to delete plant"
-              $color="red"
-              onClick={() => setIsDeleteConfirmation(true)}
-            >
-              <Trash2 />
-            </Button>
           )}
-        </div>
-      </StyledWrapper>
-    </StyledDivideLinkAndCard>
+        </StyledPlantFormWrapper>
+        <StyledPlantDetails>
+          <h1>{plant.name}</h1>
+          <StyledH2>{plant.botanicalName}</StyledH2>
+          <section>
+            <StyledImageContainer $isPortrait={isPortrait}>
+              <StyledImage
+                src={src}
+                alt={`Image of ${plant.name}`}
+                fill
+                onLoad={(event) => handleImageLoad(event.target)}
+              />
+            </StyledImageContainer>
+
+            <StyledDescription>{plant.description}</StyledDescription>
+          </section>
+
+          <StyledSpan>
+            <StyledH3>{plant.name} grows best with:</StyledH3>
+            <PopoverCard />
+          </StyledSpan>
+          <StyledSection>
+            <div>
+              <span>
+                {waterNeed >= 1 ? <Droplet /> : <Droplet opacity={0.2} />}
+              </span>
+              <span>
+                {waterNeed >= 2 ? <Droplet /> : <Droplet opacity={0.2} />}
+              </span>
+              <span>
+                {waterNeed >= 3 ? <Droplet /> : <Droplet opacity={0.2} />}
+              </span>
+            </div>
+            <StyledDivider>|</StyledDivider>
+            <div>
+              <span>
+                {lightNeed >= 1 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+              </span>
+              <span>
+                {lightNeed >= 2 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+              </span>
+              <span>
+                {lightNeed >= 3 ? <Lightbulb /> : <Lightbulb opacity={0.2} />}
+              </span>
+            </div>
+            <StyledDivider>|</StyledDivider>
+            <div>
+              {plant.fertiliserSeason.map((season) => (
+                <span key={season}>
+                  {season === "Spring" && <Sprout />}
+                  {season === "Summer" && <Sun />}
+                  {season === "Autumn" && <Leaf />}
+                  {season === "Winter" && <Snowflake />}
+                </span>
+              ))}
+            </div>
+          </StyledSection>
+        </StyledPlantDetails>
+        <StyledWrapper>
+          <Link href="/" aria-label="Back to Homepage Button">
+            <Button $variant="icon">
+              <SquareArrowLeft />
+            </Button>
+          </Link>
+          <div>
+            <PlantFormButton
+              isExpanded={isExpanded}
+              onIsExpanded={handleIsExpanded}
+              isEditMode={true}
+            />
+          </div>
+          <div>
+            {isDeleteConfirmation ? (
+              <div aria-description="Delete Confirmation">
+                <p>
+                  Do you really want to discard the {plant.name} from your
+                  garden?
+                </p> 
+                  <Button
+                  type="button"
+                  aria-label="Button to cancel delete process"
+                  $variant="cancel"
+                  onClick={() => setIsDeleteConfirmation(false)}
+                >
+                  cancel
+                </Button>
+
+                <Button
+                  type="button"
+                  $variant="delete"
+                  aria-label="Button to confirm delete process"
+                  onClick={() => {
+                    onDeletePlant();
+                    setIsDeleteConfirmation(false);
+                  }}
+                >
+                  delete
+                </Button>
+              </div>
+            ) : (
+              <Button
+                type="button"
+                $variant="icon"
+                aria-label="Button to delete plant"
+                $color="red"
+                onClick={() => setIsDeleteConfirmation(true)}
+              >
+                <Trash2 />
+              </Button>
+            )}
+          </div>
+        </StyledWrapper>
+      </StyledDivideLinkAndCard>
+    </>
   );
 }
+
+const StyledPlantFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+`;
 
 const StyledDivideLinkAndCard = styled.div`
   display: flex;

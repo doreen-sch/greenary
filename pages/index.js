@@ -1,10 +1,12 @@
 import useSWR from "swr";
 import PlantList from "@/components/PlantList";
-import Accordion from "@/components/Accordion";
+import PlantForm from "@/components/PlantForm";
 import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
 import BackToTopButton from "@/components/BackToTopButton";
+import styled from "styled-components";
+import PlantFormButton from "@/components/PlantFormButton";
 
 const initialPlant = {
   name: "",
@@ -18,30 +20,33 @@ const initialPlant = {
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [plant, setPlant] = useLocalStorageState("plant", initialPlant);
+  const [plantForm, setPlantForm] = useLocalStorageState(
+    "plantForm",
+    initialPlant
+  );
 
   const { data: plants, isLoading, mutate, error } = useSWR("/api/plants");
 
-  function handleSetPlant(event) {
+  function handleSetPlantForm(event) {
     const key = event.target.name;
     const value = event.target.value;
 
     if (key === "fertiliserSeason") {
-      setPlant({
-        ...plant,
-        [key]: plant.fertiliserSeason.find((season) => season === value)
-          ? plant.fertiliserSeason.filter((season) => season !== value)
-          : [...plant.fertiliserSeason, value],
+      setPlantForm({
+        ...plantForm,
+        [key]: plantForm.fertiliserSeason.find((season) => season === value)
+          ? plantForm.fertiliserSeason.filter((season) => season !== value)
+          : [...plantForm.fertiliserSeason, value],
       });
 
       return;
     }
 
-    setPlant({ ...plant, [key]: value });
+    setPlantForm({ ...plantForm, [key]: value });
   }
 
   function handleClearPlant() {
-    setPlant(initialPlant);
+    setPlantForm(initialPlant);
   }
 
   async function handleAddPlant(event) {
@@ -49,21 +54,28 @@ export default function HomePage() {
 
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
+
     plantData.fertiliserSeason = formData.getAll("fertiliserSeason");
+
     try {
       setIsUploading(true);
       toast.loading("Planting…🌱", { id: "uploading" });
+
       const uploadResponse = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
+
       if (!uploadResponse.ok) throw new Error("Upload failed");
+
       const { height, width, url } = await uploadResponse.json();
+
       plantData.image = {
         height: height ?? 300,
         width: width ?? 300,
         url: url ?? "/images/greenary_guy.png",
       };
+
       const plantResponse = await fetch("/api/plants", {
         method: "POST",
         headers: {
@@ -75,7 +87,7 @@ export default function HomePage() {
       if (plantResponse.ok) {
         mutate();
         setIsExpanded(!isExpanded);
-        setPlant(initialPlant);
+        setPlantForm(initialPlant);
         toast.success("Your plant 🪴 was successfully planted.", {
           id: "uploading",
         });
@@ -104,18 +116,38 @@ export default function HomePage() {
 
   return (
     <div>
-      <Accordion
-        title={"Expand your garden"}
-        isExpanded={isExpanded}
-        onIsExpanded={handleIsExpanded}
-        plant={plant}
-        handleSetPlant={handleSetPlant}
-        handleSubmit={handleAddPlant}
-        handleClearPlant={handleClearPlant}
-      />
+      <StyledWrapper>
+        <PlantFormButton
+          isExpanded={isExpanded}
+          onIsExpanded={handleIsExpanded}
+        />
+      </StyledWrapper>
+      <StyledPlantFormWrapper>
+        {isExpanded && (
+          <PlantForm
+            title={"Expand your garden"}
+            plant={plantForm}
+            onSetPlantForm={handleSetPlantForm}
+            onSubmit={handleAddPlant}
+            onClearPlant={handleClearPlant}
+          />
+        )}
+      </StyledPlantFormWrapper>
 
       <PlantList plants={plants} />
       <BackToTopButton />
     </div>
   );
 }
+
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledPlantFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+`;
