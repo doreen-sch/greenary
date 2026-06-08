@@ -28,6 +28,7 @@ const StyledPlantList = styled.ul`
   width: 100%;
   padding: 2rem;
   gap: 1rem;
+  perspective: 4000px;
 `;
 
 const StyledPlantListListItem = styled.li`

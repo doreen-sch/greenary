@@ -8,6 +8,7 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import { SquareArrowLeft } from "lucide-react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export default function PlantDetailPage() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -102,7 +103,12 @@ export default function PlantDetailPage() {
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, pointerEvents: "none" }}
+      transition={{ duration: 0.1 }}
+    >
       <Head>
         <title>{plant.name}</title>
       </Head>
@@ -117,7 +123,7 @@ export default function PlantDetailPage() {
           handleSetPlantForm={handleSetPlantFormEdit}
         />
       </StyledDiv>
-    </>
+    </motion.div>
   );
 }
 

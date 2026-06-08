@@ -5,19 +5,22 @@ import { useState, useEffect } from "react";
 const StyledButton = styled.button`
   position: fixed;
   bottom: 30px;
-  right: 30px;
-  background-color: var(--secondary-green-400);
+  right: 20px;
+  background-color: var(--secondary-green-300);
   opacity: 0.8;
-  border: 1px solid var(--secondary-green-900);
+  border: 1px solid var(--primary-grey-100);
   border-radius: 4px;
   box-shadow:
-    hsl(206 22% 7% / 20%) 0px 8px 30px -8px,
-    hsl(206 22% 7% / 12%) 0px 4px 16px -4px;
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075);
 `;
 
 const StyledMoveUpArrow = styled(ChevronUp)`
-  color: var(--secondary-green-900);
-  stroke-width: 1.5;
+  color: var(--secondary-green-800);
+  stroke-width: 2;
 `;
 
 export default function BackToTopButton() {

@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
 import BackToTopButton from "@/components/BackToTopButton";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import PlantFormButton from "@/components/PlantFormButton";
 
@@ -115,7 +116,11 @@ export default function HomePage() {
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, pointerEvents: "none" }}
+    >
       <StyledWrapper>
         <PlantFormButton
           isExpanded={isExpanded}
@@ -136,7 +141,7 @@ export default function HomePage() {
 
       <PlantList plants={plants} />
       <BackToTopButton />
-    </div>
+    </motion.div>
   );
 }
 
