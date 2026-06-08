@@ -83,16 +83,13 @@ export default function DeletePopover({ plant, onDeletePlant }) {
                 type="button"
                 $variant="deleteConfirm"
                 aria-label="Button to confirm delete process"
-                onClick={() => {
-                  onDeletePlant();
-                }}
+                onClick={onDeletePlant}
               >
                 Delete
               </Button>
               <StyledClose
                 type="button"
                 aria-label="Button to cancel delete process"
-                $variant="cancel"
               >
                 Cancel
               </StyledClose>
