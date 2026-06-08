@@ -75,7 +75,7 @@ export default function PlantDetails({
               onSetPlantForm={handleSetPlantForm}
               onSubmit={handleEditPlant}
               onCancelEdit={handleIsExpanded}
-            ></PlantForm>
+            />
           )}
         </StyledPlantFormWrapper>
         <StyledPlantDetails>
@@ -146,7 +146,7 @@ export default function PlantDetails({
               isExpanded={isExpanded}
               onIsExpanded={handleIsExpanded}
               isEditMode={true}
-            ></PlantFormButton>
+            />
           </div>
           <div>
             {isDeleteConfirmation ? (
