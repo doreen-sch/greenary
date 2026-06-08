@@ -1,13 +1,5 @@
-import {
-  Root,
-  Trigger,
-  Portal,
-  Content,
-  Close,
-  Arrow,
-} from "@radix-ui/react-popover";
+import { Root, Trigger, Portal, Content, Close } from "@radix-ui/react-popover";
 import styled from "styled-components";
-import { useRef, useState, useEffect } from "react";
 import { Trash2 } from "lucide-react";
 import Button from "../Button";
 
@@ -61,25 +53,6 @@ const StyledClose = styled(Close)`
 `;
 
 export default function DeletePopover({ plant, onDeletePlant }) {
-  const buttonRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { rootMargin: "-16px" }
-    );
-    if (buttonRef.current) {
-      observer.observe(buttonRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <Root>
       <Trigger asChild>
