@@ -99,7 +99,7 @@ export default function DeletePopover({ plant, onDeletePlant }) {
           avoidCollisions
           collisionPadding={16}
         >
-          <StyledContent aria-description="Delete Confirmation">
+          <StyledContent aria-label="Delete Confirmation">
             <PopoverHeadline>Really Delete?</PopoverHeadline>
             <StyledParagraph>
               Do you really want to discard the <strong>{plant.name} </strong>
