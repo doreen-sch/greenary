@@ -19,35 +19,16 @@ export default function PlantCard({ plant }) {
   return (
     <>
       {isFlipping && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "black",
-            zIndex: 9,
-          }}
-        />
+        <StyledOverlay initial={{ opacity: 0 }} animate={{ opacity: 0.2 }} />
       )}
       <StyledMotionArticle
         $isFlipping={isFlipping}
         onClick={handleClick}
-        animate={{
-          rotateY: isFlipping ? 90 : 0,
-          scale: isFlipping ? 1.05 : 1,
-          z: isFlipping ? 50 : 0,
-          boxShadow: isFlipping
-            ? "0 30px 60px hsl(0deg 0% 0% / 0.4)"
-            : "0 1px 1px hsl(0deg 0% 0% / 0.075)",
-        }}
+        variants={cardVariants}
+        animate={isFlipping ? "flipping" : "idle"}
         transition={{ duration: 0.45 }}
-        style={{ transformStyle: "preserve-3d", perspective: "5000px" }}
       >
-        <StyledPlantCardDiv onClick={() => console.log("div clicked")}>
+        <StyledPlantCardDiv>
           <StyledImage src={src} alt={name} fill />
         </StyledPlantCardDiv>
         <h2>{name}</h2>
@@ -72,9 +53,38 @@ const StyledMotionArticle = styled(motion.article)`
   z-index: ${({ $isFlipping }) => ($isFlipping ? 10 : "auto")};
 `;
 
-const StyledH3 = styled.h3`
+const StyledOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 9;
+`;
+
+const cardVariants = {
+  idle: {
+    rotateY: 0,
+    scale: 1,
+    z: 0,
+    boxShadow: "0 1px 1px hsl(0deg 0% 0% / 0.075)",
+  },
+  flipping: {
+    rotateY: 90,
+    scale: 1.05,
+    z: 50,
+    boxShadow: "0 30px 60px hsl(0deg 0% 0% / 0.4)",
+  },
+};
+
+const StyledH3 = styled.p`
   font-weight: 200;
   font-size: large;
+  font-family: var(--font-comfortaa);
+  color: var(--primary-grey-900);
+  padding: 0 1rem 0 1rem;
+  text-decoration: none;
 `;
 
 const StyledPlantCardDiv = styled.div`
