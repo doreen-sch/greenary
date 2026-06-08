@@ -120,7 +120,7 @@ export default function HomePage() {
         <PlantFormButton
           isExpanded={isExpanded}
           onIsExpanded={handleIsExpanded}
-        ></PlantFormButton>
+        />
       </StyledWrapper>
       <StyledPlantFormWrapper>
         {isExpanded && (
@@ -143,7 +143,6 @@ export default function HomePage() {
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
-  //margin: 1rem 0;
 `;
 
 const StyledPlantFormWrapper = styled.div`
