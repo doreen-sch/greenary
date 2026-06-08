@@ -57,7 +57,7 @@ export default function PlantNeeds({ plant, need, onSetPlantForm }) {
 
   function toCamelCase(str) {
     return str
-      .split("-")
+      .split(/[-_ ]/)
       .map((word, i) =>
         i > 0
           ? word
@@ -65,6 +65,9 @@ export default function PlantNeeds({ plant, need, onSetPlantForm }) {
               .map((letter, i) => (i === 0 ? letter.toUpperCase() : letter))
               .join("")
           : word
+              .split("")
+              .map((letter, i) => (i === 0 ? letter.toLowerCase() : letter))
+              .join("")
       )
       .join("");
   }
@@ -121,7 +124,7 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
-  opacity: 0;
+  //opacity: 0;
 `;
 
 const StyledP = styled.p`

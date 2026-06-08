@@ -58,6 +58,8 @@ export default createGlobalStyle`
   --primary-grey-900: #141414;
   --header-height: 5rem;
 
+  /*variables */
+  --border-radius-input-field: 0.5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,8 +67,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-grey-900);
     padding: 0 1rem 0 1rem;
 
-  /*variables */
-  --border-radius-input-field: 0.5rem;
 }
 
   *,
