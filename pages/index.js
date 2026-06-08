@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import toast from "react-hot-toast";
 import BackToTopButton from "@/components/BackToTopButton";
+import { motion } from "framer-motion";
 
 const initialPlant = {
   name: "",
@@ -103,7 +104,11 @@ export default function HomePage() {
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, pointerEvents: "none" }}
+    >
       <Accordion
         title={"Expand your garden"}
         isExpanded={isExpanded}
@@ -116,6 +121,6 @@ export default function HomePage() {
 
       <PlantList plants={plants} />
       <BackToTopButton />
-    </div>
+    </motion.div>
   );
 }

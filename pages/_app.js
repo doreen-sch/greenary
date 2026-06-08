@@ -3,6 +3,8 @@ import useSWR, { SWRConfig } from "swr";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import { Comfortaa } from "next/font/google";
+import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -25,6 +27,7 @@ const fetcher = async (url) => {
 
 export default function App({ Component, pageProps }) {
   const { data: plants, isLoading, error } = useSWR(`/api/plants`, fetcher);
+  const router = useRouter();
 
   if (isLoading) {
     return <h1>is Loading…</h1>;
@@ -59,7 +62,9 @@ export default function App({ Component, pageProps }) {
       />
       <Header />
       <SWRConfig value={{ fetcher }}>
-        <Component {...pageProps} plants={plants} />
+        <AnimatePresence mode="wait">
+          <Component {...pageProps} plants={plants} key={router.pathname} />
+        </AnimatePresence>
       </SWRConfig>
     </div>
   );
