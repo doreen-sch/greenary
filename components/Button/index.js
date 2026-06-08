@@ -4,9 +4,10 @@ export default styled.button`
   background-color: var(--secondary-red-50);
   color: var(--primary-green-400);
   border: 1px solid var(--primary-green-400);
-  border-radius: 4px;
+  border-radius: var(--border-radius-button);
   padding: 8px 32px;
   transition: transform 0.2s ease-in-out;
+  font-size: 20px;
 
   &:hover {
     transform: scale(1.1);

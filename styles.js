@@ -60,6 +60,7 @@ export default createGlobalStyle`
 
   /*variables */
   --border-radius-input-field: 0.5rem;
+  --border-radius-button: 4px
 }
 
 h1, h2, h3, h4, h5, h6 {
