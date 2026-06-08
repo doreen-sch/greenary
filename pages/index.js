@@ -130,7 +130,7 @@ export default function HomePage() {
             onSetPlantForm={handleSetPlantForm}
             onSubmit={handleAddPlant}
             onClearPlant={handleClearPlant}
-          ></PlantForm>
+          />
         )}
       </StyledPlantFormWrapper>
 
