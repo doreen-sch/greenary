@@ -266,4 +266,10 @@ const StyledWrapper = styled.nav`
   justify-content: space-between;
   align-items: flex-start;
   padding: 2rem 1rem;
+  background-color: var(--primary-off-white);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
 `;
