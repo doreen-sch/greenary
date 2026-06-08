@@ -124,7 +124,7 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
-  //opacity: 0;
+  opacity: 0;
 `;
 
 const StyledP = styled.p`
