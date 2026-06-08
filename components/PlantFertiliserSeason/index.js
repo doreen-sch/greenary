@@ -106,7 +106,7 @@ export default function PlantFertiliserSeason({ plant, onSetPlantForm }) {
         <StyledLabel
           key={technicalValue}
           htmlFor={technicalValue}
-          $checked={plant.fertiliserSeason.find(
+          $checked={plant?.fertiliserSeason?.find(
             (season) => season === currentSeason
           )}
         >

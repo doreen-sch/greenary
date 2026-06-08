@@ -50,7 +50,7 @@ const plantNeeds = [
 ];
 
 export default function PlantNeeds({ plant, need, onSetPlantForm }) {
-  const currentValue = plant[need];
+  const currentValue = plant?.[need];
   const plantNeed = plantNeeds.find((plantNeed) => plantNeed.id === need);
 
   const numberOfNeed = plantNeed.need.indexOf(currentValue) + 1;
