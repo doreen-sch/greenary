@@ -162,7 +162,7 @@ const StyledPlantFormWrapper = styled.div`
 const StyledDivideLinkAndCard = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
+  margin: 32px 16px;
 `;
 
 const StyledPlantDetails = styled.div`
@@ -235,6 +235,13 @@ const StyledWrapper = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 2rem 1rem;
+  background-color: var(--primary-off-white);
+  box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
 `;

@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   body {
     margin: 0;
     padding-top: calc(var(--header-height) + 0.5rem);
-    padding-bottom: 2rem;
+    padding-bottom: calc(25px + 0.5rem);
     font-family: system-ui;
     background-color: var(--primary-off-white);
     color: var(--primary-grey-800);
