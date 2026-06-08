@@ -13,7 +13,7 @@ export default function PlantCard({ plant }) {
 
   function handleClick() {
     setIsFlipping(true);
-    setTimeout(() => router.push(`/${_id}`), 300);
+    setTimeout(() => router.push(`/${_id}`, undefined, { scroll: false }), 300);
   }
 
   return (
