@@ -55,18 +55,18 @@ export default function PlantNeeds({ plant, need, onSetPlantForm }) {
 
   const numberOfNeed = plantNeed.need.indexOf(currentValue) + 1;
 
-  function toCamelCase(str) {
-    return str
+  function toCamelCase(string) {
+    return string
       .split(/[-_ ]/)
-      .map((word, i) =>
-        i > 0
+      .map((word, index) =>
+        index > 0
           ? word
               .split("")
-              .map((letter, i) => (i === 0 ? letter.toUpperCase() : letter))
+              .map((letter, index) => (index === 0 ? letter.toUpperCase() : letter))
               .join("")
           : word
               .split("")
-              .map((letter, i) => (i === 0 ? letter.toLowerCase() : letter))
+              .map((letter, index) => (index === 0 ? letter.toLowerCase() : letter))
               .join("")
       )
       .join("");
