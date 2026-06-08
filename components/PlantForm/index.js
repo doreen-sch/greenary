@@ -57,18 +57,18 @@ export default function PlantForm({
             plant={plant}
             need={"waterNeed"}
             onSetPlantForm={onSetPlantForm}
-          ></PlantNeeds>
+          />
 
           <PlantNeeds
             plant={plant}
             need={"lightNeed"}
             onSetPlantForm={onSetPlantForm}
-          ></PlantNeeds>
+          />
 
           <PlantFertiliserSeason
             plant={plant}
             onSetPlantForm={onSetPlantForm}
-          ></PlantFertiliserSeason>
+          />
         </StyledFieldsetNeeds>
 
         <StyledLabel htmlFor="description">Description</StyledLabel>
