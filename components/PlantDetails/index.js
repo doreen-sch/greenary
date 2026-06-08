@@ -62,6 +62,14 @@ export default function PlantDetails({
 
   return (
     <StyledDivideLinkAndCard>
+      {showEditForm && (
+        <PlantForm
+          plant={plant}
+          isEditMode
+          onSubmit={handleEditPlant}
+          onShowEditForm={handleShowEditForm}
+        />
+      )}
       <StyledPlantDetails>
         <h1>{plant.name}</h1>
         <StyledH2>{plant.botanicalName}</StyledH2>
@@ -126,22 +134,13 @@ export default function PlantDetails({
           </Button>
         </Link>
         <div>
-          {showEditForm ? (
-            <PlantForm
-              plant={plant}
-              isEditMode
-              onSubmit={handleEditPlant}
-              onShowEditForm={handleShowEditForm}
-            />
-          ) : (
-            <Button
-              onClick={handleShowEditForm}
-              $variant="icon"
-              aria-label="Edit Plant Form Button"
-            >
-              <SquarePen />
-            </Button>
-          )}
+          <Button
+            onClick={handleShowEditForm}
+            $variant="icon"
+            aria-label="Edit Plant Form Button"
+          >
+            <SquarePen />
+          </Button>
         </div>
         <div>
           {isDeleteConfirmation ? (
