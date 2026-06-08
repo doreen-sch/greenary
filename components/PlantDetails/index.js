@@ -1,5 +1,4 @@
 import { useState } from "react";
-import DeletePopover from "../Deleteconfirmation";
 import Image from "next/image";
 import {
   Droplet,
@@ -8,6 +7,7 @@ import {
   Sun,
   Leaf,
   Snowflake,
+  Trash2,
   SquarePen,
   SquareArrowLeft,
 } from "lucide-react";
@@ -28,6 +28,8 @@ export default function PlantDetails({
   handleSetPlantForm,
 }) {
   const src = plant.imageUrl ?? plant.image?.url ?? "/images/greenary_guy.png";
+
+  const [isDeleteConfirmation, setIsDeleteConfirmation] = useState(false);
 
   const [isPortrait, setIsPortrait] = useState(true);
 
@@ -146,7 +148,47 @@ export default function PlantDetails({
               isEditMode={true}
             />
           </div>
-          <DeletePopover plant={plant} onDeletePlant={onDeletePlant} />
+          <div>
+            {isDeleteConfirmation ? (
+              <div aria-description="Delete Confirmation">
+                <p>
+                  Do you really want to discard the {plant.name} from your
+                  garden?
+                </p>
+
+                <Button
+                  type="button"
+                  aria-label="Button to cancel delete process"
+                  $variant="cancel"
+                  onClick={() => setIsDeleteConfirmation(false)}
+                >
+                  cancel
+                </Button>
+
+                <Button
+                  type="button"
+                  $variant="delete"
+                  aria-label="Button to confirm delete process"
+                  onClick={() => {
+                    onDeletePlant();
+                    setIsDeleteConfirmation(false);
+                  }}
+                >
+                  delete
+                </Button>
+              </div>
+            ) : (
+              <Button
+                type="button"
+                $variant="icon"
+                aria-label="Button to delete plant"
+                $color="red"
+                onClick={() => setIsDeleteConfirmation(true)}
+              >
+                <Trash2 />
+              </Button>
+            )}
+          </div>
         </StyledWrapper>
       </StyledDivideLinkAndCard>
     </>

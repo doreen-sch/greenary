@@ -36,16 +36,6 @@ export default styled.button`
       border: none;
     `}
 
-    ${(props) =>
-    props.$variant === "deleteConfirm" &&
-    css`
-      background-color: transparent;
-      color: red;
-      border: 1px solid red;
-      border-radius: 4px;
-      padding: 8px 32px;
-    `}
-
      ${(props) =>
     props.$variant === "icon" &&
     css`
