@@ -16,11 +16,11 @@ export default function PlantForm({
   return (
     <StyledForm
       onSubmit={onSubmit}
-      aria-labelledby="Expand your Garden"
+      aria-labelledby="plant-form-title"
       aria-describedby="add a new plant"
     >
       <StyledFieldsetMain>
-        <StyledTitle>{title}</StyledTitle>
+        <StyledTitle id="plant-form-title">{title}</StyledTitle>
 
         <StyledNameWrapper aria-label="name and botanical name">
           <StyledLabel htmlFor="name">
