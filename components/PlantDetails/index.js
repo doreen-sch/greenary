@@ -8,8 +8,7 @@ import {
   Sun,
   Leaf,
   Snowflake,
-  SquarePen,
-  SquareArrowLeft,
+  ArrowLeft,
 } from "lucide-react";
 import PopoverCard from "../Popover";
 import styled from "styled-components";
@@ -136,7 +135,7 @@ export default function PlantDetails({
         <StyledWrapper>
           <Link href="/" aria-label="Back to Homepage Button">
             <Button $variant="icon">
-              <SquareArrowLeft />
+              <ArrowLeft />
             </Button>
           </Link>
           <div>
