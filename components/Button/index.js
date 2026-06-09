@@ -5,9 +5,9 @@ export default styled.button`
   color: var(--primary-green-400);
   border: 1px solid var(--primary-green-400);
   border-radius: var(--border-radius-button);
-  padding: 8px 32px;
+  padding: var(--padding-button);
   transition: transform 0.2s ease-in-out;
-  font-size: 20px;
+  font-size: var(--font-size-button);
 
   &:hover {
     transform: scale(1.1);
