@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function SplashScreen({ onEnd }) {
   const [videoError, setVideoError] = useState(false);
