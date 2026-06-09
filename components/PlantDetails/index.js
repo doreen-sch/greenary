@@ -228,7 +228,7 @@ const StyledSection = styled.section`
   flex-direction: row;
   position: relative;
   width: 100%;
-  padding: 3% 15%;
+  padding: 0px 16px 16px 16px;
 `;
 
 const StyledDivider = styled.span`
