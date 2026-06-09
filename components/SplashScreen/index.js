@@ -7,11 +7,12 @@ export default function SplashScreen({ onEnd }) {
   const [logoError, setLogoError] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  useEffect(() => {
-    if (videoError && !logoError) {
-      setTimeout(onEnd, 1500);
-    }
-  }, [videoError, logoError, onEnd]);
+useEffect(() => {
+  if (videoError && !logoError) {
+    const timer = setTimeout(onEnd, 1500);
+    return () => clearTimeout(timer);
+  }
+}, [videoError, logoError, onEnd]);
 
   useEffect(() => {
     if (videoLoaded) return;

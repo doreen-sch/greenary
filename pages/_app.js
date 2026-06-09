@@ -49,7 +49,9 @@ export default function App({ Component, pageProps }) {
       />
     );
   }
-
+if (isLoading) {
+  return null;
+}
   if (!plants || error) {
     return <h1>Error!</h1>;
   }
