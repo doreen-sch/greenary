@@ -22,7 +22,7 @@ export default function BackToTopButton() {
   return (
     <>
       {isVisible && (
-        <StyledButton onClick={handleScrollToTop}>
+        <StyledButton onClick={handleScrollToTop} aria-label="Scroll to top">>
           <StyledMoveUpArrow />
         </StyledButton>
       )}
