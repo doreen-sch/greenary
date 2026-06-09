@@ -74,7 +74,7 @@ export default function HomePage() {
       plantData.image = {
         height: height ?? 300,
         width: width ?? 300,
-        url: url ?? "/images/greenary_guy.png",
+        url: url ?? "/images/greenary_guy.webp",
       };
 
       const plantResponse = await fetch("/api/plants", {
