@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <StyledHeader>
-      <Link href="/" aria-label="Back to Homepage Button">
+      <Link href="/" aria-label="Back to Homepage">
         <StyledLogo
           src="/images/Greenary_logo.png"
           alt="greenary logo"
