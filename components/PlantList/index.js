@@ -26,7 +26,7 @@ const StyledPlantList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   gap: 1rem;
   perspective: 4000px;
 `;

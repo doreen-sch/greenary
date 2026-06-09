@@ -148,11 +148,12 @@ export default function HomePage() {
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 1.5rem;
 `;
 
 const StyledPlantFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 `;
