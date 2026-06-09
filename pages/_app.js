@@ -6,8 +6,7 @@ import { Comfortaa } from "next/font/google";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import SplashScreen from "@/components/SplashScreen";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
