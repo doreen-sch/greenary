@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import { Comfortaa } from "next/font/google";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+import SplashScreen from "@/components/SplashScreen";
+import { useState, useEffect } from "react";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -29,10 +31,27 @@ export default function App({ Component, pageProps }) {
   const { data: plants, isLoading, error } = useSWR(`/api/plants`, fetcher);
   const router = useRouter();
 
-  if (isLoading) {
-    return <h1>is Loading…</h1>;
-  }
+  const [showSplash, setShowSplash] = useState(true);
 
+  useEffect(() => {
+    if (sessionStorage.getItem("splashShown")) {
+      setShowSplash(false);
+    }
+  }, []);
+
+  if (showSplash) {
+    return (
+      <SplashScreen
+        onEnd={() => {
+          sessionStorage.setItem("splashShown", "true");
+          setShowSplash(false);
+        }}
+      />
+    );
+  }
+if (isLoading) {
+  return null;
+}
   if (!plants || error) {
     return <h1>Error!</h1>;
   }
