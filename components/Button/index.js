@@ -52,7 +52,7 @@ export default styled.button`
     css`
       background-color: transparent;
       color: ${(props) =>
-        props.$color === "red" ? "red" : "var(--primary-green-400)"};
+        props.$color === "red" ? "red" : "var(--secondary-green-500)"};
       border: none;
     `}
 `;

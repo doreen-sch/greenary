@@ -51,6 +51,6 @@ export default function PlantFormButton({
 }
 
 const StyledLucidePlus = styled(LucidePlus)`
-  width: 2rem;
-  height: 2rem;
+  width: var(--button-width);
+  height: var(--button-height);
 `;
