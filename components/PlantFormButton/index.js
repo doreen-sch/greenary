@@ -42,10 +42,15 @@ export default function PlantFormButton({
             transition={{ duration: 0.2 }}
             style={{ display: "inline-flex" }}
           >
-            <LucidePlus />
+            <StyledLucidePlus />
           </motion.span>
         )}
       </AnimatePresence>
     </Button>
   );
 }
+
+const StyledLucidePlus = styled(LucidePlus)`
+  width: 2rem;
+  height: 2rem;
+`;
