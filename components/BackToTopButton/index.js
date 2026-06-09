@@ -1,7 +1,6 @@
 import { ChevronUp } from "lucide-react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import Button from "../Button";
 
 export default function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
