@@ -74,7 +74,7 @@ export default function HomePage() {
       plantData.image = {
         height: height ?? 300,
         width: width ?? 300,
-        url: url ?? "/images/greenary_guy.png",
+        url: url ?? "/images/greenary_guy.webp",
       };
 
       const plantResponse = await fetch("/api/plants", {
@@ -148,11 +148,12 @@ export default function HomePage() {
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: var(--margin-medium);
 `;
 
 const StyledPlantFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin: var(--margin-medium) 0;
 `;

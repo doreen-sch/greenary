@@ -50,6 +50,23 @@ export default function PlantFormButton({
   );
 }
 
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  color: var(--secondary-green-800);
+  background-color: var(--secondary-green-50);
+  border-color: var(--secondary-green-400);
+
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 const StyledLucidePlus = styled(LucidePlus)`
   width: var(--button-width);
   height: var(--button-height);

@@ -178,7 +178,7 @@ const StyledDivideLinkAndCard = styled.div`
 
 const StyledPlantDetails = styled.div`
   border: 1px solid var(--primary-grey-100);
-  border-radius: 10px;
+  border-radius: var(--border-radius-plant);
   overflow: hidden;
   width: 100%;
   background-color: white;

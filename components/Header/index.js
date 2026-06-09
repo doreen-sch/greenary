@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <StyledHeader>
-      <StyledLogo
-        src="/images/Greenary_logo.png"
-        alt="greenary logo"
-        width={150}
-        height={0}
-      />
+      <Link href="/" aria-label="Back to Homepage">
+        <StyledLogo
+          src="/images/Greenary_logo.png"
+          alt="greenary logo"
+          width={150}
+          height={0}
+        />
+      </Link>
     </StyledHeader>
   );
 }
