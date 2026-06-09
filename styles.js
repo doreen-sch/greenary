@@ -61,6 +61,8 @@ export default createGlobalStyle`
   /*variables */
   --border-radius-input-field: 0.5rem;
   --border-radius-button: 4px;
+  --border-radius-popover: 12px;
+  --border-radius-plant: 10px;
   --padding-button: 8px 32px;
   --font-size-button: 20px;
   --margin-medium: 1.5rem;

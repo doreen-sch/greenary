@@ -56,7 +56,6 @@ const StyledButton = styled.button`
   align-items: center;
   height: 2rem;
   width: 2rem;
-  border-radius: 10%;
   color: var(--secondary-green-800);
   background-color: var(--secondary-green-50);
   border-color: var(--secondary-green-400);
@@ -67,4 +66,3 @@ const StyledButton = styled.button`
     transform: scale(1.1);
   }
 `;
-

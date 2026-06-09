@@ -40,7 +40,7 @@ export default function PlantCard({ plant }) {
 
 const StyledMotionArticle = styled(motion.article)`
   border: 1px solid var(--primary-grey-100);
-  border-radius: 10px;
+  border-radius: var(--border-radius-plant);
   overflow: hidden;
   flex: 1 1 300px;
   background-color: white;

@@ -116,7 +116,7 @@ export default function PopoverCard() {
 }
 
 const StyledContent = styled.div`
-  border-radius: 12px;
+  border-radius: var(--border-radius-popover);
   padding: 16px;
   margin: 16px;
   width: min(320px, calc(100vw - 32px));
