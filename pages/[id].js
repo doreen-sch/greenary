@@ -98,6 +98,7 @@ export default function PlantDetailPage() {
   }
 
   function handleIsExpanded() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setIsExpanded(!isExpanded);
     setPlantFormEdit(plant);
   }
