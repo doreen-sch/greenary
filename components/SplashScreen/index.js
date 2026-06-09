@@ -51,7 +51,7 @@ export default function SplashScreen({ onEnd }) {
           onError={() => setVideoError(true)}
           onLoadedData={() => setVideoLoaded(true)}
         >
-          <source src="images/SplashScreen.mp4" type="video/mp4" />
+          <source src="/images/SplashScreen.mp4" type="video/mp4" />
         </StyledVideo>
       </StyledVideoContainer>
     </StyledVideoWrapper>
