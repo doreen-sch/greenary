@@ -63,6 +63,7 @@ export default createGlobalStyle`
   --border-radius-button: 4px;
   --padding-button: 8px 32px;
   --font-size-button: 20px;
+  --margin-medium: 1.5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
