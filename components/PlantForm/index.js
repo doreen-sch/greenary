@@ -48,7 +48,7 @@ export default function PlantForm({
           />
         </StyledNameWrapper>
 
-        <StyledFieldsetNeeds>
+        <StyledFieldsetFormElement>
           <legend>
             <PopoverCard />
           </legend>
@@ -69,7 +69,7 @@ export default function PlantForm({
             plant={plant}
             onSetPlantForm={onSetPlantForm}
           />
-        </StyledFieldsetNeeds>
+        </StyledFieldsetFormElement>
 
         <StyledLabel htmlFor="description">Description</StyledLabel>
         <StyledTextarea
@@ -91,12 +91,14 @@ export default function PlantForm({
             </>
           ) : (
             <>
-              <fieldset>
-                <legend>Image</legend>
-                <label htmlFor="image">Upload:</label>
-                <input id="image" name="image" type="file" accept="image/*" />
-                <p>optional – supported formats: JPG, PNG, WEBP.</p>
-              </fieldset>
+              <StyledFieldsetFormElement>
+                <StyledLabel>Image</StyledLabel>
+                <StyledUpload>
+                  <label htmlFor="image">Upload:</label>
+                  <input id="image" name="image" type="file" accept="image/*" />
+                </StyledUpload>
+                <StyledHint>Supported formats: JPG, PNG, WEBP.</StyledHint>
+              </StyledFieldsetFormElement>
               <Button type="submit">Plant your plant</Button>
               <Button type="reset" $variant="clear" onClick={onClearPlant}>
                 Clear
@@ -109,11 +111,20 @@ export default function PlantForm({
   );
 }
 
+const StyledUpload = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const StyledHint = styled.p`
+  font-size: 11px;
+`;
+
 const StyledForm = styled.form`
   max-width: 90%;
 `;
 
-const StyledFieldsetNeeds = styled.fieldset`
+const StyledFieldsetFormElement = styled.fieldset`
   margin: 1rem 0;
   border-radius: var(--border-radius-input-field);
   border: 0.1rem solid var(--primary-grey-200);
@@ -168,7 +179,19 @@ const StyledTextarea = styled.textarea`
   border-radius: var(--border-radius-input-field);
   outline: none;
   border: 0.1rem solid var(--primary-grey-200);
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
 
   &:focus {
     border-color: var(--secondary-green-500);
