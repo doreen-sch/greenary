@@ -121,14 +121,21 @@ export default function PlantDetails({
             </div>
             <StyledDivider>|</StyledDivider>
             <div>
-              {plant.fertiliserSeason.map((season) => (
-                <span key={season}>
-                  {season === "Spring" && <Sprout />}
-                  {season === "Summer" && <Sun />}
-                  {season === "Autumn" && <Leaf />}
-                  {season === "Winter" && <Snowflake />}
-                </span>
-              ))}
+              {["Spring", "Summer", "Autumn", "Winter"].map((season) => {
+                const isActive = plant.fertiliserSeason.includes(season);
+                const Icon = {
+                  Spring: Sprout,
+                  Summer: Sun,
+                  Autumn: Leaf,
+                  Winter: Snowflake,
+                }[season];
+
+                return (
+                  <span key={season} style={{ opacity: isActive ? 1 : 0.2 }}>
+                    <Icon />
+                  </span>
+                );
+              })}
             </div>
           </StyledSection>
         </StyledPlantDetails>
