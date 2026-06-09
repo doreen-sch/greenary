@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { LucideX, LucidePencil, LucidePlus } from "lucide-react";
-
+import Button from "../Button";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PlantFormButton({
@@ -9,7 +9,7 @@ export default function PlantFormButton({
   isEditMode,
 }) {
   return (
-    <StyledButton onClick={onIsExpanded}>
+    <Button $variant="icon" onClick={onIsExpanded}>
       <AnimatePresence mode="wait">
         {isExpanded ? (
           <motion.span
@@ -42,11 +42,11 @@ export default function PlantFormButton({
             transition={{ duration: 0.2 }}
             style={{ display: "inline-flex" }}
           >
-            <LucidePlus />
+            <StyledLucidePlus />
           </motion.span>
         )}
       </AnimatePresence>
-    </StyledButton>
+    </Button>
   );
 }
 
@@ -65,4 +65,9 @@ const StyledButton = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+const StyledLucidePlus = styled(LucidePlus)`
+  width: var(--button-width);
+  height: var(--button-height);
 `;

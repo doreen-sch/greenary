@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const plantFertiliserSeasons = {
+export const plantFertiliserSeasons = {
   id: "fertiliserSeason",
   name: "Fertilising",
   icon: [

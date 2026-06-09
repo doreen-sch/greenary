@@ -66,6 +66,10 @@ export default createGlobalStyle`
   --padding-button: 8px 32px;
   --font-size-button: 20px;
   --margin-medium: 1.5rem;
+  --button-width: 2rem;
+  --button-height: 2rem;
+  --button-top-page-width: 3rem;
+  --button-top-page-height: 3rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
