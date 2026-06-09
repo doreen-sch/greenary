@@ -78,7 +78,7 @@ export default function PlantDetails({
           )}
         </StyledPlantFormWrapper>
         <StyledPlantDetails>
-          <h1>{plant.name}</h1>
+          <StyledH1>{plant.name}</StyledH1>
           <StyledH2>{plant.botanicalName}</StyledH2>
           <section>
             <StyledImageContainer $isPortrait={isPortrait}>
@@ -163,31 +163,35 @@ const StyledPlantFormWrapper = styled.div`
 const StyledDivideLinkAndCard = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 32px 16px;
+  width: 100%;
+  margin: 0px 16px 56px 16px;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const StyledPlantDetails = styled.div`
   border: 1px solid var(--primary-grey-100);
   border-radius: 10px;
   overflow: hidden;
-  max-width: 50rem;
-  min-width: 100%;
+  width: 100%;
   background-color: white;
-  margin: 2rem auto;
+  margin: 0;
   box-shadow:
     0 1px 1px hsl(0deg 0% 0% / 0.075),
     0 2px 2px hsl(0deg 0% 0% / 0.075),
     0 4px 4px hsl(0deg 0% 0% / 0.075),
     0 8px 8px hsl(0deg 0% 0% / 0.075),
     0 16px 16px hsl(0deg 0% 0% / 0.075);
-
-  @media (min-width: 768px) {
-    min-width: 30rem;
-  }
 `;
 
+const StyledH1 = styled.h1`
+  margin-bottom: 4px;
+`;
 const StyledH2 = styled.h2`
   color: var(--primary-grey-500);
+  margin-top: 0;
 `;
 
 const StyledImageContainer = styled.div`
