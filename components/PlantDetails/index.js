@@ -17,6 +17,7 @@ import PlantFormButton from "../PlantFormButton";
 import PlantForm from "../PlantForm";
 import Button from "../Button";
 import Link from "next/link";
+import PlantFertiliserSeason from "../PlantFertiliserSeason";
 
 export default function PlantDetails({
   plant,
@@ -185,6 +186,10 @@ const StyledPlantDetails = styled.div`
   }
 `;
 
+const StyledH2 = styled.h2`
+  color: var(--primary-grey-500);
+`;
+
 const StyledImageContainer = styled.div`
   position: relative;
   aspect-ratio: ${({ $isPortrait }) => ($isPortrait ? "5 / 6" : "6 / 5")};
@@ -199,11 +204,6 @@ const StyledImage = styled(Image)`
 
 const StyledDescription = styled.p`
   padding: 1rem;
-`;
-
-const StyledH2 = styled.h2`
-  font-weight: 200;
-  font-size: large;
 `;
 
 const StyledH3 = styled.h3`
