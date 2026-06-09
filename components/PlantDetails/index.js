@@ -8,7 +8,6 @@ import {
   Sun,
   Leaf,
   Snowflake,
-  SquarePen,
   SquareArrowLeft,
 } from "lucide-react";
 import PopoverCard from "../Popover";
@@ -17,7 +16,6 @@ import PlantFormButton from "../PlantFormButton";
 import PlantForm from "../PlantForm";
 import Button from "../Button";
 import Link from "next/link";
-import PlantFertiliserSeason from "../PlantFertiliserSeason";
 
 export default function PlantDetails({
   plant,
